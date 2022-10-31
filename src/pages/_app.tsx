@@ -8,6 +8,7 @@ import "../styles/globals.css";
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import BaseLayout from "../layouts/BaseLayout";
 
 export type NextPageWithLayout<P = Record<string, null>, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -30,5 +31,7 @@ const MyApp = ({
     </SessionProvider>
   );
 };
+
+MyApp.getLayout = BaseLayout
 
 export default MyApp;

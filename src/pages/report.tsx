@@ -1,14 +1,9 @@
-import BaseLayout from "../layouts/BaseLayout";
-import type { NextPageWithLayout } from "./_app";
-
-const Report: NextPageWithLayout = () => {
+const Report = () => {
     return (
         <>
             Report
         </>
     );
 };
-
-Report.getLayout = BaseLayout
 
 export default Report;
