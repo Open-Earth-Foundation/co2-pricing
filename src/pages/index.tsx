@@ -1,16 +1,20 @@
-import { type NextPage } from "next";
+import { Button } from "@mui/material";
+import { Stack } from "@mui/system";
 import Link from "next/link";
 
-import styles from "./index.module.css";
+import BaseLayout from "../layouts/BaseLayout";
 
-const Home: NextPage = () => {
-  return <div className={styles.containerOuter}>
-    <div className={styles.containerInner}>
-      <Link href="/landing" >Landing</Link>
-      <Link href="/calculator" >Calculator</Link>
-      <Link href="/report" >Report</Link>
-    </div>
-  </div>
+import type { NextPageWithLayout } from "./_app";
+
+
+const Home: NextPageWithLayout = () => {
+  return <Stack >
+    <Link href="/landing" ><Button>Landing</Button></Link>
+    <Link href="/calculator" ><Button>Calculator</Button></Link>
+    <Link href="/report" ><Button>Report</Button></Link>
+  </Stack>
 };
+
+Home.getLayout = BaseLayout
 
 export default Home;
