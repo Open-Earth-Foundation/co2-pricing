@@ -1,6 +1,10 @@
 
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 
 import "../styles/globals.css";
@@ -18,17 +22,20 @@ type AppPropsWithLayout = AppProps<{ session: Session | null | undefined }> & {
   Component: NextPageWithLayout
 }
 
+const queryClient = new QueryClient()
+
 const MyApp = ({
   Component,
   pageProps: { session, ...pageProps },
 }: AppPropsWithLayout) => {
 
   const getLayout = Component.getLayout ?? ((page) => page)
-
   return getLayout(
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </QueryClientProvider>
   );
 };
 
