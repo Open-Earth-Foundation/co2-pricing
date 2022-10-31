@@ -1,3 +1,6 @@
+import { Box, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
+
 interface Props {
     description: string;
     title?: string;
@@ -6,10 +9,19 @@ interface Props {
 }
 export default function DescriptionBlock({ description, title, children: callToActionElements, orientation = 'vertical' }: Props) {
     return (
-        <div className={`description-block orientation-${orientation}`}>
-            {title ? <h2 className="title">{title}</h2> : null}
-            <p className="description">{description}</p>
-            <div>{callToActionElements}</div>
-        </div>
+        <Box className={`orientation-${orientation}`} sx={{
+            p: '20px',
+            g: '11px',
+            bgcolor: '#D9D9D9',
+            borderRadius: '8px',
+        }}>
+            {title
+                ? <Typography className="title" variant="h4" >
+                    {title}
+                </Typography>
+                : null}
+            <Typography variant="body1">{description}</Typography>
+            <Stack direction='row-reverse'>{callToActionElements}</Stack>
+        </Box>
     );
 }
