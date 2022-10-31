@@ -13,7 +13,7 @@ export default function DescriptionBlock({ description, title, children: callToA
             p: '20px',
             g: '11px',
             bgcolor: '#D9D9D9',
-            borderRadius: '8px',
+            borderRadius: '5px',
         }}>
             {title
                 ? <Typography className="title" variant="h4" >

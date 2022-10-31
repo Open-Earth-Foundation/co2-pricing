@@ -9,15 +9,13 @@ import { Link, Typography } from '@mui/material';
 import BaseLayout from '../layouts/BaseLayout';
 import LongButton from '../components/ui/LongButton';
 
-
 const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
-
     return (
         <Grid container spacing={2}>
-            <Grid md={3}>
-                <Typography variant="h3" component='h2'>CO2 Pricing Oracle</Typography>
+            <Grid md={5}>
+                <Typography variant="h2" component='h2' sx={{ fontWeight: 'bold' }}>CO2 Pricing Oracle</Typography>
             </Grid>
-            <Grid md={9}>
+            <Grid md={7}>
                 <DescriptionBlock description={top.description} title={top.title} />
             </Grid>
             <Grid md={4}>
@@ -56,19 +54,16 @@ const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
 
 Landing.getLayout = BaseLayout
 
-
+export interface SectionProps {
+    title: string;
+    description: string;
+}
 
 interface DataProps {
-    top: {
-        title: string,
-        description: string,
-    },
-    main: {
-        title: string,
-        description: string,
+    top: SectionProps,
+    main: SectionProps & {
         more_info: string,
     },
-
 }
 
 export const getStaticProps: GetStaticProps<DataProps> = async () => {
