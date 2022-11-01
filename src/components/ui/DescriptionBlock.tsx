@@ -11,16 +11,17 @@ export default function DescriptionBlock({ description, title, children: callToA
     return (
         <Box className={`orientation-${orientation}`} sx={{
             p: '20px',
-            g: '11px',
             bgcolor: '#D9D9D9',
             borderRadius: '5px',
         }}>
-            {title
-                ? <Typography className="title" variant="h4" >
-                    {title}
-                </Typography>
-                : null}
-            <Typography variant="body1">{description}</Typography>
+            <Stack direction={`${orientation === 'vertical' ? 'column' : 'row'}`} columnGap={5} rowGap={2} >
+                {title
+                    ? <Typography className="title" variant="h4" >
+                        {title}
+                    </Typography>
+                    : null}
+                <Typography variant="body1">{description}</Typography>
+            </Stack>
             <Stack direction='row-reverse'>{callToActionElements}</Stack>
         </Box>
     );
