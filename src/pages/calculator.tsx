@@ -11,8 +11,10 @@ import BaseLayout from "../layouts/BaseLayout";
 import type { NextPageWithLayout } from "./_app";
 import Image from "next/image";
 
+import iamPanelMockup from '../assets/mocks/iam_panel_mock.png';
+
 const Calculator: NextPageWithLayout = () => {
-    const { isLoading, error, data: calculation } = useQuery(
+    const { isLoading, error } = useQuery(
         ['calculations'],
         () => fetch('/api/calculations').then(res => res.json()),
         { enabled: true }
@@ -72,9 +74,9 @@ const Calculator: NextPageWithLayout = () => {
             <Grid item md={7} gap={2}>
                 <Image
                     alt="IAM Panel"
-                    src="/img/mocks/iam_panel_mock.png"
-                    width={655}
-                    height={452}
+                    src={iamPanelMockup}
+                    width={650}
+                    height={450}
                 />
             </Grid>
         </Grid >
