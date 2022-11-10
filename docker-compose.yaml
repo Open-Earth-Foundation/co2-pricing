@@ -25,4 +25,6 @@ services:
       - ./app:/app
     environment:
       - NODE_ENV=production
-      - REACT_APP_PRODUCTION_API_ENDPOINT
+      - DATABASE_URL="${CO2_PRICING_DATABASE_URL}"
+      - NEXTAUTH_SECRET=53cr37
+      - NEXTAUTH_URL=http://localhost:3000
