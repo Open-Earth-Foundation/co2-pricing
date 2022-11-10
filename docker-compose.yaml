@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - 8080:80
+  julia:
+    build:
+      dockerfile: Dockerfile
+      context: ./julia
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: ./app
+    volumes:
+      - /app/node_modules
+      - /app/src/styles
+      - ./app:/app
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_PRODUCTION_API_ENDPOINT
