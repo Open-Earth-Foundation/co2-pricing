@@ -10,7 +10,7 @@ services:
       - /app/src/styles
       - ./app:/app
     env_file:
-      - app/.env.local
+      - app/.env
     environment:
       - NODE_ENV=development
       - PORT=3000
