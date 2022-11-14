@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IAM_MODELS } from "../../calculator/_constants";
+import { IAM_MODELS } from "../../../constants/iam-models";
 
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

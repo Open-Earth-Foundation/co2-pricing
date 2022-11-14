@@ -6,18 +6,20 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "../../../components/ui/DescriptionBlock";
-import BaseLayout from "../../../layouts/BaseLayout";
-import type { NextPageWithLayout } from "../../_app";
+import DescriptionBlock from "../../components/ui/DescriptionBlock";
+import BaseLayout from "../../layouts/BaseLayout";
+import type { NextPageWithLayout } from "../_app";
 
-import type { IAMModel } from "../../../types/iam-model";
-import type { CalculatorStage } from "../../../constants/calculator/stage";
-import Chart from "../../../components/ui/chart";
+import type { IAMModel } from "../../types/iam-model";
+import type { CalculatorStage } from "../../types/calculator/stage";
+import Chart from "../../components/ui/chart";
 import { useRouter } from "next/router";
-import iamService from '../../../services/iam';
+import iamService from '../../services/iam';
+import calculatorService from '../../services/calculator';
+import Loading from "src/components/ui/loading";
 
 const SelectMethod: NextPageWithLayout = () => {
-    const { query: { slug } } = useRouter()
+    const { query: { stage } } = useRouter()
     const [selectedModelId, setSelectedModelId] = useState<string>();
 
     const onChange = (value: string) => {
@@ -33,8 +35,7 @@ const SelectMethod: NextPageWithLayout = () => {
         isLoading: isLoadingStage,
         data: calculatorstage
     } = useQuery<CalculatorStage>(
-        ['calculator-stage', slug],
-        () => fetch(`/calculator/stage/${slug}`).then(res => res.json()),
+        ['calculator-stage', stage], () => calculatorService.getStageById(stage as string),
         {
             onSuccess: ({ id }) => onChange(id),
             initialData: {
@@ -42,7 +43,7 @@ const SelectMethod: NextPageWithLayout = () => {
                 name: '',
                 description: "..Loading",
             },
-            enabled: Boolean(slug)
+            enabled: Boolean(stage)
         }
     );
 
@@ -58,11 +59,13 @@ const SelectMethod: NextPageWithLayout = () => {
             </Grid>
             <Grid item md={8}>
 
-                {<DescriptionBlock
-                    description={calculatorstage.description}
-                    title={calculatorstage.name}
-                    orientation='horizontal'
-                />
+                {isLoadingStage
+                    ? <Loading />
+                    : <DescriptionBlock
+                        description={calculatorstage.description}
+                        title={calculatorstage.name}
+                        orientation='horizontal'
+                    />
                 }
             </Grid>
             <Grid item md={4} container gap={2} flexDirection='column'>

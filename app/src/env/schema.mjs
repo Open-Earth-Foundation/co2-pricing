@@ -16,8 +16,6 @@ export const serverSchema = z.object({
     // VERCEL_URL doesnt include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string() : z.string().url(),
   ),
-  MIMIFUND_API_URL: z.string().url(),
-  IAM_API_URL: z.string().url(),
 });
 
 /**
@@ -26,7 +24,7 @@ export const serverSchema = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  // NEXT_PUBLIC_BAR: z.string(),
+  NEXT_PUBLIC_MIMIFUND_API_URL: z.string(),
 });
 
 /**
@@ -36,5 +34,5 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
-  // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
+  NEXT_PUBLIC_MIMIFUND_API_URL: process.env.NEXT_PUBLIC_MIMIFUND_API_URL,
 };

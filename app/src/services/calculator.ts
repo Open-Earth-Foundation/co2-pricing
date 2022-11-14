@@ -1,4 +1,4 @@
-import { _fetchJson } from "./_common.js";
+import { _fetchJson } from "./common";
 
 const validateParams = () => {
     return true
