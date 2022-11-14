@@ -6,17 +6,19 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "../components/ui/DescriptionBlock";
-import BaseLayout from "../layouts/BaseLayout";
-import type { NextPageWithLayout } from "./_app";
+import DescriptionBlock from "../../components/ui/DescriptionBlock";
+import BaseLayout from "../../layouts/BaseLayout";
+import type { NextPageWithLayout } from "../_app";
 import Image from "next/image";
 
-import iamPanelMockup from '../assets/mocks/iam_panel_mock.png';
+import mimifundService from '../../services/mimifund';
+
+import iamPanelMockup from '../../assets/mocks/iam_panel_mock.png';
 
 const Calculator: NextPageWithLayout = () => {
     const { isLoading, error } = useQuery(
-        ['calculations'],
-        () => fetch('/api/calculations').then(res => res.json()),
+        ['carbon-social-cost'],
+        () => mimifundService.getSCCO2,
         { enabled: true }
     )
 

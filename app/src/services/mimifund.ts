@@ -1,25 +1,9 @@
-import type { RequestInit } from "next/dist/server/web/spec-extension/request.js";
 import { env } from "../env/server.mjs"
+import { _fetchJson } from "./_common.js";
 
-const MIMIFUND_API_URL = env.MIMIFUND_API_URL
 
 const MIN_YEAR = 1950
 const MAX_YEAR = 2300
-
-
-const _fetchJson = async (path: string, options: RequestInit = {}) => {
-    const baseOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }
-    const url = MIMIFUND_API_URL + path
-    const response = await fetch(url, { ...baseOptions, ...options });
-    if (!response.ok) {
-        throw new Error(`The HTTP status of the reponse: ${response.status} (${response.statusText})`)
-    }
-    const data = await response.json()
-    return data
-}
 
 const isValidYear = (year: number) => {
     if (isNaN(year)) throw Error(`[${year}] is not a number`)
@@ -46,9 +30,7 @@ const validateParams = (discount: number, year: number) => {
 
 const getSCCO2 = async (discount: number, year: number) => {
     validateParams(discount, year)
-    const response = await _fetchJson('/')
-    const data = await response.json()
-    return data
+    return _fetchJson('/scco2', {}, env.MIMIFUND_API_URL)
 }
 
 export default {

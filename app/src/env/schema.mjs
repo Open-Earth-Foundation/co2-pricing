@@ -17,6 +17,7 @@ export const serverSchema = z.object({
     process.env.VERCEL ? z.string() : z.string().url(),
   ),
   MIMIFUND_API_URL: z.string().url(),
+  IAM_API_URL: z.string().url(),
 });
 
 /**
