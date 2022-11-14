@@ -9,6 +9,12 @@ const getModels = async () => {
     return _fetchJson('/iam/model')
 }
 
+const getModelById = async (id: string) => {
+    validateParams()
+    return _fetchJson(`/iam/model/${id}`)
+}
+
 export default {
-    getModels
+    getModels,
+    getModelById
 } as const
