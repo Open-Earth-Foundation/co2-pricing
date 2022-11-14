@@ -23,7 +23,7 @@ const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
             </Grid>
             <Grid md={8}>
                 <DescriptionBlock description={main.description} title={main.title}>
-                    <Link href="/calculator">
+                    <Link href="/calculator/select">
                         <Typography>Learn More</Typography>
                     </Link>
                 </DescriptionBlock>
@@ -32,7 +32,7 @@ const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
                 <Typography variant='h4' component="h3">How can I calculate mine?</Typography>
             </Grid>
             <Grid md={8}>
-                <Link href="/calculator">
+                <Link href="/calculator/select">
                     <LongButton sx={{ background: '#262626' }}>Go to Calculator</LongButton>
                 </Link>
             </Grid>

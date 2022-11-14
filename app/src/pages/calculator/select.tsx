@@ -43,7 +43,6 @@ const SelectMethod: NextPageWithLayout = () => {
         }
     )
 
-
     if (isLoadingIAMModels) return <Loading />
 
     return (
