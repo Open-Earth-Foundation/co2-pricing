@@ -7,10 +7,7 @@ import {
     IconButton,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Inter } from '@next/font/google'
 
-
-const inter = Inter();
 
 export default function AppBar() {
     const handleMenu = () => {
@@ -18,7 +15,7 @@ export default function AppBar() {
     }
 
     return (
-        <Box sx={{ flexGrow: 1 }} className={inter.className}>
+        <Box>
             <AppBarComponent position="static">
                 <Toolbar>
                     <IconButton

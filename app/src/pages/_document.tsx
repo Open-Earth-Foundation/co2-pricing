@@ -6,7 +6,7 @@ const Document: NextPageWithLayout = () => {
     return (
         <Html>
             <Head />
-            <body>
+            <body >
                 <Main />
                 <NextScript />
             </body>

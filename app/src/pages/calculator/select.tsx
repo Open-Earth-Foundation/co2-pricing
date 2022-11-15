@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -16,6 +16,7 @@ import iamService from 'src/services/iam';
 import type { NextPageWithLayout } from "../_app";
 
 import type { IAMModel } from "src/types/iam/model";
+import Link from "next/link";
 
 
 const SelectMethod: NextPageWithLayout = () => {
@@ -46,7 +47,7 @@ const SelectMethod: NextPageWithLayout = () => {
     if (isLoadingIAMModels) return <Loading />
 
     return (
-        <Grid container rowGap={5} columnGap={1}>
+        <Grid container rowGap={5} columnGap={1} height={1}>
             <Grid item sm={12} md={3}>
                 <Typography variant="h3" component='h2' sx={{ fontWeight: 'bold' }} justifySelf='center'>
                     CO2 Pricing Oracle
@@ -59,7 +60,7 @@ const SelectMethod: NextPageWithLayout = () => {
                     orientation='horizontal'
                 />
             </Grid>
-            <Grid item md={4} container gap={2} flexDirection='column'>
+            <Grid item md={4} container gap={2} flexDirection='column' sx={{ height: 1 }}>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -67,7 +68,6 @@ const SelectMethod: NextPageWithLayout = () => {
                     value={selectedModelId}
                     placeholder="Select a calculation"
                     onChange={({ target }) => onModelChange(target.value)}
-                // defaultOpen
                 >
                     {iamModels.map(({ id, name }) => (
                         <MenuItem key={id} value={id}>{name}</MenuItem>
@@ -75,15 +75,21 @@ const SelectMethod: NextPageWithLayout = () => {
                 </Select>
                 <Box flexGrow={1}>
                     {isLoadingIAMModel
-                        ? <Box>Loading...</Box>
+                        ? <Loading />
                         : iamModel && <DescriptionBlock
                             title={iamModel.name}
                             description={iamModel.description}
-                        />}
+                            ctas={<Link href={`/learn/iam-model/${iamModel.id}`} passHref>
+                                <Button variant="text">Learn more</Button>
+                            </Link>}
+                        >
+                        </DescriptionBlock>}
                 </Box>
             </Grid>
-            <Grid item md={7} gap={2}>
-                <Chart />
+            <Grid item md={7} gap={2} flexDirection='column' sx={{ height: 1 }}>
+                <DescriptionBlock title={'IAM Panel'} orientation='vertical'>
+                    <Chart />
+                </DescriptionBlock>
             </Grid>
         </Grid >
 
