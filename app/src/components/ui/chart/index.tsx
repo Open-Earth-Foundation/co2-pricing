@@ -1,34 +1,16 @@
 import { ResponsiveContainer, CartesianGrid, YAxis, XAxis, Tooltip, Legend, AreaChart, Area } from 'recharts';
+import type { ChartDataPoint } from 'src/types/calculator/plot';
 
-const Chart = () => {
-    const data = [
-        {
-            name: '2015',
-            current: 1000,
 
-        },
-        {
-            name: '2020',
-            current: 1500,
-            yours: 1500,
-            ideal: 1500,
-        },
-        {
-            name: '2025',
-            current: 3000,
-            yours: 2500,
-            ideal: 2000,
-        },
-        {
-            name: '2030',
-            current: 5000,
-            yours: 4000,
-            ideal: 2500,
-        },
-    ]
+interface ChartProps {
+    dataPoints: ChartDataPoint[]
+}
+const Chart = ({
+    dataPoints
+}: ChartProps) => {
     return (
         <ResponsiveContainer width="100%" height='100%' maxHeight={220} >
-            <AreaChart data={data}>
+            <AreaChart data={dataPoints}>
                 <defs>
                     <linearGradient id="current" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="red" stopOpacity={0.8} />
