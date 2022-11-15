@@ -1,15 +1,25 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import {
+    AppBar as AppBarComponent,
+    Box,
+    Toolbar,
+    Typography,
+    Button,
+    IconButton,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Inter } from '@next/font/google'
 
-export default function ButtonAppBar() {
+
+const inter = Inter();
+
+export default function AppBar() {
+    const handleMenu = () => {
+        console.log('menu');
+    }
+
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+        <Box sx={{ flexGrow: 1 }} className={inter.className}>
+            <AppBarComponent position="static">
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -17,6 +27,7 @@ export default function ButtonAppBar() {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
+                        onClick={handleMenu}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -25,7 +36,7 @@ export default function ButtonAppBar() {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
-            </AppBar>
+            </AppBarComponent>
         </Box>
     );
 }
