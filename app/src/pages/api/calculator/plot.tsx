@@ -19,8 +19,6 @@ const calculate = (dataPoint: ChartDataPoint, discount: number): ChartDataPoint 
                 * (1 + discount)
         }
     }
-
-    console.log(newDataPoint)
     return newDataPoint
 }
 

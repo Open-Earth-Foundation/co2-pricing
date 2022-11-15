@@ -27,7 +27,6 @@ const SelectMethod: NextPageWithLayout = () => {
     const [canPlot, setCanPlot] = useState(true)
 
     const onModelChange = (value: string) => {
-        console.log(value);
         setSelectedModelId(value);
     }
 
