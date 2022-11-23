@@ -1,13 +1,6 @@
 version: "3.8"
 
 services:
-  nginx:
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - 8080:80
   julia:
     build:
       dockerfile: Dockerfile
