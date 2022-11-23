@@ -48,7 +48,7 @@ const SelectMethod: NextPageWithLayout = () => {
 
     const iamModels = useQuery(
         ['iam-models'],
-        iamService.getModels, {
+        () => iamService.getModels(), {
         initialData: [],
         onSuccess: ([first]) => first && onModelChange(first?.id),
     })
