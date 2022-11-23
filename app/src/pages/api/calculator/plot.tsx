@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { CALCULATOR_PLOT } from "src/constants/calculator/plot";
 import type { ChartDataPoint } from "src/types/calculator/plot";
 
-// import inf from "src/services/usInflation";
+import inf from "src/services/usInflation";
 
 const CURRENT_YEAR = 2022
 

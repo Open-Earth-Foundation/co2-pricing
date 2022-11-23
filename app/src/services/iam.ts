@@ -1,7 +1,9 @@
 import { _fetchJson } from "./common";
 
 import type { IAMModel } from "src/types/iam/model";
+import { env } from "src/env/client.mjs";
 
+const API_URL = env.NEXT_PUBLIC_API_URL
 
 const validateParams = () => {
     return true
@@ -9,12 +11,12 @@ const validateParams = () => {
 
 const getModels = async () => {
     validateParams()
-    return _fetchJson<IAMModel[]>('/iam/model')
+    return _fetchJson<IAMModel[]>(`${API_URL}/iam/model`)
 }
 
 const getModelById = async (id: string) => {
     validateParams()
-    return _fetchJson<IAMModel>(`/iam/model/${id}`)
+    return _fetchJson<IAMModel>(`${API_URL}/iam/model/${id}`)
 }
 
 export default {
