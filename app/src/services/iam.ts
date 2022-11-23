@@ -11,12 +11,12 @@ const validateParams = () => {
 
 const getModels = async () => {
     validateParams()
-    return _fetchJson<IAMModel[]>(`${API_URL}/iam/model`)
+    return await _fetchJson(`${API_URL}/iam/model`) as IAMModel[]
 }
 
 const getModelById = async (id: string) => {
     validateParams()
-    return _fetchJson<IAMModel>(`${API_URL}/iam/model/${id}`)
+    return await _fetchJson(`${API_URL}/iam/model/${id}`) as IAMModel
 }
 
 export default {

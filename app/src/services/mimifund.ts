@@ -30,7 +30,7 @@ const validateParams = (discount: number, year: number) => {
 
 const getSCCO2 = async (discount: number, year: number) => {
     validateParams(discount, year)
-    return _fetchJson('/scco2', {}, env.MIMIFUND_API_URL)
+    return _fetchJson(`${env.MIMIFUND_API_URL}/scco2`)
 }
 
 export default {

@@ -5,13 +5,12 @@ import { INFLATION_CPI_CSV_URL } from './../constants/inflation';
 import { _fetchJson } from './common';
 import { DEFAULT_MAX_YEAR, DEFAULT_MIN_YEAR } from './../constants/axioms';
 
-
+let CSV_DATA: string
 interface ConvertionInput {
     year: number
     month?: number
     amount: number
 }
-
 const validateInput = ({ year, month, amount }: Partial<ConvertionInput>) => {
     // function docstring:
     // Validate the input for the convert function.
@@ -42,19 +41,25 @@ const validateInput = ({ year, month, amount }: Partial<ConvertionInput>) => {
     return true
 }
 
+const listToObjectFromKey = (list: any[], key: string) => {
+    return list.reduce((acc, item) => {
+        acc[item[key]] = item
+        return acc
+    }, {})
+}
+
 const getCpi = async (year: number, month?: number) => {
-    const allData = await _fetchJson<Readable>(INFLATION_CPI_CSV_URL, { cache: 'force-cache' })
-    const csvTableData = await csvtojson().fromStream(allData)
-    // convert google sheets json response to a more usable format in list
-    console.log(csvTableData)
-    return csvTableData[0] as number
+    const csvTableData = await csvtojson().fromString(CSV_DATA)
+    const cpiData = listToObjectFromKey(csvTableData, 'YEAR')
+    const januaryPercent = Number(cpiData[year]['1']) / 100
+    return januaryPercent
 }
 
 
 async function calculateInflation(from: ConvertionInput, to: Omit<ConvertionInput, 'amount'>) {
+    CSV_DATA = (await _fetchJson<Readable>(INFLATION_CPI_CSV_URL, { cache: 'force-cache' })) as string;
     // validateInput(from)
     // validateInput(to)
-
     const [fromCpi, toCpi] = await Promise.all([
         getCpi(from.year, from.month),
         getCpi(to.year, to.month)

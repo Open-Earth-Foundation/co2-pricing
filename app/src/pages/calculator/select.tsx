@@ -38,12 +38,25 @@ const SelectMethod: NextPageWithLayout = () => {
         setYear(value);
     }
 
+    const reactivatePlot = () => {
+        console.log('reactivatePlot')
+        setCanPlot(true)
+    }
+
     const dataPoints = useQuery(
         ['calculator-data-points'],
         () => calculatorService.getPlotData(discount, year), {
+
         initialData: [],
         enabled: canPlot,
-        onSuccess: () => setCanPlot(false)
+        onSuccess: () => {
+            console.log('onSuccess')
+            setCanPlot(false)
+        },
+        onError: () => {
+            console.log('onError')
+            setCanPlot(false)
+        }
     })
 
     const iamModels = useQuery(
@@ -112,7 +125,7 @@ const SelectMethod: NextPageWithLayout = () => {
                                 defaultValue={50}
                                 value={discount}
                                 onChange={(e, discount) => onDiscountChange(discount as number)}
-                                onChangeCommitted={() => setCanPlot(true)}
+                                onChangeCommitted={reactivatePlot}
                                 min={0.0} max={2} step={0.05}
                             />
                             <Slider
@@ -121,7 +134,7 @@ const SelectMethod: NextPageWithLayout = () => {
                                 valueLabelDisplay="auto"
                                 value={year}
                                 onChange={(e, year) => onYearChange(year as number)}
-                                onChangeCommitted={() => setCanPlot(true)}
+                                onChangeCommitted={reactivatePlot}
                                 min={1950}
                                 max={2300}
                                 step={5}

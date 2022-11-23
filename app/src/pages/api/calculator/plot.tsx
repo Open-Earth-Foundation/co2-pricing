@@ -27,13 +27,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { discount, year } = req.query;
 
 
-    // const calc = await inf.calculateInflation({
-    //     amount: 1000,
-    //     year: 1950
-    // }, {
-    //     year: 2021
-    // })
-    // console.log({ calc })
+    const calc = await inf.calculateInflation({
+        amount: 1000,
+        year: 1950
+    }, {
+        year: 2021
+    })
+    console.log({ calc })
     const filteredDataPoints = CALCULATOR_PLOT.filter(point => Number(point.name) <= Number(year))
     const dataPoints = filteredDataPoints.map((point) => calculate(point, Number(discount)))
     res.status(200).json(dataPoints);

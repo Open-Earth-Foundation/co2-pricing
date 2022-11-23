@@ -1,17 +1,28 @@
+const controller = new AbortController()
+
 export const _fetchJson = async <T = Record<string, unknown>>(
     url: string,
     options: RequestInit = {},
-): Promise<T> => {
+): Promise<T | string> => {
     const baseOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }
-    console.log({ url })
-    const response = await fetch(url, { ...baseOptions, ...options });
+    const response = await fetch(url, {
+        ...baseOptions,
+        ...options,
+        signal: controller.signal
+    });
     if (!response.ok) {
         throw new Error(`The HTTP status of the reponse: ${response.status} (${response.statusText})`)
     }
-    const data = await response.json()
-    return data as T;
+    if (response.headers.get('content-type')?.includes('json')) {
+        // it's json
+        return await response.json()
+    } else {
+        console.log('url', url)
+        // it's something else
+        return await response.text()
+    }
 }
 

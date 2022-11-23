@@ -20,11 +20,11 @@ export default {
         validateParams()
         return _fetchJson<CalculatorStage>(`${API_URL}/calculator/stage/${id}`)
     },
-    getPlotData(_discount: number, _year: number) {
+    async getPlotData(_discount: number, _year: number) {
         const discount = _discount.toFixed(2)
         const year = _year.toFixed(0)
         const queryString = new URLSearchParams({ discount, year });
         validateParams()
-        return _fetchJson<ChartDataPoint[]>(`${API_URL}/calculator/plot?${queryString}`)
+        return await _fetchJson(`${API_URL}/calculator/plot?${queryString}`) as ChartDataPoint[]
     }
 } as const
