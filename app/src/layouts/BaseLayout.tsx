@@ -2,13 +2,7 @@ import { Container } from "@mui/system";
 import Head from "next/head";
 import type { ReactElement } from "react"
 import ButtonAppBar from "../components/layout/Appbar";
-import { Roboto } from '@next/font/google'
 
-
-const googleFont = Roboto({
-    weight: '400',
-    variable: '--font-roboto',
-})
 
 const BaseLayout = (page: ReactElement) => {
     return (

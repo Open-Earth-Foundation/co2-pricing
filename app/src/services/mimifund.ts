@@ -1,4 +1,4 @@
-import { env } from "../env/client.mjs"
+import { env } from "../env/server.mjs"
 import { _fetchJson } from "./common";
 
 
@@ -30,7 +30,7 @@ const validateParams = (discount: number, year: number) => {
 
 const getSCCO2 = async (discount: number, year: number) => {
     validateParams(discount, year)
-    return _fetchJson('/scco2', {}, env.NEXT_PUBLIC_MIMIFUND_API_URL)
+    return _fetchJson('/scco2', {}, env.MIMIFUND_API_URL)
 }
 
 export default {

@@ -16,8 +16,5 @@ services:
       - /app/node_modules
       - /app/src/styles
       - ./app:/app
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL="${CO2_PRICING_DATABASE_URL}"
-      - NEXTAUTH_SECRET=53cr37
-      - NEXTAUTH_URL=http://localhost:3000
+    env_file:
+      - ./app/.env
