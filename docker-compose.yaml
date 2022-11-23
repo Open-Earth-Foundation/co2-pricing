@@ -5,13 +5,16 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./julia
+    ports:
+      - "8000:8000"
     environment:
-      - NODE_ENV=production
-      - PORT=5000
+      - PORT=8000
   app:
     build:
       dockerfile: Dockerfile
       context: ./app
+    ports:
+      - "3001:3001"
     volumes:
       - /app/node_modules
       - /app/src/styles

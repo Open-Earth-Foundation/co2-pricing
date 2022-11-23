@@ -1,6 +1,6 @@
 import { Box, Button, Grid, LinearProgress, Slider, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -73,7 +73,13 @@ const SelectMethod: NextPageWithLayout = () => {
         enabled: !!selectedModelId
     })
 
+    useEffect(() => {
+        calculatorService.getCarbonSocialCost(1, 2020)
+    }, [])
+
     if (iamModels.isLoading) return <Loading />
+
+
 
     return (
         <Grid container rowGap={5} columnGap={1} height={1}>

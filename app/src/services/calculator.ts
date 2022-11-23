@@ -26,5 +26,12 @@ export default {
         const queryString = new URLSearchParams({ discount, year });
         validateParams()
         return await _fetchJson(`${API_URL}/calculator/plot?${queryString}`) as ChartDataPoint[]
+    },
+    async getCarbonSocialCost(_discount: number, _year: number) {
+        const discount = _discount.toFixed(2)
+        const year = _year.toFixed(0)
+        const queryString = new URLSearchParams({ discount, year });
+        validateParams()
+        return await _fetchJson(`${API_URL}/carbon/social-cost?${queryString}`) as number
     }
 } as const
