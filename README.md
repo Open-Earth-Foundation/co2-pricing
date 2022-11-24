@@ -50,7 +50,7 @@ This is an example of how to list things you need to use the software and how to
 2. Copy the `app/.env.example` file to `app/.env` and fill the variables
 
    ```sh
-   cp app/.env.example app.env
+   cp app/.env.example app/.env
    ```
 
 3. Run the docker-compose file
