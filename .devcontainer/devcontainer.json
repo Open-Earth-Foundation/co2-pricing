@@ -32,7 +32,7 @@
 	"portsAttributes": {
 		"3000": {
 			"label": "Next.js Web App",
-			"onAutoForward": "openBrowser",
+			"onAutoForward": "openBrowser"
 		}
 	},
 	"remoteEnv": {
