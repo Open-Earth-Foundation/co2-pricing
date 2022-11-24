@@ -20,6 +20,10 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN touch .env \
+    && echo $MIMIFUND_API_URL=$MIMIFUND_API_URL >> .env \
+    && NEXTAUTH_SECRET=$NEXTAUTH_SECRET >> .env \
+    && NEXTAUTH_URL=$NEXTAUTH_URL >> .env
 # This will do the trick, use the corresponding env file for each environment.
 # COPY .env .env
 RUN yarn build
