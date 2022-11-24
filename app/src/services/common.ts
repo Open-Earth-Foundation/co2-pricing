@@ -17,11 +17,8 @@ export const _fetchJson = async <T = Record<string, unknown>>(
         throw new Error(`The HTTP status of the reponse: ${response.status} (${response.statusText})`)
     }
     if (response.headers.get('content-type')?.includes('json')) {
-        // it's json
         return await response.json()
     } else {
-        console.log('url', url)
-        // it's something else
         return await response.text()
     }
 }

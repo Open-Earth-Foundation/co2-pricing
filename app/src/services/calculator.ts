@@ -32,6 +32,7 @@ export default {
         const year = _year.toFixed(0)
         const queryString = new URLSearchParams({ discount, year });
         validateParams()
-        return await _fetchJson(`${API_URL}/carbon/social-cost?${queryString}`) as number
+        const socialCost = await _fetchJson<{ cost: number }>(`${API_URL}/carbon/social-cost?${queryString}`)
+        return socialCost
     }
 } as const

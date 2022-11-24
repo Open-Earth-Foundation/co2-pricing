@@ -74,7 +74,8 @@ const SelectMethod: NextPageWithLayout = () => {
     })
 
     useEffect(() => {
-        calculatorService.getCarbonSocialCost(1, 2020)
+        console.log('useEffect')
+        calculatorService.getCarbonSocialCost(1, 2020).then(console.log)
     }, [])
 
     if (iamModels.isLoading) return <Loading />
