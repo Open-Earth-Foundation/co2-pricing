@@ -2,14 +2,13 @@ import { _fetchJson } from "./common";
 
 import type { CalculatorStage } from './../types/calculator/stage';
 import type { ChartDataPoint } from "src/types/calculator/plot";
-import { env } from "src/env/client.mjs";
 
 
 const validateParams = () => {
     return true
 }
 
-const API_URL = env.NEXT_PUBLIC_API_URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export default {
     getStages() {

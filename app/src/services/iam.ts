@@ -1,9 +1,8 @@
 import { _fetchJson } from "./common";
 
 import type { IAMModel } from "src/types/iam/model";
-import { env } from "src/env/client.mjs";
 
-const API_URL = env.NEXT_PUBLIC_API_URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 const validateParams = () => {
     return true
