@@ -14,6 +14,7 @@ export const validateInput = ({ fromYear, toYear, amount }: ConvertionInput) => 
     return true
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const listToObjectFromKey = (list: any[], key: string) => {
     return list.reduce((acc, item) => {
         acc[item[key]] = item

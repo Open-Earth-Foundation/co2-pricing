@@ -1,6 +1,6 @@
 import { Box, Button, Grid, LinearProgress, Slider, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
