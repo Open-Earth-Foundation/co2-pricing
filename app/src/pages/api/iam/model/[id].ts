@@ -1,9 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
 import { IAM_MODELS } from "src/constants/iam-models";
+import { asyncHandler } from "src/utils/syncApi";
 
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = asyncHandler(async (req, res) => {
     const { id } = req.query;
     const iamModel = IAM_MODELS.find((model) => model.id === id);
     if (!iamModel) {
@@ -11,6 +10,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return;
     }
     res.status(200).json(iamModel)
-};
+});
 
 export default handler;

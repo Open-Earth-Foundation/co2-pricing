@@ -1,8 +1,5 @@
-import { env } from "../env/server.mjs"
-import { _fetchJson } from "./common";
 
-
-const MIN_YEAR = 1950
+export const MIN_YEAR = 1950
 const MAX_YEAR = 2300
 
 const isValidYear = (year: number) => {
@@ -23,17 +20,7 @@ const isValidDiscount = (discount: number) => {
     return isValid
 }
 
-const validateParams = (discount: number, year: number) => {
+export const validateParams = (discount: number, year: number) => {
     isValidYear(year)
     isValidDiscount(discount)
 }
-
-const getSCCO2 = async (discount: number, year: number) => {
-    validateParams(discount, year)
-    const url = `${env.MIMIFUND_API_URL}/`
-    return _fetchJson(url)
-}
-
-export default {
-    getSCCO2
-} as const

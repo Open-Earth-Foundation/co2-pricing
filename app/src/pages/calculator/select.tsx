@@ -49,14 +49,8 @@ const SelectMethod: NextPageWithLayout = () => {
 
         initialData: [],
         enabled: canPlot,
-        onSuccess: () => {
-            console.log('onSuccess')
-            setCanPlot(false)
-        },
-        onError: () => {
-            console.log('onError')
-            setCanPlot(false)
-        }
+        onSuccess: () => setCanPlot(false),
+        onError: () => setCanPlot(false),
     })
 
     const iamModels = useQuery(
@@ -74,13 +68,10 @@ const SelectMethod: NextPageWithLayout = () => {
     })
 
     useEffect(() => {
-        console.log('useEffect')
-        calculatorService.getCarbonSocialCost(1, 2020).then(console.log)
+        calculatorService.getCarbonSocialCost(.5, 2022).then(console.log)
     }, [])
 
     if (iamModels.isLoading) return <Loading />
-
-
 
     return (
         <Grid container rowGap={5} columnGap={1} height={1}>

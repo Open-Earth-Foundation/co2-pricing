@@ -1,11 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import mimifund from "../../../services/mimifund";
+import { asyncHandler } from "src/utils/syncApi";
+
+import { getSCCO2 } from "src/services/mimifund/mimifund";
 
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = asyncHandler(async (req, res) => {
   const { discount, year } = req.query;
-  const cost = await mimifund.getSCCO2(Number(discount), Number(year));
+  const cost = await getSCCO2(Number(discount), Number(year));
   res.status(200).json({ cost })
-};
+});
 
 export default handler;

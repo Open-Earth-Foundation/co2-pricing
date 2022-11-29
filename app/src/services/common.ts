@@ -22,4 +22,3 @@ export const _fetchJson = async <T = Record<string, unknown>>(
         return await response.text()
     }
 }
-

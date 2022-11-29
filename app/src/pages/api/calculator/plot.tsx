@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
 import { CALCULATOR_PLOT } from "src/constants/calculator/plot";
 import type { ChartDataPoint } from "src/types/calculator/plot";
+import { asyncHandler } from "src/utils/syncApi";
 
 
 const CURRENT_YEAR = 2022
@@ -22,11 +21,11 @@ const calculate = (dataPoint: ChartDataPoint, discount: number): ChartDataPoint 
     return newDataPoint
 }
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = asyncHandler(async (req, res) => {
     const { discount, year } = req.query;
     const filteredDataPoints = CALCULATOR_PLOT.filter(point => Number(point.name) <= Number(year))
     const dataPoints = filteredDataPoints.map((point) => calculate(point, Number(discount)))
     res.status(200).json(dataPoints);
-}
+})
 
 export default handler;

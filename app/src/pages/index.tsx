@@ -12,36 +12,36 @@ import LongButton from '../components/ui/LongButton';
 const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
   return (
     <Grid container spacing={2}>
-      <Grid md={5}>
+      <Grid md={5} flexGrow={1}>
         <Typography variant="h2" component='h2' sx={{ fontWeight: 'bold' }}>CO2 Pricing Oracle</Typography>
       </Grid>
-      <Grid md={7}>
+      <Grid md={7} flexGrow={1}>
         <DescriptionBlock description={top.description} title={top.title} />
       </Grid>
-      <Grid md={4}>
+      <Grid md={4} flexGrow={1}>
         <Typography variant='h4' component="h3">How can I calculate mine?</Typography>
       </Grid>
-      <Grid md={8}>
+      <Grid md={8} flexGrow={1}>
         <DescriptionBlock description={main.description} title={main.title}>
           <Link href="/calculator/select">
             <Typography>Learn More</Typography>
           </Link>
         </DescriptionBlock>
       </Grid>
-      <Grid md={4}>
+      <Grid md={4} flexGrow={1}>
         <Typography variant='h4' component="h3">How can I calculate mine?</Typography>
       </Grid>
-      <Grid md={8}>
+      <Grid md={8} flexGrow={1}>
         <Link href="/calculator/select">
           <LongButton sx={{ background: '#262626' }}>Go to Calculator</LongButton>
         </Link>
       </Grid>
-      <Grid md={4}>
+      <Grid md={4} flexGrow={1}>
         <Typography variant='h4' component="h3">
           I already have calculated mine
         </Typography>
       </Grid>
-      <Grid md={8}>
+      <Grid md={8} flexGrow={1}>
         <Link href="/calculator">
           <LongButton variant="outlined">
             Check out how the RCB affected yours
