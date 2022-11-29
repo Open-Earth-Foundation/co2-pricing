@@ -22,54 +22,41 @@ import Link from "next/link";
 
 const SelectMethod: NextPageWithLayout = () => {
     const [selectedModelId, setSelectedModelId] = useState<string>()
-    const [discount, setDiscount] = useState(0)
-    const [year, setYear] = useState(2025)
+    const [discount, setDiscount] = useState(0.015)
+    const [year, setYear] = useState(2020)
     const [canPlot, setCanPlot] = useState(true)
 
-    const onModelChange = (value: string) => {
-        setSelectedModelId(value);
-    }
-
-    const onDiscountChange = (value: number) => {
-        setDiscount(value);
-    }
-
-    const onYearChange = (value: number) => {
-        setYear(value);
-    }
-
-    const reactivatePlot = () => {
-        console.log('reactivatePlot')
-        setCanPlot(true)
-    }
+    const reactivatePlot = () => setCanPlot(true)
 
     const dataPoints = useQuery(
-        ['calculator-data-points'],
-        () => calculatorService.getPlotData(discount, year), {
-
-        initialData: [],
-        enabled: canPlot,
+        ['calculator-data-points'], () => calculatorService.getPlotData(discount, year), {
         onSuccess: () => setCanPlot(false),
         onError: () => setCanPlot(false),
+        initialData: [],
+        enabled: canPlot,
     })
 
     const iamModels = useQuery(
-        ['iam-models'],
-        () => iamService.getModels(), {
+        ['iam-models'], () => iamService.getModels(), {
+        onSuccess: ([first]) => first && setSelectedModelId(first?.id),
         initialData: [],
-        onSuccess: ([first]) => first && onModelChange(first?.id),
     })
 
     const selectedIamModel = useQuery<IAMModel>(
-        ['iam-model', selectedModelId],
-        () => iamService.getModelById(selectedModelId as string), {
-        onSuccess: (model) => onModelChange(model.id),
-        enabled: !!selectedModelId
+        ['iam-model', selectedModelId], () => iamService.getModelById(selectedModelId as string), {
+        onSuccess: (model) => {
+            setSelectedModelId(model.id)
+            setCanPlot(false)
+        },
+        enabled: canPlot && !!selectedModelId,
+        onError: () => setCanPlot(false),
     })
 
-    useEffect(() => {
-        calculatorService.getCarbonSocialCost(.5, 2022).then(console.log)
-    }, [])
+    const carbonSocialCost = useQuery<number>(
+        ['carbon-social-cost', selectedModelId, discount, year],
+        () => calculatorService.getCarbonSocialCost(discount, year), {
+        cacheTime: 60 * 60 * 1000
+    })
 
     if (iamModels.isLoading) return <Loading />
 
@@ -85,7 +72,9 @@ const SelectMethod: NextPageWithLayout = () => {
                     title={'Select IAM Model'}
                     description={'Select the IAM model you want to use'}
                     orientation='horizontal'
-                />
+                >
+                    {carbonSocialCost.data}
+                </DescriptionBlock>
             </Grid>
             <Grid item md={4} container gap={2} flexDirection='column' sx={{ height: 1 }}>
                 <Select
@@ -93,7 +82,7 @@ const SelectMethod: NextPageWithLayout = () => {
                     id="demo-simple-select"
                     value={selectedModelId ?? ''}
                     placeholder="Select a calculation"
-                    onChange={({ target }) => onModelChange(target.value)}
+                    onChange={({ target }) => setSelectedModelId(target.value)}
                 >
                     {iamModels.data.map(({ id, name }) => (
                         <MenuItem key={id} value={id}>{name}</MenuItem>
@@ -122,16 +111,16 @@ const SelectMethod: NextPageWithLayout = () => {
                                 valueLabelDisplay="auto"
                                 defaultValue={50}
                                 value={discount}
-                                onChange={(e, discount) => onDiscountChange(discount as number)}
+                                onChange={(_, discount) => setDiscount(discount as number)}
                                 onChangeCommitted={reactivatePlot}
-                                min={0.0} max={2} step={0.05}
+                                min={0.000} max={0.05} step={0.005}
                             />
                             <Slider
                                 defaultValue={50}
                                 aria-label="Year"
                                 valueLabelDisplay="auto"
                                 value={year}
-                                onChange={(e, year) => onYearChange(year as number)}
+                                onChange={(_, year) => setYear(year as number)}
                                 onChangeCommitted={reactivatePlot}
                                 min={1950}
                                 max={2300}

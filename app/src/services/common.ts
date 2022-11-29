@@ -1,9 +1,9 @@
 const controller = new AbortController()
 
-export const _fetchJson = async <T = Record<string, unknown>>(
+export const _fetchJson = async <T = never>(
     url: string,
     options: RequestInit = {},
-): Promise<T | string> => {
+): Promise<T extends never ? string : T> => {
     const baseOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -19,6 +19,6 @@ export const _fetchJson = async <T = Record<string, unknown>>(
     if (response.headers.get('content-type')?.includes('json')) {
         return await response.json()
     } else {
-        return await response.text()
+        return await response.text() as T extends never ? string : T
     }
 }

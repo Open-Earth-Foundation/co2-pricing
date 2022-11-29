@@ -1,4 +1,3 @@
-import type { Readable } from 'stream';
 import type { ConvertionInput } from './types';
 import csvtojson from 'csvtojson';
 
@@ -16,9 +15,8 @@ const getCpi = async (year: number) => {
     return januaryPercent
 }
 
-
 export async function calculateInflation({ fromYear, toYear, amount }: ConvertionInput) {
-    CSV_DATA = (await _fetchJson<Readable>(INFLATION_CPI_CSV_URL, { cache: 'force-cache' })) as string;
+    CSV_DATA = await _fetchJson(INFLATION_CPI_CSV_URL, { cache: 'force-cache' });
     validateInput({ fromYear, toYear, amount })
     const [fromCpi, toCpi] = await Promise.all([getCpi(fromYear), getCpi(toYear)])
 

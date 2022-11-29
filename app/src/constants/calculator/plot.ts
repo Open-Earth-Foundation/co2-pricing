@@ -6,18 +6,18 @@ export const CALCULATOR_PLOT: ChartDataPoint[] = [
     //     current: 100,
     // },
 
-    // {
-    //     name: "2005",
-    //     current: 300,
-    // },
-    // {
-    //     name: "2010",
-    //     current: 650,
-    // },
-    // {
-    //     name: '2015',
-    //     current: 1000,
-    // },
+    {
+        name: "2005",
+        current: 300,
+    },
+    {
+        name: "2010",
+        current: 650,
+    },
+    {
+        name: '2015',
+        current: 1000,
+    },
     {
         name: '2020',
         current: 1500,
