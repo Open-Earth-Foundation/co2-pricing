@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "co2pricing-datapipelines"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Mendonça <fysp11@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "co2pricing_datapipelines"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+boto3 = "^1.26.22"
+
+[tool.poetry.group.dev.dependencies]
+poetry = "^1.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
