@@ -2,21 +2,26 @@ name: Deploy CDK Pipelines
 
 on: [push]
 
+defaults:
+  run:
+    shell: bash
+    working-directory: pipelines
+
 jobs:
   lint: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: cd pipelines
       - uses: ./.github/actions/pnpm-cache-typescript
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run lint
 
   build: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: cd pipelines
       - uses: ./.github/actions/pnpm-cache-typescript
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       - run: cdk synth --context 'environment=dev'
 
@@ -25,8 +30,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
-      - run: cd pipelines
       - uses: ./.github/actions/pnpm-cache-typescript
+      - run: pnpm install --frozen-lockfile
       - run: cdk synth
       - run: cdk deploy --require-approval never --context 'environment=staging'
 
@@ -35,8 +40,8 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v3
-      - run: cd pipelines
       - uses: ./.github/actions/pnpm-cache-typescript
+      - run: pnpm install --frozen-lockfile
       - run: cdk synth
       - run: cdk deploy --require-approval never --context 'environment=production'
 
