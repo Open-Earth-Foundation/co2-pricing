@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { DatapipelinesStack } from '../lib/stacks/datapipelines-stack';
+import { DatapipelinesStack } from './stacks/datapipelines-stack';
 
 
 const app = new cdk.App();

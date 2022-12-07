@@ -1,6 +1,6 @@
 import { _fetchJson } from "./common";
 
-import type { CalculatorStage } from './../types/calculator/stage';
+import type { CalculatorStage } from '../types/calculator/stage';
 import type { ChartDataPoint } from "src/types/calculator/plot";
 
 
