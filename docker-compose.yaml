@@ -1,24 +1,24 @@
 version: "3.8"
 
 services:
-  app:
+  web:
     depends_on:
-      - julia
+      - mimi
     build:
       dockerfile: Dockerfile
-      context: ./app
+      context: ./apps/web
     ports:
       - "3000:3000"
     environment:
-      MIMIFUND_API_URL: http://julia:8000
+      MIMIFUND_API_URL: http://mimi:8000
       NEXT_PUBLIC_API_URL: http://localhost:3000/api
       NEXTAUTH_SECRET: SomeReallySecretString
       NEXTAUTH_URL: http://localhost:3000
       PORT: 3000
-  julia:
+  mimi:
     build:
       dockerfile: Dockerfile
-      context: ./julia
+      context: ./apps/mimi
     ports:
       - "8000:8000"
     environment:
