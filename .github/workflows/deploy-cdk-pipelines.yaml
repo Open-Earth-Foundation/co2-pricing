@@ -27,21 +27,31 @@ jobs:
 
   staging:
     runs-on: ubuntu-latest
+    environment: staging
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm-cache-typescript
       - run: pnpm install --frozen-lockfile
-      - run: cdk synth
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}}
       - run: cdk deploy --require-approval never --context 'environment=staging'
 
   production:
     runs-on: ubuntu-latest
+    environment: production
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm-cache-typescript
       - run: pnpm install --frozen-lockfile
       - run: cdk synth
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}}
       - run: cdk deploy --require-approval never --context 'environment=production'
-

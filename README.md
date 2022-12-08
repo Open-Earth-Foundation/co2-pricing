@@ -4,25 +4,28 @@ This repository contains components used to offer an open source CO2 pricing too
 
 * A [API Wrapper](/tree/main/julia) around the [Mimifund] service, providing its features in a simple way
 * A [Web Application](/tree/main/app)
+* A set of [Data Pipelines](/tree/main/pipelines)
 
 ![Image](./.images/co2-pricing-screenshot-1.png "CO2 Pricing Web App Preview")
 
 ## Built With
 
-* [Next.js](https://nextjs.org)
-* [Docker](https://docker.com)
-* [docker-compose](https://docs.docker.com/compose)
-* [Julia (Language)](https://julialang.org)
-
-### Also used
-
-* [Mimi (Integrated Assessment Modeling Framework)](https://github.com/mimiframework/Mimi.jl)
-* [TypeScript](https://www.typescriptlang.org)
-
-#### Stale dependencies (for now)
-
-* [NextAuth.js](https://next-auth.js.org)
-* [Prisma](https://www.prisma.io)
+* Web App ([TypeScript](https://www.typescriptlang.org))
+  * [Next.js](https://nextjs.org)
+  * [Docker](https://docker.com)
+* API Wrapper ([Julia](https://julialang.org))
+  * [Genie](https://genieframework.com)
+  * *[Mimi (Integrated Assessment Modeling Framework)](https://github.com/mimiframework/Mimi.jl)*
+  * [Docker](https://docker.com)
+* Data Pipelines (Typescript, [Python](https://www.python.org))
+  * [AWS Lambda](https://aws.amazon.com/lambda)
+  * [AWS S3](https://aws.amazon.com/s3)
+  * [AWS Glue](https://aws.amazon.com/glue)
+  * [AWS Athena](https://aws.amazon.com/athena)
+  * ... other support services & to come!
+* (Deployment)
+  * [docker-compose (Local)](https://docs.docker.com/compose)
+  * [AWS CDK (IaC)](https://github.com/aws/aws-cdk#getting-started)
 
 ## Getting Started
 
@@ -63,6 +66,10 @@ This is an example of how to list things you need to use the software and how to
 ## Roadmap
 
 See the [open issues](https://github.com/Open-Earth-Foundation/co2-pricing/issues) for a full list of proposed features (and known issues).
+
+## Design Choices
+
+* Event Driven Data pipeline sample : [Youtube (31s)](https://youtu.be/YQjuWiyeu-A?t=31)
 
 <!-- LICENSE -->
 ## License
