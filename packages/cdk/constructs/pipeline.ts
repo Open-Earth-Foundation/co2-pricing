@@ -22,14 +22,16 @@ export class PipelineConstruct extends Construct {
         super(scope, id);
         const defaultRuntime = lambda.Runtime.PYTHON_3_9;
 
+        const pythonCode = lambda.Code.fromAsset('../../apps/data')
+
         const defaultLambdaProps = {
-            code: lambda.Code.fromAsset('lib/lambda/functions'),
+            code: pythonCode,
             runtime: defaultRuntime,
         } as const
 
         // creates cdk lambda layer from the requirements.txt file
         const lambdaLayer = new lambda.LayerVersion(scope, 'lambdaLayer', {
-            code: lambda.Code.fromAsset('lib/lambda/layer'),
+            code: pythonCode,
             compatibleRuntimes: [defaultRuntime],
             license: 'Apache-2.0',
             description: 'Lambda layer for co2pricing-datapipelines',

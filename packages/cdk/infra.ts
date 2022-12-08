@@ -15,7 +15,7 @@ const environment = app.node.tryGetContext('environment') ?? 'dev'
 
 new DatapipelinesStack(
   app, `Co2PricingDatapipelines-${environment}`,
-  '__PIPELINES__', { env: defaultEnv }
+  '../pipelines/__PIPELINES__', { env: defaultEnv }
 );
 
 app.synth();

@@ -10,7 +10,7 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: pipelines
+    working-directory: packages/cdk
 
 jobs:
   validate: 
