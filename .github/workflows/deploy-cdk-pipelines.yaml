@@ -27,7 +27,7 @@ jobs:
 
   staging:
     runs-on: ubuntu-latest
-    environment: staging
+    # environment: staging
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
@@ -38,6 +38,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+      - run: cdk bootstrap
       - run: cdk deploy --require-approval never --context 'environment=staging'
 
   production:
@@ -54,4 +55,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+      - run: cdk bootstrap
       - run: cdk deploy --require-approval never --context 'environment=production'
