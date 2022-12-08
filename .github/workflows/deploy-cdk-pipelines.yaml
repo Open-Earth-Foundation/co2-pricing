@@ -27,8 +27,8 @@ jobs:
 
   staging:
     runs-on: ubuntu-latest
-    # environment: staging
-    if: github.ref == 'refs/heads/main'
+    environment: staging
+    # if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm-cache-typescript
