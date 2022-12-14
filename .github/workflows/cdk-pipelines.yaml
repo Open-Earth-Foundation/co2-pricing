@@ -39,7 +39,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - run: cdk bootstrap
-      - run: cdk deploy --require-approval never --context 'environment=staging'
+      - run: cdk deploy --require-approval never --context 'environment=dev'
 
   deploy_staging:
     runs-on: ubuntu-22.04
