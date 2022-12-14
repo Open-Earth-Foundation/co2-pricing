@@ -2,15 +2,8 @@ name: 2. Deploy CDK Pipelines
 
 on:
   workflow_run:
-    workflows: ["1. Validate CDK Pipelines"]
-    types:
-      - completed
-    branches:
-      - main
-    pull_request:
-      branches:
-        - main
-    
+    workflows: [1. Validate CDK Pipelines]
+    types: [completed]
 
 defaults:
   run:
