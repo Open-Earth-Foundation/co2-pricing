@@ -2,13 +2,11 @@ name: CDK Pipelines
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - '*'
+    branches: [main]
+    tags: ['*']
   pull_request:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
 
 defaults:
   run:
@@ -25,6 +23,23 @@ jobs:
       - run: pnpm run lint
       - run: pnpm run build
       - run: cdk synth --context 'environment=dev'
+
+  deploy_dev:
+    runs-on: ubuntu-22.04
+    environment: dev
+    if: github.event_name == 'pull_request'
+    needs: validate
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/pnpm-cache-typescript
+      - run: pnpm install --frozen-lockfile
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - run: cdk bootstrap
+      - run: cdk deploy --require-approval never --context 'environment=staging'
 
   deploy_staging:
     runs-on: ubuntu-22.04
