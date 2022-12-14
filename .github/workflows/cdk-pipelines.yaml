@@ -1,15 +1,31 @@
-name: 2. Deploy CDK Pipelines
+name: CDK Pipelines
 
 on:
-  workflow_run:
-    workflows: [1. Validate CDK Pipelines]
-    types: [completed]
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
 
 defaults:
   run:
+    shell: bash
     working-directory: pipelines
 
 jobs:
+  validate: 
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/pnpm-cache-typescript
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+      - run: pnpm run build
+      - run: cdk synth --context 'environment=dev'
+
   deploy_dev:
     runs-on: ubuntu-22.04
     environment: dev
@@ -29,6 +45,7 @@ jobs:
   deploy_staging:
     runs-on: ubuntu-22.04
     environment: staging
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm-cache-typescript
