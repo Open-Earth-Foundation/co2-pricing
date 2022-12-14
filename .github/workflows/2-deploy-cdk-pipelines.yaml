@@ -1,34 +1,41 @@
-name: Deploy CDK Pipelines
+name: 2. Deploy CDK Pipelines
 
-on: [push]
+on:
+  workflow_run:
+    workflows: ["1. Validate CDK Pipelines"]
+    types:
+      - completed
+    branches:
+      - main
+    pull_request:
+      branches:
+        - main
+    
 
 defaults:
   run:
-    shell: bash
     working-directory: pipelines
 
 jobs:
-  lint: 
+  deploy_dev:
     runs-on: ubuntu-22.04
+    environment: dev
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm-cache-typescript
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - run: cdk bootstrap
+      - run: cdk deploy --require-approval never --context 'environment=dev'
 
-  build: 
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm-cache-typescript
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
-      - run: cdk synth --context 'environment=dev'
-
-  staging:
+  deploy_staging:
     runs-on: ubuntu-22.04
     environment: staging
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm-cache-typescript
@@ -41,7 +48,7 @@ jobs:
       - run: cdk bootstrap
       - run: cdk deploy --require-approval never --context 'environment=staging'
 
-  production:
+  deploy_production:
     runs-on: ubuntu-22.04
     environment: production
     if: startsWith(github.ref, 'refs/tags/')
