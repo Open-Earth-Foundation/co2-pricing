@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: co2-pricing-julia-service
+spec:
+  selector:
+    app: co2-pricing
+    app.kubernetes.io/name: co2-pricing-julia
+  ports:
+  - name: co2-pricing-julia-service-port
+    protocol: TCP
+    port: 80
+    targetPort: http-julia-port
