@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: co2-pricing-app-deployment
+  labels:
+    app: co2-pricing
+    app.kubernetes.io/name: co2-pricing-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: co2-pricing
+  template:
+    metadata:
+      labels:
+        app: co2-pricing
+        app.kubernetes.io/name: co2-pricing-app
+    spec:
+      containers:
+      - name: co2-pricing-app
+        image: public.ecr.aws/w5a3n9a0/co2-pricing-app
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+          name: http-app-port
+        env:
+          - name: MIMIFUND_API_URL
+            value: http://co2-pricing-julia-service:80
+          - name: NEXT_PUBLIC_API_URL
+            value: http://localhost:3000/api
+          - name: NEXTAUTH_SECRET
+            value: "SomeReallySecretString"
+          - name: NEXTAUTH_URL
+            value: http://localhost:3000
+          - name: PORT
+            value: "3000"
