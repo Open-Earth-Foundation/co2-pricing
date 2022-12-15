@@ -50,10 +50,10 @@ This is an example of how to list things you need to use the software and how to
    git clone https://github.com/Open-Earth-Foundation/co2-pricing.git
    ```
 
-2. Copy the `app/.env.example` file to `app/.env` and fill the variables
+2. Copy the `apps/web/.env.example` file to `apps/web/.env` and fill the variables
 
    ```sh
-   cp app/.env.example app/.env
+   cp apps/web/.env.example apps/web/.env
    ```
 
 3. Run the docker-compose file
@@ -69,7 +69,7 @@ See the [open issues](https://github.com/Open-Earth-Foundation/co2-pricing/issue
 
 ## Design Choices
 
-* Event Driven Data pipeline sample : [Youtube (31s)](https://youtu.be/YQjuWiyeu-A?t=31)
+* Event Driven Data pipeline sample: [Youtube (31s)](https://youtu.be/YQjuWiyeu-A?t=31)
 
 <!-- LICENSE -->
 ## License

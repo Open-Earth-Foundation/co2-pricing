@@ -1,13 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
-import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as events from 'aws-cdk-lib/aws-events';
+import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as sns from 'aws-cdk-lib/aws-sns'
 import * as stepfunctions from 'aws-cdk-lib/aws-stepfunctions';
 import * as tasks from 'aws-cdk-lib/aws-stepfunctions-tasks'
-import * as sns from 'aws-cdk-lib/aws-sns'
-import * as targets from 'aws-cdk-lib/aws-events-targets';
 import { Construct } from 'constructs';
-
-import * as events from 'aws-cdk-lib/aws-events';
 
 import { PipelineConfig } from '../utils/types';
 
@@ -23,14 +22,16 @@ export class PipelineConstruct extends Construct {
         super(scope, id);
         const defaultRuntime = lambda.Runtime.PYTHON_3_9;
 
+        const pythonCode = lambda.Code.fromAsset('../../apps/data')
+
         const defaultLambdaProps = {
-            code: lambda.Code.fromAsset('lib/lambda/functions'),
+            code: pythonCode,
             runtime: defaultRuntime,
         } as const
 
         // creates cdk lambda layer from the requirements.txt file
         const lambdaLayer = new lambda.LayerVersion(scope, 'lambdaLayer', {
-            code: lambda.Code.fromAsset('lib/lambda/layer'),
+            code: pythonCode,
             compatibleRuntimes: [defaultRuntime],
             license: 'Apache-2.0',
             description: 'Lambda layer for co2pricing-datapipelines',

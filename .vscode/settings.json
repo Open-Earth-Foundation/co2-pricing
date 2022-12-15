@@ -1,6 +1,7 @@
 {
     "eslint.workingDirectories": [
-        "app",
-        "pipelines"
+        "apps/web",
+        "packages/cdk",
+        "packages/pipelines",
     ]
 }
