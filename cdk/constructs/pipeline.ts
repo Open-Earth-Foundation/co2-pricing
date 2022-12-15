@@ -30,7 +30,7 @@ export class PipelineConstruct extends Construct {
         } as const
 
         // creates cdk lambda layer from the requirements.txt file
-        const lambdaLayer = new lambda.LayerVersion(scope, 'lambdaLayer', {
+        const lambdaLayer = new lambda.LayerVersion(scope, id + 'lambdaLayer', {
             code: pythonCode,
             compatibleRuntimes: [defaultRuntime],
             license: 'Apache-2.0',
@@ -39,7 +39,7 @@ export class PipelineConstruct extends Construct {
 
 
         // cdk python lambda function using all observability tools.
-        const fetchRawCsv = new lambda.Function(scope, 'FetchRawCsv', {
+        const fetchRawCsv = new lambda.Function(scope, id + 'FetchRawCsv', {
             ...defaultLambdaProps,
             handler: 'fetch_csv/handle.handler',
             layers: [lambdaLayer],
@@ -51,7 +51,7 @@ export class PipelineConstruct extends Construct {
         props.rawBucket.grantWrite(fetchRawCsv, 'download/*');
 
 
-        const optimizeCsvData = new lambda.Function(scope, 'OptimizeCsvData', {
+        const optimizeCsvData = new lambda.Function(scope, id + 'OptimizeCsvData', {
             ...defaultLambdaProps,
             handler: 'fetch_csv/handle.handler',
             layers: [lambdaLayer],
@@ -64,7 +64,7 @@ export class PipelineConstruct extends Construct {
 
         const stateMachine = this.createStateMachine(fetchRawCsv, optimizeCsvData, props.errorTopic);
 
-        const rule = new events.Rule(scope, 'Rule', {
+        const rule = new events.Rule(scope, id + 'Rule', {
             schedule: events.Schedule.expression("cron(0 0 1 * ? *)")
         });
         rule.addTarget(new targets.SfnStateMachine(stateMachine));
@@ -72,7 +72,7 @@ export class PipelineConstruct extends Construct {
 
     createStateMachine(fetchRawCsv: lambda.Function, optimizeCsvData: lambda.Function, error_topic: sns.Topic) {
         const fetchTask = new tasks.LambdaInvoke(
-            this, 'Fetch Blob', {
+            this, this.node.id + 'Fetch Blob', {
             payload: stepfunctions.TaskInput.fromObject({
                 preffix: `download/${this.props.config.name}/`
             }),

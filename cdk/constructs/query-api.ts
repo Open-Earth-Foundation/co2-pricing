@@ -36,10 +36,20 @@ export class QueryApiConstruct extends cdk.Stack {
         })
         const queryIntegration = new api.LambdaIntegration(
             this.function, {
-            requestTemplates: { "application/json": '{ "statusCode": "200" }' }
+            requestTemplates: { "application/json": '{ "statusCode": "200" }' },
         });
 
-        this.api.root.addMethod("GET", queryIntegration);
+        this.api.root.addMethod(
+            "GET", queryIntegration, {
+            requestParameters: {
+                "method.request.querystring.database": true,
+                "method.request.querystring.table": true,
+                "method.request.querystring.filters": true,
+                "method.request.querystring.limit": true,
+                "method.request.querystring.offset": true,
+                "method.request.querystring.order": true
+            }
+        });
     }
 
 }

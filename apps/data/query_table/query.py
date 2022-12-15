@@ -4,7 +4,7 @@ import awswrangler as wr
 
 def handler(event, _):
     # Retrieve the database.table names and column names from the request
-    from_table = f"{event['database']}.{event['table_name']}"
+    from_table = f"{event['database']}.{event['table']}"
     select_columns = ", ".join(event['columns'])
 
     # Build the SQL query string
@@ -20,7 +20,7 @@ def handler(event, _):
     query_string += f" OFFSET {event.get('offset', 0)}"
     
     if 'order_by' in event:
-        query_string += f" ORDER BY {event.get('order_by', 'id')}"
+        query_string += f" ORDER BY {event.get('order', 'id')}"
 
     df = wr.athena.read_sql_query(query_string)
 
