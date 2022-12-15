@@ -1,31 +1,3 @@
-name: 'noaa-co2'
-sourceUrl: 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
-
-databases:
-  - databaseName: raw
-    locationUri: 's3://__S3_BUCKET__/'
-    tables:
-      - tableName: 'noaa-co2'
-        columns:
-          year: INTEGER
-          month: glue.Type.INTEGER
-          decimal_date: glue.Type.DOUBLE
-          average: glue.Type.DOUBLE
-          interpolated: glue.Type.DOUBLE
-          trend: glue.Type.DOUBLE
-          days: glue.Type.INTEGER
-        format: CSV
-
-  - databaseName: optimised
-    locationUri: 's3://__S3_BUCKET__/'
-    tables:
-      - tableName: 'noaa-co2'
-        columns:
-          year: glue.Type.INTEGER
-          month: glue.Type.INTEGER
-          decimal_date: glue.Type.DOUBLE
-          average: glue.Type.DOUBLE
-          interpolated: glue.Type.DOUBLE
-          trend: glue.Type.DOUBLE
-          days: glue.Type.INTEGER
-        format: PARQUET
+name: noaa_carbon
+type: request
+source: 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'

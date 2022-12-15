@@ -1,0 +1,36 @@
+name: raw_co2_pricing
+
+tables:
+  # - tableName: "noaa-trends"
+  #   format: CSV
+  #   columns:
+  #     year: INTEGER
+  #     month: INTEGER
+  #     day: INTEGER
+  #     smoothed: DOUBLE
+  #     trend: DOUBLE
+  #   properties:
+  #     "skip.header.line.count": 1
+  #     "field.delim": ","
+
+  - tableName: mimi_fund
+    format: CSV
+    type: EXTERNAL_TABLE
+    columns:
+      year: INTEGER
+      prpt: DOUBLE
+      scc: DOUBLE
+      properties:
+        "skip.header.line.count": 1
+        "field.delim": ","
+
+  - tableName: mimi_give
+    format: CSV
+    type: EXTERNAL_TABLE
+    columns:
+      year: INTEGER
+      prpt: DOUBLE
+      scc: DOUBLE
+      properties:
+        "skip.header.line.count": 1
+        "field.delim": ","

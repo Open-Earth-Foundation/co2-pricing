@@ -1,0 +1,27 @@
+name: raw_co2_pricing
+
+tables:
+  - tableName: 'noaa-co2'
+    format: PARQUET
+    columns:
+      year: INTEGER
+      month: INTEGER
+      decimal_date: DOUBLE
+      average: DOUBLE
+      interpolated: DOUBLE
+      trend: DOUBLE
+      days: INTEGER
+
+  - tableName: mimi_fund
+    format: PARQUET
+    columns:
+      year: INTEGER
+      prpt: DOUBLE
+      scc: DOUBLE
+
+  - tableName: mimi_give
+    format: PARQUET
+    columns:
+      year: INTEGER
+      prpt: DOUBLE
+      scc: DOUBLE
