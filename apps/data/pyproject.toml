@@ -1,15 +1,14 @@
 [tool.poetry]
-name = "co2-pricing-data-functions"
+name = "data"
 version = "0.1.0"
 description = ""
 authors = ["Felipe Mendonça <fysp11@gmail.com>"]
 readme = "README.md"
-packages = [{include = "co2_pricing_data_functions"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-awswrangler = { version = "^2.18.0", optional = true }
-
+awswrangler = {version = "^2.18.0", optional = true }
+boto3 = "^1.26.30"
 
 [tool.poetry.extras]
 dev = ["awswrangler"]

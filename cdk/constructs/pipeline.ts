@@ -22,7 +22,7 @@ export class PipelineConstruct extends Construct {
         super(scope, id);
         const defaultRuntime = lambda.Runtime.PYTHON_3_9;
 
-        const pythonCode = lambda.Code.fromAsset('../../apps/data')
+        const pythonCode = lambda.Code.fromAsset('../apps/data')
 
         const defaultLambdaProps = {
             code: pythonCode,

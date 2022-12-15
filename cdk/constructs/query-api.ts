@@ -19,7 +19,7 @@ export class QueryApiConstruct extends cdk.Stack {
                 semanticVersion: "2.18.0",
             },
         })
-        const layerArn = layerIntegration.getAtt("Outputs.WranglerLayer38Arn").toString()
+        const layerArn = layerIntegration.getAtt("Outputs.WranglerLayer39Arn").toString()
         const layer = lambda.LayerVersion.fromLayerVersionArn(scope, "awssdkpandas-layer-version", layerArn)
 
         this.api = new api.RestApi(
@@ -29,7 +29,7 @@ export class QueryApiConstruct extends cdk.Stack {
         })
         this.function = new lambda.Function(
             scope, "awssdkpandas-function", {
-            code: lambda.Code.fromAsset('../../apps/data'),
+            code: lambda.Code.fromAsset('../apps/data'),
             handler: "query_table/index.handler",
             runtime: lambda.Runtime.PYTHON_3_9,
             layers: [layer],

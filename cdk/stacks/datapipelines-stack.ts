@@ -7,11 +7,14 @@ import { SafeBucket } from '../constructs/safe-bucket';
 
 import { listFiles, parseYaml } from '../utils/io';
 
+interface DatapipelinesStackProps extends cdk.StackProps {
+  configDir: string
+}
 
 export class DatapipelinesStack extends cdk.Stack {
   public rawBucket: SafeBucket;
   public targetBucket: SafeBucket;
-  constructor(scope: Construct, id: string, configDir: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: DatapipelinesStackProps) {
     super(scope, id, props);
 
     this.rawBucket = new SafeBucket(this, 'raw')
@@ -28,7 +31,7 @@ export class DatapipelinesStack extends cdk.Stack {
       errorTopic,
     }
 
-    for (const pipePath of listFiles(configDir)) {
+    for (const pipePath of listFiles(props.configDir)) {
       const config = parseYaml(pipePath);
       new PipelineConstruct(this, `pipeline-${config.name}`, { ...commonProps, config })
     }
