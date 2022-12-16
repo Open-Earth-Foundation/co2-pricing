@@ -20,8 +20,13 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# This will do the trick, use the corresponding env file for each environment.
-# COPY .env .env
+
+# This crashes if these env vars aren't defined
+
+ENV MIMIFUND_API_URL=http://invalid-build-dummy/
+ENV NEXTAUTH_SECRET=InvalidBuildDummy
+ENV NEXTAUTH_URL=http://invalid-build-dummy/
+
 RUN yarn build
 
 # 3. Production image, copy all the files and run next
