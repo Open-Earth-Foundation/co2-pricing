@@ -1,8 +1,8 @@
-name: raw_co2_pricing
+databaseName: optimised_co2_pricing
 
 tables:
-  - tableName: 'noaa-co2'
-    format: PARQUET
+  - tableName: noaa_co2
+    dataFormat: PARQUET
     columns:
       year: INTEGER
       month: INTEGER
@@ -13,14 +13,14 @@ tables:
       days: INTEGER
 
   - tableName: mimi_fund
-    format: PARQUET
+    dataFormat: PARQUET
     columns:
       year: INTEGER
       prpt: DOUBLE
       scc: DOUBLE
 
   - tableName: mimi_give
-    format: PARQUET
+    dataFormat: PARQUET
     columns:
       year: INTEGER
       prpt: DOUBLE

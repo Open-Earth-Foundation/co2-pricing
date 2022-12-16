@@ -12,15 +12,10 @@ export class QueryApiConstruct extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        const layerIntegration = new sam.CfnApplication(
-            scope, "awssdkpandas-layer", {
-            location: {
-                applicationId: "arn:aws:serverlessrepo:us-east-1:336392948345:applications/aws-sdk-pandas-layer-py3-9",
-                semanticVersion: "2.18.0",
-            },
-        })
-        const layerArn = layerIntegration.getAtt("Outputs.WranglerLayer39Arn").toString()
-        const layer = lambda.LayerVersion.fromLayerVersionArn(scope, "awssdkpandas-layer-version", layerArn)
+        const layer = lambda.LayerVersion.fromLayerVersionArn(
+            scope, "awssdkpandas-layer-version",
+            'arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python39:2'
+        )
 
         this.api = new api.RestApi(
             scope, "awssdkpandas-api", {

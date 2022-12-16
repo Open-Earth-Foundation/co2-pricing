@@ -30,13 +30,10 @@ export class PipelineConstruct extends Construct {
         } as const
 
         // creates cdk lambda layer from the requirements.txt file
-        const lambdaLayer = new lambda.LayerVersion(scope, id + 'lambdaLayer', {
-            code: pythonCode,
-            compatibleRuntimes: [defaultRuntime],
-            license: 'Apache-2.0',
-            description: 'Lambda layer for co2pricing-datapipelines',
-        });
-
+        const lambdaLayer = lambda.LayerVersion.fromLayerVersionArn(
+            scope, id + "layer",
+            'arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python39:2'
+        )
 
         // cdk python lambda function using all observability tools.
         const fetchRawCsv = new lambda.Function(scope, id + 'FetchRawCsv', {
@@ -45,24 +42,26 @@ export class PipelineConstruct extends Construct {
             layers: [lambdaLayer],
             environment: {
                 BUCKET_NAME: props.rawBucket.bucketName,
-                SOURCE_URL: props.config.sourceUrl,
+                SOURCE_URL: props.config.source,
             }
         });
         props.rawBucket.grantWrite(fetchRawCsv, 'download/*');
 
 
-        const optimizeCsvData = new lambda.Function(scope, id + 'OptimizeCsvData', {
+        const optimiseCsvData = new lambda.Function(scope, id + 'OptimiseCsvData', {
             ...defaultLambdaProps,
-            handler: 'fetch_csv/handle.handler',
+            handler: 'optimise_csv/handle.handler',
             layers: [lambdaLayer],
+            memorySize: 1024,
+            timeout: cdk.Duration.seconds(30),
             environment: {
                 BUCKET_NAME: props.targetBucket.bucketName,
             }
         });
-        props.rawBucket.grantRead(optimizeCsvData, 'data/*');
-        props.targetBucket.grantWrite(optimizeCsvData, 'data/*');
+        props.rawBucket.grantRead(optimiseCsvData, 'download/*');
+        props.targetBucket.grantWrite(optimiseCsvData, 'data/*');
 
-        const stateMachine = this.createStateMachine(fetchRawCsv, optimizeCsvData, props.errorTopic);
+        const stateMachine = this.createStateMachine(fetchRawCsv, optimiseCsvData, props.errorTopic);
 
         const rule = new events.Rule(scope, id + 'Rule', {
             schedule: events.Schedule.expression("cron(0 0 1 * ? *)")
@@ -70,7 +69,7 @@ export class PipelineConstruct extends Construct {
         rule.addTarget(new targets.SfnStateMachine(stateMachine));
     }
 
-    createStateMachine(fetchRawCsv: lambda.Function, optimizeCsvData: lambda.Function, error_topic: sns.Topic) {
+    createStateMachine(fetchRawCsv: lambda.Function, optimiseCsvData: lambda.Function, error_topic: sns.Topic) {
         const fetchTask = new tasks.LambdaInvoke(
             this, this.node.id + 'Fetch Blob', {
             payload: stepfunctions.TaskInput.fromObject({
@@ -80,10 +79,17 @@ export class PipelineConstruct extends Construct {
             outputPath: '$.Payload',
         });
 
-        const optimizeTask = new tasks.LambdaInvoke(
-            this, 'Optimize CSV', {
-            lambdaFunction: optimizeCsvData,
+        const optimiseTask = new tasks.LambdaInvoke(
+            this, 'Optimise CSV', {
+            payload: stepfunctions.TaskInput.fromObject({
+                Bucket: stepfunctions.JsonPath.stringAt('$.Bucket'),
+                Key: stepfunctions.JsonPath.stringAt('$.Key'),
+                database: 'optimised',
+                table: 'noaa_co2',
+            }),
+            lambdaFunction: optimiseCsvData,
             outputPath: '$.Payload',
+
         });
         const waitX = new stepfunctions.Wait(
             this, 'Wait X Seconds', {
@@ -101,7 +107,7 @@ export class PipelineConstruct extends Construct {
             .otherwise(waitX)
 
         const definition = fetchTask
-            .next(optimizeTask)
+            .next(optimiseTask)
             .next(chekSuccess);
 
         const stateMachine = new stepfunctions.StateMachine(
@@ -111,7 +117,7 @@ export class PipelineConstruct extends Construct {
         });
 
         fetchRawCsv.grantInvoke(stateMachine.role)
-        optimizeCsvData.grantInvoke(stateMachine.role)
+        optimiseCsvData.grantInvoke(stateMachine.role)
 
         return stateMachine;
     }

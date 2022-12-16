@@ -25,7 +25,7 @@ def handler(event: Dict, _):
         ContentType="text/csv",
     )
 
-    return dict(Payload=params)
+    return params
 
 
 def generate_key(event: Dict) -> str:

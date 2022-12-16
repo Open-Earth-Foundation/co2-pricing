@@ -25,7 +25,7 @@ export function listFiles(dir: string, basePath: string = dir): string[] {
     return filesWithFullPath;
 }
 
-export function parseYaml(filePath: string): PipelineConfig {
+export function parseYaml<T = unknown>(filePath: string): T {
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    return yaml.load(fileContents) as PipelineConfig;
+    return yaml.load(fileContents) as T;
 }

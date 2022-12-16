@@ -1,4 +1,4 @@
-name: raw_co2_pricing
+databaseName: raw_co2_pricing
 
 tables:
   # - tableName: "noaa-trends"
@@ -14,7 +14,7 @@ tables:
   #     "field.delim": ","
 
   - tableName: mimi_fund
-    format: CSV
+    dataFormat: CSV
     type: EXTERNAL_TABLE
     columns:
       year: INTEGER
@@ -25,7 +25,7 @@ tables:
         "field.delim": ","
 
   - tableName: mimi_give
-    format: CSV
+    dataFormat: CSV
     type: EXTERNAL_TABLE
     columns:
       year: INTEGER
