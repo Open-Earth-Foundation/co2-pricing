@@ -1,17 +1,19 @@
 databaseName: raw_co2_pricing
 
 tables:
-  # - tableName: "noaa-trends"
-  #   format: CSV
-  #   columns:
-  #     year: INTEGER
-  #     month: INTEGER
-  #     day: INTEGER
-  #     smoothed: DOUBLE
-  #     trend: DOUBLE
-  #   properties:
-  #     "skip.header.line.count": 1
-  #     "field.delim": ","
+  - tableName: "noaa_trends"
+    format: CSV
+    columns:
+      year: INTEGER
+      month: INTEGER
+      day: INTEGER
+      smoothed: DOUBLE
+      trend: DOUBLE
+    partitions:
+      snapshot_time: STRING
+    properties:
+      "skip.header.line.count": 1
+      "field.delim": ","
 
   - tableName: mimi_fund
     dataFormat: CSV

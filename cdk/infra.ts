@@ -15,25 +15,15 @@ const defaultEnv: cdk.Environment = {
 
 const environment = app.node.tryGetContext('environment') ?? 'dev'
 
-const pipelinesDir = '../__FILES__/pipelines'
-const databasesDir = '../__FILES__/databases'
-const staticDir = '../__FILES__/static'
-
 new DatapipelinesStack(
   app, `Co2PricingDatapipelines-${environment}`,
-  {
-    pipelinesDir,
-    databasesDir,
-    staticDir,
-    env: defaultEnv
-  }
-);
+  { env: defaultEnv });
 
-new DataAPIStack(
-  app, `Co2PricingDataAPI-${environment}`,
-  {
-    env: defaultEnv
-  }
-)
+// new DataAPIStack(
+//   app, `Co2PricingDataAPI-${environment}`,
+//   {
+//     env: defaultEnv
+//   }
+// )
 
 app.synth();

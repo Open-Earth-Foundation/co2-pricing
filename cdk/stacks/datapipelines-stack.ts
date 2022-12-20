@@ -1,45 +1,25 @@
-import { PipelineConfig, DatabaseConfig } from './../utils/types';
+import { MimiGIVEPipeline } from './../constructs/pipelines/give-pipeline';
 import * as cdk from 'aws-cdk-lib';
-import * as sns from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
-import { DataCatalogConstruct } from '../constructs/data-catalog';
 
-import { PipelineConstruct } from '../constructs/pipeline';
+import { NOAAPipeline } from '../constructs/pipelines/noaa-pipeline';
+import { MimiFUNDPipeline } from '../constructs/pipelines/fund-pipeline';
 import { SafeBucket } from '../constructs/safe-bucket';
 
-import { listFiles, parseYaml } from '../utils/io';
-
-interface DatapipelinesStackProps extends cdk.StackProps {
-  pipelinesDir: string
-  databasesDir: string
-  staticDir: string
-}
 
 export class DatapipelinesStack extends cdk.Stack {
-  public rawBucket: SafeBucket;
-  public targetBucket: SafeBucket;
-  constructor(scope: Construct, id: string, props: DatapipelinesStackProps) {
+  public rawBucket: SafeBucket
+  constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
 
-    this.rawBucket = new SafeBucket(this, 'raw')
-    this.targetBucket = new SafeBucket(this, 'optimised')
+    this.rawBucket = new SafeBucket(this, 'RawData')
 
-    const errorTopic = new sns.Topic(
-      this, "DataErrorTopic", {
-      topicName: 'data-errors',
+    new NOAAPipeline(this, 'NOAA',)
+    new MimiFUNDPipeline(this, 'MimiFUND', {
+      rawBucket: this.rawBucket
     })
-
-    const commonProps = {
-      rawBucket: this.rawBucket,
-      targetBucket: this.targetBucket,
-      errorTopic,
-    }
-
-    for (const pipePath of listFiles(props.pipelinesDir)) {
-      const config = parseYaml<PipelineConfig>(pipePath);
-      new PipelineConstruct(this, `pipeline-${config.name}`, { ...commonProps, config })
-    }
-    const databases = listFiles(props.databasesDir).map(parseYaml<DatabaseConfig>)
-    new DataCatalogConstruct(this, 'DataCatalog', { databases })
+    new MimiGIVEPipeline(this, 'MimiGIVE', {
+      rawBucket: this.rawBucket
+    })
   }
 }
