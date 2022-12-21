@@ -36,6 +36,7 @@ export class QueryFeature extends Construct {
             requestTemplates: { "application/json": '{ "statusCode": "200" }' },
             requestParameters: {
                 "integration.request.querystring.table": "method.request.querystring.table",
+                "integration.request.querystring.index": "method.request.querystring.index",
                 "integration.request.querystring.filters": "method.request.querystring.filters",
                 "integration.request.querystring.order": "method.request.querystring.order"
             }
@@ -47,6 +48,7 @@ export class QueryFeature extends Construct {
             authorizationType: apigtw.AuthorizationType.NONE,
             requestParameters: {
                 "method.request.querystring.table": true,
+                "method.request.querystring.index": true,
                 "method.request.querystring.filters": true,
                 "method.request.querystring.order": true
             }

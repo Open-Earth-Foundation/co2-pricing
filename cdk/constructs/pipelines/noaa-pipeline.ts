@@ -18,7 +18,7 @@ export class NOAAPipeline extends BasePipeline {
             tableName: 'noaa'
         });
         const noaaFetch = new lambda.Function(
-            scope, 'NOAAFetch', {
+            scope, 'FetchNOAA', {
             handler: 'noaa.fetch',
             layers: [this.layer],
             ...this.defaultLambdaProps,
