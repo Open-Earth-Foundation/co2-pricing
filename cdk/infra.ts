@@ -15,15 +15,15 @@ const defaultEnv: cdk.Environment = {
 
 const environment = app.node.tryGetContext('environment') ?? 'dev'
 
-new DatapipelinesStack(
-  app, `Co2PricingDatapipelines-${environment}`,
-  { env: defaultEnv });
+const { pipelineMap } = new DatapipelinesStack(
+  app, `Co2PricingDatapipelines-${environment}`, {
+  env: defaultEnv
+});
 
-// new DataAPIStack(
-//   app, `Co2PricingDataAPI-${environment}`,
-//   {
-//     env: defaultEnv
-//   }
-// )
+new DataAPIStack(
+  app, `Co2PricingDataAPI-${environment}`, {
+  env: defaultEnv,
+  pipelineMap,
+})
 
 app.synth();

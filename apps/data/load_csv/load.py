@@ -4,6 +4,9 @@ import os
 import awswrangler as wr
 import boto3
 
+from utils.parse import generate_put_requests, generate_record
+from utils.batch import grouper
+
 
 def handler(_, __):
     bucket = os.environ['RAW_BUCKET']
@@ -13,58 +16,25 @@ def handler(_, __):
 
     df = wr.s3.read_csv(
         s3_path,
-        header=True
+        skip_blank_lines=True
     )
 
-    records = df.to_json(orient='records')
+    records = df.to_dict(orient='records')
 
-    snapshot_time = datetime.datetime.now().strftime("%Y%m%d%H%M")
-    records = [generate_record(record, snapshot_time) for record in records]
-    
-    response = boto3.client('dynamodb').batch_write_item(
-        RequestItems={
-            target_table: generate_put_requests(records)})
-
-    return response
-
-
-def generate_put_requests(records):
-    return [
-        {
-            'PutRequest': {
-                'Item': marshall_record(record)
-            }   
-        }
+    snapshot_time = datetime.now().strftime("%Y%m%d%H%M")
+    records = [
+        generate_record(record, snapshot_time) 
         for record in records
     ]
 
+    responses = []
+    for chunk in grouper(records, 25):
+        print(chunk)
+        table_requests = generate_put_requests(chunk)
 
-def marshall_record(record):
-    return {
-        'snapshot_time': {'S': record['snapshot_time']},
-        'full_date': {'S': record['fulld_date']},
-        'year': {'S': record['year']},
-        'month': {'S': record['month']},
-        'day': {'S': record['day']},
-        'smoothed': {'S': record['smoothed']},
-        'trend': {'S': record['trend']},
-    }
+        response = boto3.client('dynamodb').batch_write_item(
+            RequestItems={target_table:table_requests})
 
+        responses.append(response)
 
-def generate_record(raw_line, snapshot_time):
-    raw_record = {
-        'year': raw_line[0],
-        'month': raw_line[1],
-        'day': raw_line[2],
-        'smoothed': raw_line[3],
-        'trend': raw_line[4],
-    }
-    full_date = datetime(
-        int(raw_record['year']),  int(raw_record['month']), int(raw_record['day']), 
-        0, 0, 0)
-
-    return {
-        **raw_record,
-        'snapshot_time': snapshot_time,
-        'full_date': full_date.strftime("%Y%m%d"),
-    }
+    return responses

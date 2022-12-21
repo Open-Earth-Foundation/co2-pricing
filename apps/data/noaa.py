@@ -1,28 +1,13 @@
 import os
 import csv
+import urllib.request
 from datetime import datetime
 from typing import Dict
 
-import urllib.request
-
 import boto3
 
-
-def query(event:Dict, _):
-    table_name = os.environ['TARGET_TABLE']
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table(table_name)
-    response = table.query(
-        KeyConditionExpression=boto3.dynamodb.conditions.Key('full_date').eq(event['full_date']),
-        # adds filter to query
-        FilterExpression=boto3.dynamodb.conditions.Attr('smoothed').gt(0),
-        # more performance
-        ConsistentRead=True,
-        # limit to 1
-        Limit=event.get('limit', 100),
-        # sort by date
-    )
-    return response
+from utils.parse import generate_put_requests, generate_record
+from utils.batch import grouper
 
 
 def fetch(event: Dict, __):
@@ -31,61 +16,46 @@ def fetch(event: Dict, __):
     with urllib.request.urlopen(source_url) as url:
         csv_file = url.read().decode("utf-8")
 
-    data = csv.reader(csv_file.splitlines(), delimiter = ',', )
-    rows = list(data)[43:]
+    reader = csv.reader(
+        csv_file.splitlines(), 
+        delimiter = ',', 
+        skipinitialspace=True)
+    lines = list(reader)[43:45]
 
-    snapshot_time = datetime.datetime.now().strftime("%Y%m%d%H%M")
+    rows = [
+        dict(
+            full_date=int(f"{year}{month}{day}"),
+            year=int(year),
+            month=int(month), 
+            day=int(day), 
+            smoothed=float(smoothed), 
+            trend=float(trend)
+        )
+        for [year,month, day, smoothed, trend] in lines
+    ]
+
+    snapshot_time = int(datetime.now().strftime("%Y%m%d%H%M"))
     records = []
     if (event.get('all') in ['true', True] ):
-        records = [generate_record(row, snapshot_time) for row in rows]
+        records = [
+            generate_record(row, snapshot_time) 
+            for row in rows
+            if row is not None
+        ]
     else:
         record = generate_record(rows[-1], snapshot_time)
         records.append(record)
+    responses = []
+    for chunk in grouper(filter(lambda item : item is not None, records), 25):
+        if not chunk:
+            continue
+        put_requests = generate_put_requests(chunk)
+        try:
+            response = boto3.client('dynamodb').batch_write_item(
+                RequestItems={ target_table: put_requests })
+            responses.append(response)
+        except Exception as e:
+            print(dict(put_requests=put_requests))
+            raise e
 
-    response = boto3.client('dynamodb').batch_write_item(
-        RequestItems={
-            target_table: generate_put_requests(records)})
-
-    return response
-
-
-def generate_put_requests(records):
-    return [
-        {
-            'PutRequest': {
-                'Item': marshall_record(record)
-            }   
-        }
-        for record in records
-    ]
-
-
-def marshall_record(record):
-    return {
-        'snapshot_time': {'S': record['snapshot_time']},
-        'full_date': {'S': record['fulld_date']},
-        'year': {'S': record['year']},
-        'month': {'S': record['month']},
-        'day': {'S': record['day']},
-        'smoothed': {'S': record['smoothed']},
-        'trend': {'S': record['trend']},
-    }
-
-
-def generate_record(raw_line, snapshot_time):
-    raw_record = {
-        'year': raw_line[0],
-        'month': raw_line[1],
-        'day': raw_line[2],
-        'smoothed': raw_line[3],
-        'trend': raw_line[4],
-    }
-    full_date = datetime(
-        int(raw_record['year']),  int(raw_record['month']), int(raw_record['day']), 
-        0, 0, 0)
-
-    return {
-        **raw_record,
-        'snapshot_time': snapshot_time,
-        'full_date': full_date.strftime("%Y%m%d"),
-    }
+    return responses

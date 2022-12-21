@@ -1,30 +1,39 @@
 import json
-import awswrangler as wr
+import boto3
+
+from utils.parse import unmarshall_record, retrieve_record
 
 
-def handler(event, _):
-    # Retrieve the database.table names and column names from the request
-    from_table = f"{event['database']}.{event['table']}"
-    select_columns = ", ".join(event['columns'])
+dynamodb = boto3.resource('dynamodb')
 
-    # Build the SQL query string
-    query_string = f"SELECT {from_table} FROM {select_columns}"
+def handler(api_event, _):
+    print(api_event)
+    event = api_event['queryStringParameters']
+    table = event['table']
+    if 'index' in event:
+        table = f"{table}.{event['index']}"
 
-    # Check if filter criteria was provided in the request
+    query_string = f"SELECT {event['columns']} FROM {table}"
+
     if 'filters' in event:
         filters = event['filters']
-        # Add the filter criteria to the query string
         query_string += " WHERE {}".format(" AND ".join(filters))
 
-    query_string += f" LIMIT {event.get('limit', 100)}"
-    query_string += f" OFFSET {event.get('offset', 0)}"
-    
     if 'order_by' in event:
-        query_string += f" ORDER BY {event.get('order', 'id')}"
+        query_string += f" ORDER BY {event['order']}"
 
-    df = wr.athena.read_sql_query(query_string)
+    table_items = dynamodb.meta.client.execute_statement(
+        Statement=query_string
+    )['Items']
+
+
+    items_objs = [
+        unmarshall_record(retrieve_record(item)) 
+        for item in table_items
+    ]
+    print(items_objs)
 
     return {
         'statusCode': 200,
-        'body': json.dumps(df.to_json())
+        'body': json.dumps(items_objs)
     }
