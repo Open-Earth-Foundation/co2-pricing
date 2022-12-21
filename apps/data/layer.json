@@ -1,9 +1,0 @@
-{
-    "name": "LambdaLayer",
-    "description": "This is a Lambda layer for your project",
-    "compatibleRuntimes": [
-        "python3.9"
-    ],
-    "license": "MIT",
-    "package": "./requirements.txt"
-}

@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import * as s3Deploy from 'aws-cdk-lib/aws-s3-deployment'
 import { Construct } from 'constructs';
 
 
@@ -10,6 +11,7 @@ export class SafeBucket extends s3.Bucket {
             ...(props || {}),
             versioned: true,
             encryption: s3.BucketEncryption.S3_MANAGED,
+            autoDeleteObjects: true,
         });
 
         this.addToResourcePolicy(new iam.PolicyStatement({
@@ -23,6 +25,14 @@ export class SafeBucket extends s3.Bucket {
                 },
             },
         }));
+    }
+
+    uploadFolder(folderPath: string, preffix: string) {
+        new s3Deploy.BucketDeployment(this, preffix.replace(/\W/, ''), {
+            destinationBucket: this,
+            sources: [s3Deploy.Source.asset(folderPath)],
+            destinationKeyPrefix: preffix
+        })
     }
 }
 
