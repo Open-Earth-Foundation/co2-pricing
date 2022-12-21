@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
+
 import { DatapipelinesStack } from './stacks/datapipelines-stack';
+import { DataAPIStack } from './stacks/data-api';
 
 
 const app = new cdk.App();
@@ -13,9 +15,15 @@ const defaultEnv: cdk.Environment = {
 
 const environment = app.node.tryGetContext('environment') ?? 'dev'
 
-new DatapipelinesStack(
-  app, `Co2PricingDatapipelines-${environment}`,
-  '../pipelines/__PIPELINES__', { env: defaultEnv }
-);
+const { pipelineMap } = new DatapipelinesStack(
+  app, `Co2PricingDatapipelines-${environment}`, {
+  env: defaultEnv
+});
+
+new DataAPIStack(
+  app, `Co2PricingDataAPI-${environment}`, {
+  env: defaultEnv,
+  pipelineMap,
+})
 
 app.synth();
