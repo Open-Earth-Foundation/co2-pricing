@@ -1,3 +1,4 @@
+import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb'
 import { Construct } from 'constructs';
@@ -22,6 +23,8 @@ export class NOAAPipeline extends BasePipeline {
             handler: 'noaa.fetch',
             layers: [this.layer],
             ...this.defaultLambdaProps,
+            timeout: cdk.Duration.minutes(5),
+            memorySize: 512,
             environment: {
                 SOURCE_URL,
                 TARGET_TABLE: this.table.tableName,

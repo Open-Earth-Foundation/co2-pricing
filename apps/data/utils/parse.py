@@ -21,21 +21,23 @@ def generate_put_requests(records):
 
 
 def marshall_record(record: Dict):
-    return  {
-        k: serializer.serialize(v)
-        for k,v in record.items()
-    }
+    processed = {}
+    for k,v in record.items():
+        processed[k] = serializer.serialize(v)
+
+    return processed
+
 
 def unmarshall_record(record: Dict):
-    unmarshal_record = {}
+    processed = {}
     
     for k,v in record.items():
         if isinstance(v, Decimal):
-            unmarshal_record[k] = float(v)
+            processed[k] = float(v)
         else:
-            unmarshal_record[k] = v
+            processed[k] = v
     
-    return  unmarshal_record
+    return  processed
 
 
 def generate_record(raw_record, snapshot_time):

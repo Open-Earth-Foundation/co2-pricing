@@ -20,7 +20,7 @@ def fetch(event: Dict, __):
         csv_file.splitlines(), 
         delimiter = ',', 
         skipinitialspace=True)
-    lines = list(reader)[43:45]
+    lines = list(reader)[43:]
 
     rows = [
         dict(
