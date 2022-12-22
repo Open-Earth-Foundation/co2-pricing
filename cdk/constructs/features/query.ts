@@ -38,7 +38,8 @@ export class QueryFeature extends Construct {
                 "integration.request.querystring.table": "method.request.querystring.table",
                 "integration.request.querystring.index": "method.request.querystring.index",
                 "integration.request.querystring.filters": "method.request.querystring.filters",
-                "integration.request.querystring.order": "method.request.querystring.order"
+                "integration.request.querystring.order": "method.request.querystring.order",
+                "integration.request.querystring.explain": "method.request.querystring.explain",
             }
         });
 
@@ -50,7 +51,8 @@ export class QueryFeature extends Construct {
                 "method.request.querystring.table": true,
                 "method.request.querystring.index": true,
                 "method.request.querystring.filters": true,
-                "method.request.querystring.order": true
+                "method.request.querystring.order": true,
+                "method.request.querystring.explain": true
             }
         });
     }

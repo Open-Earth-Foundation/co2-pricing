@@ -9,7 +9,6 @@ dynamodb = boto3.resource('dynamodb')
 def handler(api_event, _):
     try:
         event = api_event['queryStringParameters']
-        print(event)
         table = event['table']
         if 'index' in event:
             table = f"{table}.{event['index']}"
@@ -23,21 +22,23 @@ def handler(api_event, _):
         if 'order' in event:
             query_string += f" ORDER BY {event['order']}"
 
-        print(query_string)
         table_items = dynamodb.meta.client.execute_statement(
             Statement=query_string
         )['Items']
 
 
-        items_objs = [
+        records = [
             unmarshall_record(item)
             for item in table_items
         ]
-        print(items_objs[0:5])
+        data = dict(records=records)
+
+        if 'explain' in event:
+            data['explain'] = query_string
 
         return {
             'statusCode': 200,
-            'body': json.dumps(items_objs)
+            'body': json.dumps(data)
         }
 
     except Exception as e:

@@ -1,6 +1,5 @@
 from datetime import datetime
 import os
-import json
 
 import awswrangler as wr
 import boto3
@@ -32,8 +31,6 @@ def handler(_, __):
     responses = []
     for chunk in grouper(records, 25):
         table_requests = generate_put_requests(chunk)
-        # beatify the print json
-        print(json.dumps(table_requests, indent=4))
         response = boto3.client('dynamodb').batch_write_item(
             RequestItems={target_table:table_requests})
 
