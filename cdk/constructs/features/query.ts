@@ -27,6 +27,7 @@ export class QueryFeature extends Construct {
             code: lambda.Code.fromAsset('../apps/data'),
             handler: "query_table/query.handler",
             runtime: lambda.Runtime.PYTHON_3_9,
+            tracing: lambda.Tracing.ACTIVE,
             layers: [layer],
             functionName: cdk.PhysicalName.GENERATE_IF_NEEDED,
             role: this.role

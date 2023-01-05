@@ -10,6 +10,9 @@ packages = [{include = "co2_pricing"}]
 python = "^3.9"
 boto3 = "^1.26.31"
 awswrangler = { version = "^2.18.0", optional = true }
+flask = {version = "^2.2.2", extras = ["dev"]}
+flask-cors = "^3.0.10"
+python-dotenv = "^0.21.0"
 
 [tool.poetry.extras]
 dev = ["awswrangler"]

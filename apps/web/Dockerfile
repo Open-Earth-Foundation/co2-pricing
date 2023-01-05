@@ -21,13 +21,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# This crashes if these env vars aren't defined
-
-ENV MIMIFUND_API_URL=http://invalid-build-dummy/
-ENV NEXTAUTH_SECRET=InvalidBuildDummy
-ENV NEXTAUTH_URL=http://invalid-build-dummy/
-
-RUN yarn build
+RUN npm run build
 
 # 3. Production image, copy all the files and run next
 FROM node:16-alpine AS runner

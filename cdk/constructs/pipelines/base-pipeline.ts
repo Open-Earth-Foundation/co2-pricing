@@ -49,9 +49,10 @@ export abstract class BasePipeline extends Construct {
 
     protected get defaultLambdaProps() {
         return {
+            tracing: lambda.Tracing.ACTIVE,
             code: lambda.Code.fromAsset('../apps/data'),
             runtime: lambda.Runtime.PYTHON_3_9,
             timeout: cdk.Duration.seconds(30),
-        } as const
+        } satisfies Partial<lambda.FunctionProps>
     }
 }

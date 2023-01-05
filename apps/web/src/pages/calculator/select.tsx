@@ -38,8 +38,11 @@ const SelectMethod: NextPageWithLayout = () => {
 
     const iamModels = useQuery(
         ['iam-models'], () => iamService.getModels(), {
-        onSuccess: ([first]) => first && setSelectedModelId(first?.id),
-        initialData: [],
+        onSuccess([first]) {
+            const canSelectFirst = !selectedModelId && !!first
+            canSelectFirst && setSelectedModelId(first.id)
+        },
+        initialData: []
     })
 
     const selectedIamModel = useQuery<IAMModel>(
@@ -50,12 +53,6 @@ const SelectMethod: NextPageWithLayout = () => {
         },
         enabled: canPlot && !!selectedModelId,
         onError: () => setCanPlot(false),
-    })
-
-    const carbonSocialCost = useQuery<number>(
-        ['carbon-social-cost', selectedModelId, discount, year],
-        () => calculatorService.getCarbonSocialCost(discount, year), {
-        cacheTime: 60 * 60 * 1000
     })
 
     if (iamModels.isLoading) return <Loading />
@@ -73,7 +70,6 @@ const SelectMethod: NextPageWithLayout = () => {
                     description={'Select the IAM model you want to use'}
                     orientation='horizontal'
                 >
-                    {carbonSocialCost.data}
                 </DescriptionBlock>
             </Grid>
             <Grid item md={4} container gap={2} flexDirection='column' sx={{ height: 1 }}>
@@ -104,7 +100,7 @@ const SelectMethod: NextPageWithLayout = () => {
             <Grid item md={7} gap={2} flexDirection='column' height={1}>
                 <Stack spacing={2} direction="column" height={1}>
                     <DescriptionBlock title='IAM Panel' orientation='vertical' >
-                        <Chart dataPoints={dataPoints.data ?? []} />
+                        <Chart headers={[]} dataPoints={dataPoints.data ?? []} />
                         <Stack direction='row' spacing={2} mt={2}>
                             <Slider
                                 aria-label="Discount rate"

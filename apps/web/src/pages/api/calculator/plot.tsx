@@ -7,7 +7,7 @@ const CURRENT_YEAR = 2022
 
 const calculate = (dataPoint: ChartDataPoint, discount: number): ChartDataPoint => {
     const newDataPoint: ChartDataPoint = {
-        name: dataPoint.name,
+        name: dataPoint.name ?? '[name]',
     }
     for (const [key, value] of Object.entries(dataPoint)) {
         if (key === 'name') continue

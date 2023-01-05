@@ -37,9 +37,7 @@
 	},
 	"remoteEnv": {
 		"NODE_ENV": "development",
-		"NEXTAUTH_SECRET": "verysecretivesecret",
-		"NEXTAUTH_URL": "http://localhost:3000",
-		"NEXT_PUBLIC_MIMIFUND_API_URL": "http://localhost:3000/api"
+		"DATA_QUERY_API": "http://localhost:3000/api"
 	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
