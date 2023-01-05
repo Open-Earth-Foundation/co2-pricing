@@ -1,26 +1,23 @@
-import { useMemo } from "react";
-import { Container } from "@mui/material";
-
 import Chart from "../ui/chart";
-
-import { getHeadersFromCollection } from "src/utils/table";
 
 
 interface SampleChartProps {
     rows: Record<string, string>[]
-    labelProp?: string
+
+    xLabelProp: string
+    dataProps: string[]
 }
-const SampleChart = ({ rows, labelProp }: SampleChartProps) => {
-    const headers = useMemo(() => getHeadersFromCollection(rows), [rows])
+const SampleChart = ({ rows, xLabelProp, dataProps }: SampleChartProps) => {
 
     return (
-        <Container>
+        <>
             <Chart
-                headers={headers}
                 dataPoints={rows}
-                labelProp={labelProp}
+                axisProp={xLabelProp}
+                xLabelProp={xLabelProp}
+                dataProps={dataProps}
             />
-        </Container>
+        </>
     )
 };
 

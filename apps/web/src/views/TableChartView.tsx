@@ -1,19 +1,33 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
-import SampleChart from "src/components/data/SampleChart";
 import SampleTable from "src/components/data/SampleTable";
+import Chart from "src/components/ui/chart";
 
 
 interface TableChartViewProps {
+    table: string
     rows: any[]
-    labelProp?: string
+    xLabelProp: string
+    axisProp: string
+    dataProps: string[]
 }
-const TableChartView = ({ rows, labelProp }: TableChartViewProps) => {
+const TableChartView = ({ table, rows, axisProp, xLabelProp, dataProps }: TableChartViewProps) => {
     return (
-        <Stack>
-            <SampleChart rows={rows} labelProp={labelProp} />
-            <SampleTable rows={rows} />
-        </Stack>
+        <>
+            <Typography variant="h3">
+                {table.toUpperCase()}
+            </Typography>
+
+            <Chart
+                axisProp={axisProp}
+                dataPoints={rows}
+                xLabelProp={xLabelProp}
+                dataProps={dataProps}
+            />
+            <Stack>
+                <SampleTable rows={rows.slice(0, 5)} />
+            </Stack>
+        </>
     );
 }
 

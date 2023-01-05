@@ -21,7 +21,7 @@ const TableChartView = ({ rows }: TableChartViewProps) => {
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow key={row.id}>
-                            {headers.map((header) => (
+                            {headers.slice(0, 5).map((header) => (
                                 <TableCell key={row.id + header}>{row[header]}</TableCell>
                             ))}
                         </TableRow>
