@@ -7,6 +7,10 @@ from utils.parse import unmarshall_record
 dynamodb = boto3.resource('dynamodb')
 
 def handler(api_event, _):
+    response = dict(
+        statusCode=500,
+        headers= {'Access-Control-Allow-Origin': '*'}
+    )
     try:
         event = api_event['queryStringParameters']
         table = event['table']
@@ -26,7 +30,6 @@ def handler(api_event, _):
             Statement=query_string
         )['Items']
 
-
         records = [
             unmarshall_record(item)
             for item in table_items
@@ -35,14 +38,9 @@ def handler(api_event, _):
 
         if 'explain' in event:
             data['explain'] = query_string
-
-        return {
-            'statusCode': 200,
-            'body': json.dumps(data)
-        }
+        response.update(statusCode=200, body=json.dumps(data))
 
     except Exception as e:
-        return {
-            'statusCode': 500,
-            'body': json.dumps({'error': str(e)})
-        }
+        response.update(body=json.dumps({'error': str(e)}))
+
+    return response

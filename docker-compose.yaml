@@ -8,7 +8,6 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:3000/api
       NEXT_PUBLIC_DATA_API_URL: api:4000
       PORT: 3000
 

@@ -3,7 +3,9 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 
 import { DatapipelinesStack } from './stacks/datapipelines-stack';
-import { DataAPIStack } from './stacks/data-api';
+import { DataApiStack } from './stacks/data-api-stack';
+
+import { WebAppStack } from './stacks/web-app-stack';
 
 
 const app = new cdk.App();
@@ -20,10 +22,16 @@ const { pipelineMap } = new DatapipelinesStack(
   env: defaultEnv
 });
 
-new DataAPIStack(
+const apiStack = new DataApiStack(
   app, `Co2PricingDataAPI-${environment}`, {
   env: defaultEnv,
   pipelineMap,
+})
+
+new WebAppStack(
+  app, `Co2PricingWebApp-${environment}`, {
+  url: apiStack.api.url + 'v1',
+  env: defaultEnv,
 })
 
 app.synth();

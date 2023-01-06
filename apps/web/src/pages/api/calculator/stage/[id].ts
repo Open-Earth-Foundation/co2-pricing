@@ -1,5 +1,5 @@
-import { CALCULATOR_STAGES } from "src/constants/calculator/stage";
-import { asyncHandler } from "src/utils/syncApi";
+import { CALCULATOR_STAGES } from "../../../../constants/calculator/stage";
+import { asyncHandler } from "../../../../utils/syncApi";
 
 
 const handler = asyncHandler(async (req, res) => {

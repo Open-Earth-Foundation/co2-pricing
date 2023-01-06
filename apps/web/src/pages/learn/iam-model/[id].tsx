@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import DescriptionBlock from "src/components/ui/DescriptionBlock";
-import Loading from "src/components/ui/loading";
-import BaseLayout from "src/layouts/BaseLayout";
+import DescriptionBlock from "../../../components/ui/DescriptionBlock";
+import Loading from "../../../components/ui/loading";
+import BaseLayout from "../../../layouts/BaseLayout";
 
 import type { NextPageWithLayout } from "../../_app";
-import type { IAMModel } from "src/types/iam/model";
+import type { IAMModel } from "../../../types/iam/model";
 
-import iamService from 'src/services/iam';
+import iamService from '../../../services/iam';
 
 
 const SelectMethod: NextPageWithLayout = () => {

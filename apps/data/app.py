@@ -6,7 +6,7 @@ from flask_cors import CORS
 from query_table.query import handler
 
 app = Flask(__name__)
-cors = CORS(app, resources=r"/v1/*")
+cors = CORS(app)
 
 @app.route('/v1/query/<table_name>')
 def query_table_handler(table_name):

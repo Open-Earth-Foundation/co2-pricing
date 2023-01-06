@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import TableChartView from "src/views/TableChartView";
-import tablesService from "src/services/tables";
+import TableChartView from "../views/TableChartView";
+import tablesService from "../services/tables";
 import type { NextPageWithLayout } from "./_app";
-import BaseLayout from "src/layouts/BaseLayout";
+import BaseLayout from "../layouts/BaseLayout";
+import { Stack } from "@mui/material";
 
 
 const getTablesData = async (configs: any[]) => {
@@ -29,37 +30,42 @@ const AllTablesPage: NextPageWithLayout = () => {
             xLabelProp: 'year',
             dataProps: ['scc'],
         },
-        {
-            table: 'noaa',
-            axisProp: 'prtp',
-            xLabelProp: 'full_date',
-            dataProps: ['trend', 'smoothed'],
-        },
-        {
-            table: 'damagescountry',
-            axisProp: 'ISO3',
-            xLabelProp: 'N',
-            dataProps: ['16.7%', '50%', '83.3%'],
-        },
+        // {
+        //     table: 'noaa',
+        //     axisProp: 'prtp',
+        //     xLabelProp: 'full_date',
+        //     dataProps: ['trend', 'smoothed'],
+        // },
+        // {
+        //     table: 'damagescountry',
+        //     axisProp: 'ISO3',
+        //     xLabelProp: 'N',
+        //     dataProps: ['16.7%', '50%', '83.3%'],
+        // },
     ]
-    const sampleList = useQuery(['tables'], () => getTablesData(tables))
+    const sampleList = useQuery(['tables'], () => getTablesData(tables), {
+        staleTime: 10 * 60 * 1000,
+        retryDelay: 10 * 1000,
+    })
 
     if (!sampleList.data) return null
 
-    return (<>
-        {sampleList.data.map((data) => {
-            return (
-                <TableChartView
-                    key={data.table}
-                    table={data.table}
-                    rows={data.records}
-                    axisProp={data.axisProp}
-                    xLabelProp={data.xLabelProp}
-                    dataProps={data.dataProps}
-                />
-            )
-        })}
-    </>);
+    return (
+        <>
+            <Stack direction="column" spacing={10}>
+                {sampleList.data.map((data) => {
+                    return <TableChartView
+                        key={data.table}
+                        table={data.table}
+                        rows={data.records}
+                        axisProp={data.axisProp}
+                        xLabelProp={data.xLabelProp}
+                        dataProps={data.dataProps}
+                    />
+                })}
+            </Stack>
+        </>
+    )
 };
 
 AllTablesPage.getLayout = BaseLayout

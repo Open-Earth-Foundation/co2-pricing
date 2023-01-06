@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import TableChartView from "src/views/TableChartView";
+import TableChartView from "../../views/TableChartView";
 import { useRouter } from 'next/router'
-import tablesService from "src/services/tables";
+import tablesService from "../../services/tables";
 import type { NextPageWithLayout } from "../_app";
-import BaseLayout from "src/layouts/BaseLayout";
+import BaseLayout from "../../layouts/BaseLayout";
 
 
 const SampleTablePage: NextPageWithLayout = () => {

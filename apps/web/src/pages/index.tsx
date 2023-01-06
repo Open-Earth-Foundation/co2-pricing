@@ -42,9 +42,9 @@ const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
         </Typography>
       </Grid>
       <Grid md={8} flexGrow={1}>
-        <Link href="/calculator">
+        <Link href="/samples">
           <LongButton variant="outlined">
-            Check out how the RCB affected yours
+            Check out how some sample data
           </LongButton>
         </Link>
       </Grid>

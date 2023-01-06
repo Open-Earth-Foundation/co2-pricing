@@ -1,4 +1,4 @@
-import { asyncHandler } from "src/utils/syncApi";
+import { asyncHandler } from "../../../../utils/syncApi";
 import { IAM_MODELS } from "../../../../constants/iam-models";
 
 

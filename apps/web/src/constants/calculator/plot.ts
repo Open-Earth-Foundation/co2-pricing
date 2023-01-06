@@ -1,4 +1,4 @@
-import type { ChartDataPoint } from "src/types/calculator/plot";
+import type { ChartDataPoint } from "../../types/calculator/plot";
 
 export const CALCULATOR_PLOT: ChartDataPoint[] = [
     // {

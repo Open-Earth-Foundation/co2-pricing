@@ -1,5 +1,5 @@
 import { ResponsiveContainer, CartesianGrid, YAxis, XAxis, Tooltip, Legend, AreaChart, Area } from 'recharts';
-import type { ChartDataPoint } from 'src/types/calculator/plot';
+import type { ChartDataPoint } from '../../../types/calculator/plot';
 
 
 interface ChartProps {

@@ -1,7 +1,8 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-import SampleTable from "src/components/data/SampleTable";
-import Chart from "src/components/ui/chart";
+import SampleTable from "../components/data/SampleTable";
+import Chart from "../components/ui/chart";
+import Link from "next/link";
 
 
 interface TableChartViewProps {
@@ -13,10 +14,12 @@ interface TableChartViewProps {
 }
 const TableChartView = ({ table, rows, axisProp, xLabelProp, dataProps }: TableChartViewProps) => {
     return (
-        <>
-            <Typography variant="h3">
-                {table.toUpperCase()}
-            </Typography>
+        <Box>
+            <Link href={`/table/${table}`}>
+                <Typography variant="h3">
+                    {table.toUpperCase()}
+                </Typography>
+            </Link>
 
             <Chart
                 axisProp={axisProp}
@@ -27,7 +30,7 @@ const TableChartView = ({ table, rows, axisProp, xLabelProp, dataProps }: TableC
             <Stack>
                 <SampleTable rows={rows.slice(0, 5)} />
             </Stack>
-        </>
+        </Box>
     );
 }
 

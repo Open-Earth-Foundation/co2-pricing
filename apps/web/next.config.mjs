@@ -14,8 +14,7 @@ const config = {
     defaultLocale: "en",
   },
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api",
-    NEXT_PUBLIC_DATA_API_URL: process.env.DATA_QUERY_API || "http://localhost:4000/v1",
+    NEXT_PUBLIC_DATA_API_URL: process.env.NEXT_PUBLIC_DATA_API_URL || "http://localhost:4000/v1",
   },
   output: 'standalone'
 };
