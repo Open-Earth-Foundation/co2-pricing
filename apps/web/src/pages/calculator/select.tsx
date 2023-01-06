@@ -51,7 +51,7 @@ const SelectMethod: NextPageWithLayout = () => {
             setSelectedModelId(model.id)
             setCanPlot(false)
         },
-        enabled: canPlot && !!selectedModelId,
+        enabled: !!selectedModelId,
         onError: () => setCanPlot(false),
     })
 

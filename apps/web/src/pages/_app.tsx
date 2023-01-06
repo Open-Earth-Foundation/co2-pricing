@@ -16,7 +16,14 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 60 * 60 * 1000,
+      retryDelay: 30 * 1000,
+    },
+  },
+})
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
