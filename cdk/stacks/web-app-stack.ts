@@ -81,15 +81,11 @@ export class WebAppStack extends cdk.Stack {
     })
     const scalableTarget = fargateService.service.autoScaleTaskCount({
       minCapacity: 1,
-      maxCapacity: 2
+      maxCapacity: 5
     })
 
     scalableTarget.scaleOnCpuUtilization('cpuScaling', {
       targetUtilizationPercent: 80
-    })
-    new cdk.CfnOutput(
-      this, 'WebAppUrl', {
-      value: fargateService.loadBalancer.loadBalancerDnsName
     })
   }
 
