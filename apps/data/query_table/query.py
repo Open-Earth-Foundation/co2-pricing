@@ -42,7 +42,7 @@ def handler(api_event, _):
         ]
         data = dict(records=records)
 
-        if 'explain' in event:
+        if event.get('explain', False) in ['true', True]:
             data['explain'] = query_string
         response.update(statusCode=200, body=json.dumps(data))
 

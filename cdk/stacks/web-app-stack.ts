@@ -29,9 +29,8 @@ export class WebAppStack extends cdk.Stack {
     });
     new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
       src: new ecrdeploy.DockerImageName(asset.imageUri),
-      dest: new ecrdeploy.DockerImageName(`${repository.repositoryUri}:latest`),
+      dest: new ecrdeploy.DockerImageName(`${repository.repositoryUri}:latest`)
     });
-
 
     // Task & Container Definition
     const taskDefinition = new ecs.FargateTaskDefinition(
@@ -42,14 +41,14 @@ export class WebAppStack extends cdk.Stack {
         operatingSystemFamily: ecs.OperatingSystemFamily.LINUX,
       }
     });
-    const container = taskDefinition.addContainer("MyContainer", {
+    taskDefinition.addContainer("MyContainer", {
       logging: ecs.LogDriver.awsLogs({ streamPrefix: "Co2WebApp" }),
       image: ecs.ContainerImage.fromEcrRepository(repository, 'latest'),
       environment: {
         NEXT_PUBLIC_DATA_API_URL: url
-      }
+      },
+      portMappings: [{ containerPort: PORT }],
     });
-    container.addPortMappings({ containerPort: PORT });
 
     // ECS Cluster
     const vpc = new ec2.Vpc(this, 'Vpc', { maxAzs: 2 });
@@ -79,11 +78,11 @@ export class WebAppStack extends cdk.Stack {
       taskDefinition,
       securityGroups: [securityGroup]
     })
+
     const scalableTarget = fargateService.service.autoScaleTaskCount({
       minCapacity: 1,
       maxCapacity: 5
     })
-
     scalableTarget.scaleOnCpuUtilization('cpuScaling', {
       targetUtilizationPercent: 80
     })

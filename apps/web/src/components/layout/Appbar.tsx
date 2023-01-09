@@ -12,7 +12,6 @@ import Link from 'next/link';
 
 export default function AppBar() {
     // const handleMenu = () => {
-    //     console.log('menu');
     // }
 
     return (
