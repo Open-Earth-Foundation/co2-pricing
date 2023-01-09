@@ -30,7 +30,7 @@ def handler(api_event, _):
             Statement=query_string
         )['Items']
         
-        limit = event.get('limit', 100)
+        limit = min(event.get('limit', 100), 1000)
         offset = event.get('offset', 0)
 
         first_index = offset*limit
