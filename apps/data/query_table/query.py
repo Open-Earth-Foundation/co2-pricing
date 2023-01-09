@@ -29,10 +29,16 @@ def handler(api_event, _):
         table_items = dynamodb.meta.client.execute_statement(
             Statement=query_string
         )['Items']
+        
+        limit = event.get('limit', 100)
+        offset = event.get('offset', 0)
+
+        first_index = offset*limit
+        last_index = (offset+1)*limit
 
         records = [
             unmarshall_record(item)
-            for item in table_items
+            for item in table_items[first_index:last_index]
         ]
         data = dict(records=records)
 

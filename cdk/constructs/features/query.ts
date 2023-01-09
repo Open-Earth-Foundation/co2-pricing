@@ -24,11 +24,14 @@ export class QueryFeature extends Construct {
             'arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python39:2')
         this._lambda = new lambda.Function(
             scope, "QueryTable", {
-            code: lambda.Code.fromAsset('../apps/data'),
+            code: lambda.Code.fromAsset('../apps/data', {
+                exclude: ['requirements.txt', '.venv'],
+            }),
             handler: "query_table/query.handler",
             runtime: lambda.Runtime.PYTHON_3_9,
             tracing: lambda.Tracing.ACTIVE,
             layers: [layer],
+            memorySize: 1024,
             functionName: cdk.PhysicalName.GENERATE_IF_NEEDED,
             role: this.role
         })
