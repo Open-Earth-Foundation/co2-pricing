@@ -3,8 +3,8 @@ import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as apigtw from 'aws-cdk-lib/aws-apigateway';
 import { Construct } from 'constructs';
 
-import { BasePipeline } from '../constructs/pipelines/base-pipeline';
-import { QueryFeature } from '../constructs/features/query';
+import { BasePipeline } from 'constructs/pipelines/base-pipeline';
+import { QueryFeature } from 'constructs/features/query';
 
 interface DataApiProps extends cdk.StackProps {
   pipelineMap: Record<string, BasePipeline>

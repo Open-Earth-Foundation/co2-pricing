@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import TableChartView from "../../views/TableChartView";
 import { useRouter } from 'next/router'
-import tablesService from "../../services/tables";
-import type { NextPageWithLayout } from "../_app";
-import BaseLayout from "../../layouts/BaseLayout";
+
+import TableChartView from "views/TableChartView";
+import BaseLayout from "layouts/BaseLayout";
+
+import tablesService from "services/tables";
+
+import type { NextPageWithLayout } from "types/ui";
 
 
-const SampleTablePage: NextPageWithLayout = () => {
+const SampleTable: NextPageWithLayout = () => {
     const { query: { table } } = useRouter()
     const sample = useQuery(
         ['table', table], () => tablesService.query(table as string), {
@@ -26,7 +29,7 @@ const SampleTablePage: NextPageWithLayout = () => {
     );
 };
 
-SampleTablePage.getLayout = BaseLayout
+SampleTable.getLayout = BaseLayout
 
 
-export default SampleTablePage;
+export default SampleTable;

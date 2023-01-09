@@ -1,15 +1,18 @@
 import { useQueries } from "@tanstack/react-query";
-import TableChartView from "../views/TableChartView";
-import tablesService from "../services/tables";
-import type { NextPageWithLayout } from "./_app";
-import BaseLayout from "../layouts/BaseLayout";
 import { Stack } from "@mui/material";
 import { Typography } from "@material-ui/core";
-import type { QueryDataOutput } from "../types/data/query";
-import { TABLES } from "src/constants/tables";
+
+import TableChartView from "views/TableChartView";
+import BaseLayout from "layouts/BaseLayout";
+import tablesService from "services/tables";
+
+import type { QueryDataOutput } from "types/data/query";
+import type { NextPageWithLayout } from "types/ui";
+
+import { TABLES } from "constants/tables";
 
 
-const AllTablesPage: NextPageWithLayout = () => {
+const Samples: NextPageWithLayout = () => {
     const results = useQueries({
         queries: TABLES.map((config) => ({
             queryKey: ['table', config.table],
@@ -44,7 +47,7 @@ const AllTablesPage: NextPageWithLayout = () => {
     )
 };
 
-AllTablesPage.getLayout = BaseLayout
+Samples.getLayout = BaseLayout
 
 
-export default AllTablesPage;
+export default Samples;

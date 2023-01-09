@@ -1,4 +1,4 @@
-import type { CalculatorStage } from "../../types/calculator/stage";
+import type { CalculatorStage } from "types/calculator/stage";
 
 export const CALCULATOR_STAGES: CalculatorStage[] = [
     {

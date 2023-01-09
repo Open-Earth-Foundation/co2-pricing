@@ -1,7 +1,8 @@
-import { _fetchJson } from "./common";
 
-import type { CalculatorStage } from '../types/calculator/stage';
-import type { ChartDataPoint } from "../types/calculator/plot";
+import { _fetchJson } from 'utils/fetch';
+
+import type { CalculatorStage } from 'types/calculator/stage';
+import type { ChartDataPoint } from "types/calculator/plot";
 
 
 const validateParams = () => {

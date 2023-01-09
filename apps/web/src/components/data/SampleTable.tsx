@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { useMemo } from "react";
-import { getHeadersFromCollection } from "../../utils/table";
+import { getHeadersFromCollection } from "utils/table";
 
 
 interface TableChartViewProps {

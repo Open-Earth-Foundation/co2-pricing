@@ -1,4 +1,4 @@
-import { DEFAULT_MAX_YEAR, DEFAULT_MIN_YEAR } from '../../constants/axioms';
+import { DEFAULT_MAX_YEAR, DEFAULT_MIN_YEAR } from 'constants/axioms';
 import type { ConvertionInput } from './types';
 
 export const validateInput = ({ fromYear, toYear, amount }: ConvertionInput) => {

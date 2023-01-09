@@ -10,8 +10,8 @@ export const _fetchJson = async <T = never>(
     }
     const response = await fetch(url, {
         ...baseOptions,
+        signal: controller.signal,
         ...options,
-        signal: controller.signal
     });
     if (!response.ok) {
         throw new Error(`The HTTP status of the reponse: ${response.status} (${response.statusText})`)

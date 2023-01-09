@@ -1,5 +1,6 @@
-import { asyncHandler } from "../../../../utils/syncApi";
-import { IAM_MODELS } from "../../../../constants/iam-models";
+import { asyncHandler } from "utils/syncApi";
+
+import { IAM_MODELS } from "constants/iam-models";
 
 
 const handler = asyncHandler((_, res) => {

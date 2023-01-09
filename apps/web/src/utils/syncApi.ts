@@ -1,5 +1,6 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
+
 export const asyncHandler = (handler: NextApiHandler) => {
     return async (req: NextApiRequest, res: NextApiResponse) => {
         try {

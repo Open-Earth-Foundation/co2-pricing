@@ -1,6 +1,6 @@
-import { _fetchJson } from "./common";
 
-import type { IAMModel } from "../types/iam/model";
+import { _fetchJson } from "utils/fetch";
+import type { IAMModel } from "types/iam/model";
 
 
 const validateParams = () => {

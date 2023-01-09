@@ -5,8 +5,8 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb'
 import { Construct } from 'constructs';
 
-import { SafeBucket } from '../safe-bucket';
-import { ServerlessTable } from '../SlsTable';
+import { SafeBucket } from 'safe-bucket';
+import { ServerlessTable } from 'SlsTable';
 
 
 export interface Props {

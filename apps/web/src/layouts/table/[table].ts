@@ -1,5 +1,5 @@
-import { asyncHandler } from "../../utils/syncApi";
-import tablesService from '../../services/tables'
+import { asyncHandler } from "utils/syncApi";
+import tablesService from 'services/tables'
 
 const handler = asyncHandler(async (req, res) => {
     const { table } = req.query;

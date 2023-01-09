@@ -25,7 +25,7 @@ export class WebAppStack extends cdk.Stack {
       this, 'WebAppDockerImage', {
       directory: '../apps/web',
       file: 'Dockerfile',
-      platform: Platform.LINUX_AMD64
+      platform: Platform.LINUX_AMD64,
     });
     new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
       src: new ecrdeploy.DockerImageName(asset.imageUri),

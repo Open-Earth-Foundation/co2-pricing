@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
-
-import SampleTable from "../components/data/SampleTable";
-import Chart from "../components/ui/chart";
 import Link from "next/link";
+
+import SampleTable from "components/data/SampleTable";
+import Chart from "components/ui/chart";
 
 
 interface TableChartViewProps {
@@ -15,7 +15,7 @@ interface TableChartViewProps {
 const TableChartView = ({ table, rows, axisProp, xLabelProp, dataProps }: TableChartViewProps) => {
     return (
         <Box>
-            <Link href={`/table/${table}`}>
+            <Link href={`/sample/${table}`}>
                 <Typography variant="h3">
                     {table.toUpperCase()}
                 </Typography>

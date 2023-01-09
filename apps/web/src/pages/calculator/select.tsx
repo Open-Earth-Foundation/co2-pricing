@@ -1,23 +1,20 @@
 import { Box, Button, Grid, LinearProgress, Slider, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
+import Link from "next/link";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "../../components/ui/DescriptionBlock";
-import Loading from "../../components/ui/loading";
-import BaseLayout from "../../layouts/BaseLayout";
-import Chart from "../../components/ui/chart";
+import DescriptionBlock from "components/ui/DescriptionBlock";
+import Loading from "components/ui/Loading";
+import BaseLayout from "layouts/BaseLayout";
+import Chart from "components/ui/chart";
 
-import iamService from '../../services/iam';
-import calculatorService from '../../services/calculator';
+import iamService from 'services/iam';
+import calculatorService from 'services/calculator';
 
-
-import type { NextPageWithLayout } from "../_app";
-
-import type { IAMModel } from "../../types/iam/model";
-import Link from "next/link";
+import type { NextPageWithLayout } from "types/ui";
+import type { IAMModel } from "types/iam/model";
 
 
 const SelectMethod: NextPageWithLayout = () => {

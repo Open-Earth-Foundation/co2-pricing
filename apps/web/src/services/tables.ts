@@ -1,6 +1,6 @@
-import { _fetchJson } from "./common";
+import { _fetchJson } from "utils/fetch";
 
-import type { QueryDataOutput } from "../types/data/query";
+import type { QueryDataOutput } from "types/data/query";
 
 
 const validateParams = () => {
