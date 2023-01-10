@@ -4,6 +4,7 @@
  * This is especially useful for Docker builds.
  */
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env/server.mjs"));
+
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
@@ -11,6 +12,9 @@ const config = {
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
+  },
+  env: {
+    NEXT_PUBLIC_DATA_API_URL: process.env.NEXT_PUBLIC_DATA_API_URL || "http://localhost:4000/v1",
   },
   output: 'standalone'
 };

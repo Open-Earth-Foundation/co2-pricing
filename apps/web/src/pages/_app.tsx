@@ -1,25 +1,24 @@
 
-import type { ReactElement, ReactNode } from 'react'
-import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import "../styles/globals.sass";
+import type { NextPageWithLayout } from 'types/ui';
+import "styles/globals.sass";
 
-import BaseLayout from "../layouts/BaseLayout";
 
-export type NextPageWithLayout<P = Record<string, null>, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 60 * 60 * 1000,
+      retryDelay: 30 * 1000,
+    },
+  },
+})
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
-
-const queryClient = new QueryClient()
-
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-
   const getLayout = Component.getLayout ?? ((page) => page)
   return getLayout(
     <QueryClientProvider client={queryClient}>
@@ -27,7 +26,5 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     </QueryClientProvider>
   );
 };
-
-MyApp.getLayout = BaseLayout
 
 export default MyApp;

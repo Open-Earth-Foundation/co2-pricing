@@ -30,14 +30,8 @@ spec:
         - containerPort: 3000
           name: http-app-port
         env:
-          - name: MIMIFUND_API_URL
-            value: http://co2-pricing-julia-service:80
-          - name: NEXT_PUBLIC_API_URL
-            value: http://localhost:3000/api
-          - name: NEXTAUTH_SECRET
-            value: "SomeReallySecretString"
-          - name: NEXTAUTH_URL
-            value: http://localhost:3000
+          - name: DATA_QUERY_API
+            value: "http://co2-pricing-data-query-api:3000"
           - name: PORT
             value: "3000"
         imagePullPolicy: "Always"

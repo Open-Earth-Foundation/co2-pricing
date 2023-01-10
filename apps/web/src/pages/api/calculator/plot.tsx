@@ -1,13 +1,15 @@
-import { CALCULATOR_PLOT } from "src/constants/calculator/plot";
-import type { ChartDataPoint } from "src/types/calculator/plot";
-import { asyncHandler } from "src/utils/syncApi";
+import { asyncHandler } from "utils/syncApi";
+
+import type { ChartDataPoint } from "types/calculator/plot";
+
+import { CALCULATOR_PLOT } from "constants/calculator/plot";
 
 
 const CURRENT_YEAR = 2022
 
 const calculate = (dataPoint: ChartDataPoint, discount: number): ChartDataPoint => {
     const newDataPoint: ChartDataPoint = {
-        name: dataPoint.name,
+        name: dataPoint.name ?? '[name]',
     }
     for (const [key, value] of Object.entries(dataPoint)) {
         if (key === 'name') continue

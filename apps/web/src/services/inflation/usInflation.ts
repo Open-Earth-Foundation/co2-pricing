@@ -1,9 +1,10 @@
-import type { ConvertionInput } from './types';
 import csvtojson from 'csvtojson';
 
-import { INFLATION_CPI_CSV_URL } from '../../constants/inflation';
-import { _fetchJson } from '../common';
+import { INFLATION_CPI_CSV_URL } from 'constants/inflation';
+import { _fetchJson } from 'utils/fetch';
+
 import { listToObjectFromKey, validateInput } from './_utils';
+import type { ConvertionInput } from './types';
 
 
 let CSV_DATA: string

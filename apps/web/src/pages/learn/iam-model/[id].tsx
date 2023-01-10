@@ -3,37 +3,35 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import DescriptionBlock from "src/components/ui/DescriptionBlock";
-import Loading from "src/components/ui/loading";
-import BaseLayout from "src/layouts/BaseLayout";
+import DescriptionBlock from "components/ui/DescriptionBlock";
+import BaseLayout from "layouts/BaseLayout";
+import iamService from 'services/iam';
+import NoData from "components/ui/NoData";
+import Loading from "components/ui/Loading";
 
-import type { NextPageWithLayout } from "../../_app";
-import type { IAMModel } from "src/types/iam/model";
-
-import iamService from 'src/services/iam';
+import type { NextPageWithLayout } from "types/ui";
+import type { IAMModel } from "types/iam/model";
 
 
 const SelectMethod: NextPageWithLayout = () => {
     const { query: { id } } = useRouter();
-    const {
-        isLoading: isLoadingIAMModel,
-        data: iamModel,
-    } = useQuery<IAMModel>(['iam-model', id], () => iamService.getModelById(id as string),
+    const iamModel = useQuery<IAMModel>(
+        ['iam-model', id], () => iamService.getModelById(id as string),
         { enabled: Boolean(id) }
     )
 
-    if (isLoadingIAMModel) return <Loading />
+    if (iamModel.isLoading) return <Loading />
 
     return (
-        iamModel ? <DescriptionBlock
-            title={iamModel.name}
-            description={iamModel.description}
+        iamModel.data ? <DescriptionBlock
+            title={iamModel.data.name}
+            description={iamModel.data.description}
             ctas={<Link href='/' passHref>
                 <Button variant="contained">Home</Button>
             </Link>}
         >
         </DescriptionBlock>
-            : null
+            : <NoData />
     );
 };
 

@@ -1,23 +1,20 @@
 import { Box, Button, Grid, LinearProgress, Slider, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
+import Link from "next/link";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "src/components/ui/DescriptionBlock";
-import Loading from "src/components/ui/loading";
-import BaseLayout from "src/layouts/BaseLayout";
-import Chart from "src/components/ui/chart";
+import DescriptionBlock from "components/ui/DescriptionBlock";
+import Loading from "components/ui/Loading";
+import BaseLayout from "layouts/BaseLayout";
+import Chart from "components/ui/chart";
 
-import iamService from 'src/services/iam';
-import calculatorService from 'src/services/calculator';
+import iamService from 'services/iam';
+import calculatorService from 'services/calculator';
 
-
-import type { NextPageWithLayout } from "../_app";
-
-import type { IAMModel } from "src/types/iam/model";
-import Link from "next/link";
+import type { NextPageWithLayout } from "types/ui";
+import type { IAMModel } from "types/iam/model";
 
 
 const SelectMethod: NextPageWithLayout = () => {
@@ -38,8 +35,11 @@ const SelectMethod: NextPageWithLayout = () => {
 
     const iamModels = useQuery(
         ['iam-models'], () => iamService.getModels(), {
-        onSuccess: ([first]) => first && setSelectedModelId(first?.id),
-        initialData: [],
+        onSuccess([first]) {
+            const canSelectFirst = !selectedModelId && !!first
+            canSelectFirst && setSelectedModelId(first.id)
+        },
+        initialData: []
     })
 
     const selectedIamModel = useQuery<IAMModel>(
@@ -48,14 +48,8 @@ const SelectMethod: NextPageWithLayout = () => {
             setSelectedModelId(model.id)
             setCanPlot(false)
         },
-        enabled: canPlot && !!selectedModelId,
+        enabled: !!selectedModelId,
         onError: () => setCanPlot(false),
-    })
-
-    const carbonSocialCost = useQuery<number>(
-        ['carbon-social-cost', selectedModelId, discount, year],
-        () => calculatorService.getCarbonSocialCost(discount, year), {
-        cacheTime: 60 * 60 * 1000
     })
 
     if (iamModels.isLoading) return <Loading />
@@ -73,7 +67,6 @@ const SelectMethod: NextPageWithLayout = () => {
                     description={'Select the IAM model you want to use'}
                     orientation='horizontal'
                 >
-                    {carbonSocialCost.data}
                 </DescriptionBlock>
             </Grid>
             <Grid item md={4} container gap={2} flexDirection='column' sx={{ height: 1 }}>
@@ -104,7 +97,13 @@ const SelectMethod: NextPageWithLayout = () => {
             <Grid item md={7} gap={2} flexDirection='column' height={1}>
                 <Stack spacing={2} direction="column" height={1}>
                     <DescriptionBlock title='IAM Panel' orientation='vertical' >
-                        <Chart dataPoints={dataPoints.data ?? []} />
+                        <Chart
+                            key={selectedModelId}
+                            dataPoints={dataPoints.data ?? []}
+                            axisProp='name'
+                            dataProps={['current', 'yours', 'ideal']}
+                            xLabelProp='name'
+                        />
                         <Stack direction='row' spacing={2} mt={2}>
                             <Slider
                                 aria-label="Discount rate"

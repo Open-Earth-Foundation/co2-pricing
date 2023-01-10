@@ -1,13 +1,12 @@
-import * as React from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import DescriptionBlock from '../components/ui/DescriptionBlock';
+import DescriptionBlock from 'components/ui/DescriptionBlock';
 
 import type { GetStaticProps } from 'next';
-import type { NextPageWithLayout } from "./_app";
 import { Link, Typography } from '@mui/material';
-import BaseLayout from '../layouts/BaseLayout';
-import LongButton from '../components/ui/LongButton';
+import BaseLayout from 'layouts/BaseLayout';
+import LongButton from 'components/ui/LongButton';
+import type { NextPageWithLayout } from 'types/ui';
 
 const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
   return (
@@ -42,9 +41,9 @@ const Landing: NextPageWithLayout<DataProps> = ({ top, main }) => {
         </Typography>
       </Grid>
       <Grid md={8} flexGrow={1}>
-        <Link href="/calculator">
+        <Link href="/samples">
           <LongButton variant="outlined">
-            Check out how the RCB affected yours
+            Check out how some sample data
           </LongButton>
         </Link>
       </Grid>

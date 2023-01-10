@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import BaseLayout from 'src/layouts/BaseLayout'
+import BaseLayout from 'layouts/BaseLayout'
 
 
 const NotFound = () => {

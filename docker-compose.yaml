@@ -2,24 +2,21 @@ version: "3.8"
 
 services:
   web:
-    depends_on:
-      - mimi
     build:
       dockerfile: Dockerfile
       context: ./apps/web
     ports:
       - "3000:3000"
     environment:
-      MIMIFUND_API_URL: http://mimi:8000
-      NEXT_PUBLIC_API_URL: http://localhost:3000/api
-      NEXTAUTH_SECRET: SomeReallySecretString
-      NEXTAUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_DATA_API_URL: api:4000
       PORT: 3000
-  mimi:
+
+  api:
     build:
       dockerfile: Dockerfile
-      context: ./apps/mimi
+      context: ./apps/data
     ports:
-      - "8000:8000"
+      - "4000:4000"
     environment:
-      PORT: 8000
+      PORT: 4000
+      AWS_DEFAULT_REGION: us-east-1

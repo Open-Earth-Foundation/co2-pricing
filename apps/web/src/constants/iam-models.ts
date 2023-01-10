@@ -1,4 +1,4 @@
-import type { IAMModel } from "../types/iam/model";
+import type { IAMModel } from "types/iam/model";
 
 
 export const IAM_MODELS: IAMModel[] = [

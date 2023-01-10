@@ -1,18 +1,21 @@
 [tool.poetry]
-name = "co2pricing-datapipelines"
+name = "co2-pricing"
 version = "0.1.0"
 description = ""
 authors = ["Felipe Mendonça <fysp11@gmail.com>"]
-license = "MIT"
 readme = "README.md"
-packages = [{include = "co2pricing_datapipelines"}]
+packages = [{include = "co2_pricing"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-boto3 = "^1.26.22"
+boto3 = "^1.26.31"
+awswrangler = { version = "^2.18.0", extras = ["dev"] }
+flask = {version = "^2.2.2", extras = ["dev"]}
+flask-cors = {version = "^3.0.10", extras = ["dev"]}
+python-dotenv = {version = "^0.21.0", extras = ["dev"]}
 
-[tool.poetry.group.dev.dependencies]
-poetry = "^1.2.2"
+[tool.poetry.extras]
+dev = ["awswrangler"]
 
 [build-system]
 requires = ["poetry-core"]

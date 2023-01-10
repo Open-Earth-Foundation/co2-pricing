@@ -1,8 +1,7 @@
-import { _fetchJson } from "./common";
 
-import type { IAMModel } from "src/types/iam/model";
+import { _fetchJson } from "utils/fetch";
+import type { IAMModel } from "types/iam/model";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 const validateParams = () => {
     return true
@@ -10,12 +9,12 @@ const validateParams = () => {
 
 const getModels = async () => {
     validateParams()
-    return await _fetchJson(`${API_URL}/iam/model`) as IAMModel[]
+    return await _fetchJson<IAMModel[]>(`/api/iam/model`)
 }
 
 const getModelById = async (id: string) => {
     validateParams()
-    return await _fetchJson(`${API_URL}/iam/model/${id}`) as IAMModel
+    return await _fetchJson<IAMModel>(`/api/iam/model/${id}`)
 }
 
 export default {

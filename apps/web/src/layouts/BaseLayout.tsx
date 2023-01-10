@@ -1,7 +1,7 @@
 import { Container } from "@mui/system";
 import Head from "next/head";
 import type { ReactElement } from "react"
-import ButtonAppBar from "../components/layout/Appbar";
+import ButtonAppBar from "components/layout/Appbar";
 
 
 const BaseLayout = (page: ReactElement) => {
