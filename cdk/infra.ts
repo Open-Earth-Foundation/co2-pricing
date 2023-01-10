@@ -4,7 +4,6 @@ import * as cdk from 'aws-cdk-lib';
 
 import { DatapipelinesStack } from './stacks/datapipelines-stack';
 import { DataApiStack } from './stacks/data-api-stack';
-
 import { WebAppStack } from './stacks/web-app-stack';
 
 

@@ -19,7 +19,6 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "baseUrl": ".",
     "typeRoots": [
       "./node_modules/@types"
     ]

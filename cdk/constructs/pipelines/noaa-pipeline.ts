@@ -6,9 +6,8 @@ import { Construct } from 'constructs';
 import { BasePipeline, Props } from './base-pipeline';
 
 
-const SOURCE_URL = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
-
 export class NOAAPipeline extends BasePipeline {
+    public sourceUrl = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
     public table: dynamodb.Table;
 
     constructor(scope: Construct, id: string, props: Props) {
@@ -20,16 +19,16 @@ export class NOAAPipeline extends BasePipeline {
         });
         const noaaFetch = new lambda.Function(
             scope, 'FetchNOAA', {
-            handler: 'noaa.fetch',
-            layers: [this.layer],
             ...this.defaultLambdaProps,
+            handler: 'noaa.fetch',
             timeout: cdk.Duration.minutes(5),
             memorySize: 512,
             environment: {
-                SOURCE_URL,
+                SOURCE_URL: this.sourceUrl,
                 TARGET_TABLE: this.table.tableName,
             }
         });
+        noaaFetch.addLayers(this.layer);
         this.addPermissions(noaaFetch);
         this.addTrigger(noaaFetch);
     }

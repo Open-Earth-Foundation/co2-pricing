@@ -4,8 +4,8 @@ import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ecs_patterns from 'aws-cdk-lib/aws-ecs-patterns';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { DockerImageAsset, Platform } from 'aws-cdk-lib/aws-ecr-assets';
-import { Construct } from 'constructs';
 import * as ecrdeploy from 'cdk-ecr-deployment';
+import { Construct } from 'constructs';
 
 
 export class WebAppStack extends cdk.Stack {

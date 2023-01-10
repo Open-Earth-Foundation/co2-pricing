@@ -1,13 +1,13 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
-import { SafeBucket } from 'constructs/safe-bucket';
+import { SafeBucket } from '../constructs/safe-bucket';
 
-import { MimiGIVEPipeline } from 'constructs/pipelines/give-pipeline';
-import { NOAAPipeline } from 'constructs/pipelines/noaa-pipeline';
-import { MimiFUNDPipeline } from 'constructs/pipelines/fund-pipeline';
-import { BasePipeline } from 'constructs/pipelines/base-pipeline';
-import { DamagesCountryPipeline } from 'constructs/pipelines/damages-country-pipeline';
+import { MimiGIVEPipeline } from '../constructs/pipelines/give-pipeline';
+import { NOAAPipeline } from '../constructs/pipelines/noaa-pipeline';
+import { MimiFUNDPipeline } from '../constructs/pipelines/fund-pipeline';
+import { BasePipeline } from '../constructs/pipelines/base-pipeline';
+import { DamagesCountryPipeline } from '../constructs/pipelines/damages-country-pipeline';
 
 const STATIC = '../__FILES__/static'
 
