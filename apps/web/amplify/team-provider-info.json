@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-co2pricing-dev-170721-authRole",
+      "UnauthRoleArn": "arn:aws:iam::596293019239:role/amplify-co2pricing-dev-170721-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::596293019239:role/amplify-co2pricing-dev-170721-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-co2pricing-dev-170721-deployment",
+      "UnauthRoleName": "amplify-co2pricing-dev-170721-unauthRole",
+      "StackName": "amplify-co2pricing-dev-170721",
+      "StackId": "arn:aws:cloudformation:us-east-1:596293019239:stack/amplify-co2pricing-dev-170721/091ed3f0-91ca-11ed-afb1-0eb52f930171",
+      "AmplifyAppId": "d3sam1vxlqq4s6"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3sam1vxlqq4s6",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}
