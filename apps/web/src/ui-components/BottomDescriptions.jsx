@@ -27,7 +27,7 @@ export default function BottomDescriptions(props) {
       {(item, index) => (
         <DescriptionBlock
           height="auto"
-          width="648px"
+          width="auto"
           margin="0 0 0 2rem"
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}

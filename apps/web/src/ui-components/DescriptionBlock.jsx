@@ -14,7 +14,7 @@ export default function DescriptionBlock(props) {
     <Flex
       gap="11px"
       direction="column"
-      width="648px"
+      width="unset"
       height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
@@ -133,7 +133,7 @@ export default function DescriptionBlock(props) {
         <Flex
           padding="0px 0px 0px 0px"
           width="unset"
-          height="76px"
+          height="114px"
           display="block"
           gap="unset"
           alignItems="unset"
@@ -153,7 +153,7 @@ export default function DescriptionBlock(props) {
             display="block"
             direction="column"
             justifyContent="unset"
-            width="600px"
+            width="448px"
             height="unset"
             gap="unset"
             alignItems="unset"

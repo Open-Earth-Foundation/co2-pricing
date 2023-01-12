@@ -13,11 +13,7 @@
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn"
   },
-  "exclude": [
-    "node_modules",
-    "out",
-    ".next",
-    "next.config.js",
-    "src/ui-components"
+  "ignorePatterns": [
+    "src/ui-components/**/*"
   ]
 }

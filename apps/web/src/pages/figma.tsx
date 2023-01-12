@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 import BaseLayout from 'layouts/BaseLayout';
 import type { NextPageWithLayout } from 'types/ui';
 
@@ -7,12 +7,14 @@ import { BigDescriptionBlock, Slider, Counter, BottomDescriptions } from 'ui-com
 
 const FigmaPage: NextPageWithLayout = () => {
   return (
-    <Stack>
-      <BigDescriptionBlock key={1} />
-      <Slider key={2} />
-      <Counter key={3} />
-      <BottomDescriptions key={4} items={[{ id: 1 }, { id: 2 }]} />
-    </Stack>
+    <Container maxWidth='lg'>
+      <Stack>
+        <BigDescriptionBlock />
+        <Slider />
+        <Counter />
+        <BottomDescriptions items={[{ id: 1 }, { id: 2 }]} />
+      </Stack>
+    </Container>
   );
 };
 

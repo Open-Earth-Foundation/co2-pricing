@@ -3,7 +3,6 @@ import Head from "next/head";
 import type { ReactElement } from "react"
 import ButtonAppBar from "components/layout/Appbar";
 
-
 const BaseLayout = (page: ReactElement) => {
     return (
         <>

@@ -2,6 +2,7 @@
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Amplify } from 'aws-amplify';
+import "@aws-amplify/ui-react/styles.css"
 
 import type { NextPageWithLayout } from 'types/ui';
 import "styles/globals.sass";

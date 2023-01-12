@@ -5,6 +5,8 @@ specifiers:
   '@babel/core': ^7.20.7
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
+  '@fontsource/inter': ^4.5.14
+  '@fontsource/roboto': ^4.5.8
   '@material-ui/core': ^4.12.4
   '@mui/icons-material': ^5.11.0
   '@mui/material': ^5.11.2
@@ -36,6 +38,8 @@ dependencies:
   '@babel/core': 7.20.7
   '@emotion/react': 11.10.5_3grbeiqrb6djg67fiejiqngkdi
   '@emotion/styled': 11.10.5_pwtpayi7py7ecifctvjbac33ee
+  '@fontsource/inter': 4.5.14
+  '@fontsource/roboto': 4.5.8
   '@material-ui/core': 4.12.4_ib3m5ricvtkl2cll7qpr2f6lvq
   '@mui/icons-material': 5.11.0_iq6n432hogcf75rdfmlkzd4zne
   '@mui/material': 5.11.2_lskpmcsdi7ipu6qpuapyu56ihm
@@ -2733,6 +2737,14 @@ packages:
       use-isomorphic-layout-effect: 1.1.2_kzbn2opkn2327fwg5yzwzya5o4
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@fontsource/inter/4.5.14:
+    resolution: {integrity: sha512-JDC9AocdPLuGsASkvWw9hS5gtHE7K9dOwL98XLrk5yjYqxy4uVnScG58NUvFMJDVJRl/7c8Wnap6PEs+7Zvj1Q==}
+    dev: false
+
+  /@fontsource/roboto/4.5.8:
+    resolution: {integrity: sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==}
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:

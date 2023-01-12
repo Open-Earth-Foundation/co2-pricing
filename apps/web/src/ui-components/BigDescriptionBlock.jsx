@@ -21,8 +21,8 @@ export default function BigDescriptionBlock(props) {
     <Flex
       gap="11px"
       direction="row"
-      width="1320px"
-      height="unset"
+      width="100%"
+      height="216px"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
