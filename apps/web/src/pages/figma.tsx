@@ -1,9 +1,8 @@
 import { Stack } from '@mui/material';
 import BaseLayout from 'layouts/BaseLayout';
 import type { NextPageWithLayout } from 'types/ui';
-import BigDescriptionBlock from 'ui-components/BigDescriptionBlock';
 
-import { Slider, Counter, BottomDescriptions } from 'ui-components';
+import { BigDescriptionBlock, Slider, Counter, BottomDescriptions } from 'ui-components';
 
 
 const FigmaPage: NextPageWithLayout = () => {

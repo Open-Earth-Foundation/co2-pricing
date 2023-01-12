@@ -3,9 +3,21 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn"
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "out",
+    ".next",
+    "next.config.js",
+    "src/ui-components"
+  ]
 }
