@@ -1,10 +1,15 @@
 
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Amplify } from 'aws-amplify';
 
 import type { NextPageWithLayout } from 'types/ui';
 import "styles/globals.sass";
 
+import awsExports from '../aws-exports';
+
+
+Amplify.configure(awsExports);
 
 const queryClient = new QueryClient({
   defaultOptions: {
