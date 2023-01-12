@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import DescriptionBlock from "components/ui/DescriptionBlock";
+import DescriptionBlock from "@/components/ui/DescriptionBlock";
 import BaseLayout from "layouts/BaseLayout";
 import iamService from 'services/iam';
-import NoData from "components/ui/NoData";
-import Loading from "components/ui/Loading";
+import NoData from "@/components/ui/NoData";
+import Loading from "@/components/ui/Loading";
 
 import type { NextPageWithLayout } from "types/ui";
 import type { IAMModel } from "types/iam/model";

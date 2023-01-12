@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import TableChartView from "views/TableChartView";
 import BaseLayout from "layouts/BaseLayout";
 
-import tablesService from "services/tables";
+import tablesService from "@/services/tables";
 
 import type { NextPageWithLayout } from "types/ui";
 

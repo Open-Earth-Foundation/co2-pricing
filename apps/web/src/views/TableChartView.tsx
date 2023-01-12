@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 
-import SampleTable from "components/data/SampleTable";
-import Chart from "components/ui/chart";
+import SampleTable from "@/components/data/SampleTable";
+import Chart from "@/components/ui/chart";
 
 
 interface TableChartViewProps {

@@ -1,4 +1,4 @@
-import Chart from "components/ui/chart";
+import Chart from "@/components/ui/chart";
 
 
 interface SampleChartProps {

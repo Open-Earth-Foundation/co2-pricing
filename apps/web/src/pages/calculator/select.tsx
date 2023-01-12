@@ -5,10 +5,10 @@ import Link from "next/link";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "components/ui/DescriptionBlock";
-import Loading from "components/ui/Loading";
+import DescriptionBlock from "@/components/ui/DescriptionBlock";
+import Loading from "@/components/ui/Loading";
 import BaseLayout from "layouts/BaseLayout";
-import Chart from "components/ui/chart";
+import Chart from "@/components/ui/chart";
 
 import iamService from 'services/iam';
 import calculatorService from 'services/calculator';
