@@ -3,6 +3,7 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecs_patterns from 'aws-cdk-lib/aws-ecs-patterns';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import { DockerImageAsset, Platform } from 'aws-cdk-lib/aws-ecr-assets';
 import { Construct } from 'constructs';
 
@@ -41,6 +42,7 @@ export class WebAppStack extends cdk.Stack {
     taskDefinition.addContainer("MyContainer", {
       logging: ecs.LogDriver.awsLogs({ streamPrefix: "Co2WebApp" }),
       image: ecs.ContainerImage.fromDockerImageAsset(asset),
+      image: ecs.ContainerImage.fromDockerImageAsset(asset),
       environment: {
         NEXT_PUBLIC_DATA_API_URL: url
       },
@@ -57,6 +59,7 @@ export class WebAppStack extends cdk.Stack {
     });
 
     // Security
+
     const securityGroup = new ec2.SecurityGroup(
       this, `My-security-group`, {
       vpc: vpc,
@@ -64,6 +67,9 @@ export class WebAppStack extends cdk.Stack {
       description: 'My Security Group'
     });
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(PORT));
+
+    const sslCertificate = acm.Certificate.fromCertificateArn(
+      this, 'Certificate', process.env.CERTIFICATE_ARN!)
 
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(
       this, 'MyFargateService', {
@@ -75,6 +81,11 @@ export class WebAppStack extends cdk.Stack {
       taskDefinition,
       securityGroups: [securityGroup],
     })
+    fargateService.loadBalancer.addListener('Listener', {
+      port: 443,
+      certificates: [sslCertificate],
+      defaultTargetGroups: [fargateService.targetGroup]
+    });
 
     const scalableTarget = fargateService.service.autoScaleTaskCount({
       minCapacity: 1,
