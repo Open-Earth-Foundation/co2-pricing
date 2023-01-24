@@ -59,7 +59,6 @@ export class WebAppStack extends cdk.Stack {
     });
 
     // Security
-
     const securityGroup = new ec2.SecurityGroup(
       this, `My-security-group`, {
       vpc: vpc,
@@ -67,9 +66,6 @@ export class WebAppStack extends cdk.Stack {
       description: 'My Security Group'
     });
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(PORT));
-
-    const sslCertificate = acm.Certificate.fromCertificateArn(
-      this, 'Certificate', process.env.CERTIFICATE_ARN!)
 
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(
       this, 'MyFargateService', {
@@ -81,11 +77,6 @@ export class WebAppStack extends cdk.Stack {
       taskDefinition,
       securityGroups: [securityGroup],
     })
-    fargateService.loadBalancer.addListener('Listener', {
-      port: 443,
-      certificates: [sslCertificate],
-      defaultTargetGroups: [fargateService.targetGroup]
-    });
 
     const scalableTarget = fargateService.service.autoScaleTaskCount({
       minCapacity: 1,
