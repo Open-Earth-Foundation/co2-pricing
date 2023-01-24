@@ -3,6 +3,7 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ecs_patterns from 'aws-cdk-lib/aws-ecs-patterns';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import { DockerImageAsset, Platform } from 'aws-cdk-lib/aws-ecr-assets';
 import * as ecrdeploy from 'cdk-ecr-deployment';
 import { Construct } from 'constructs';
@@ -17,20 +18,22 @@ export class WebAppStack extends cdk.Stack {
     const memoryLimitMiB = 2048;
 
     // Docker Image
-    const repository = new ecr.Repository(this, "co2webapp", {
-      repositoryName: "co2webapp",
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-    });
     const asset = new DockerImageAsset(
       this, 'WebAppDockerImage', {
       directory: '../apps/web',
       file: 'Dockerfile',
       platform: Platform.LINUX_AMD64,
     });
-    new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
-      src: new ecrdeploy.DockerImageName(asset.imageUri),
-      dest: new ecrdeploy.DockerImageName(`${repository.repositoryUri}:latest`)
-    });
+
+    // const repositoryUri = `${cdk.Aws.ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com/co2-web-app`;
+
+    // new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
+    //   src: new ecrdeploy.DockerImageName(asset.imageUri),
+    //   dest: new ecrdeploy.DockerImageName(`${repositoryUri}:${asset.assetHash}`),
+    //   environment: {
+    //     NEXT_PUBLIC_DATA_API_URL: url
+    //   }
+    // });
 
     // Task & Container Definition
     const taskDefinition = new ecs.FargateTaskDefinition(
@@ -43,7 +46,7 @@ export class WebAppStack extends cdk.Stack {
     });
     taskDefinition.addContainer("MyContainer", {
       logging: ecs.LogDriver.awsLogs({ streamPrefix: "Co2WebApp" }),
-      image: ecs.ContainerImage.fromEcrRepository(repository, 'latest'),
+      image: ecs.ContainerImage.fromDockerImageAsset(asset),
       environment: {
         NEXT_PUBLIC_DATA_API_URL: url
       },
@@ -60,6 +63,7 @@ export class WebAppStack extends cdk.Stack {
     });
 
     // Security
+
     const securityGroup = new ec2.SecurityGroup(
       this, `My-security-group`, {
       vpc: vpc,
@@ -67,6 +71,9 @@ export class WebAppStack extends cdk.Stack {
       description: 'My Security Group'
     });
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(PORT));
+
+    const sslCertificate = acm.Certificate.fromCertificateArn(
+      this, 'Certificate', process.env.CERTIFICATE_ARN!)
 
     const fargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(
       this, 'MyFargateService', {
@@ -76,8 +83,13 @@ export class WebAppStack extends cdk.Stack {
       desiredCount: 1,
       memoryLimitMiB: 2048,
       taskDefinition,
-      securityGroups: [securityGroup]
+      securityGroups: [securityGroup],
     })
+    fargateService.loadBalancer.addListener('Listener', {
+      port: 443,
+      certificates: [sslCertificate],
+      defaultTargetGroups: [fargateService.targetGroup]
+    });
 
     const scalableTarget = fargateService.service.autoScaleTaskCount({
       minCapacity: 1,

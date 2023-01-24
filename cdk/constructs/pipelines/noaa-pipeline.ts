@@ -13,8 +13,8 @@ export class NOAAPipeline extends BasePipeline {
     constructor(scope: Construct, id: string, props: Props) {
         super(scope, id, {
             rawBucket: props.rawBucket,
-            partitionKey: { name: 'snapshot_time', type: dynamodb.AttributeType.NUMBER },
-            sortKey: { name: 'full_date', type: dynamodb.AttributeType.NUMBER },
+            partitionKey: { name: 'full_date', type: dynamodb.AttributeType.NUMBER },
+            sortKey: { name: 'snapshot_time', type: dynamodb.AttributeType.NUMBER },
             tableName: 'noaa'
         });
         const noaaFetch = new lambda.Function(
