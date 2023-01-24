@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 
 import TableChartView from "views/TableChartView";
 import BaseLayout from "layouts/BaseLayout";
-import tablesService from "services/tables";
+import tablesService from "@/services/tables";
 
 import type { QueryDataOutput } from "types/data/query";
 import type { NextPageWithLayout } from "types/ui";

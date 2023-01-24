@@ -1,32 +1,28 @@
 import { asyncHandler } from "utils/syncApi";
+import tablesService from "services/tables";
 
 import type { ChartDataPoint } from "types/calculator/plot";
+import type { MimiFundRecord } from "types/models";
+import { calculateInflation } from "@/services/inflation";
 
-import { CALCULATOR_PLOT } from "constants/calculator/plot";
 
-
-const CURRENT_YEAR = 2022
-
-const calculate = (dataPoint: ChartDataPoint, discount: number): ChartDataPoint => {
-    const newDataPoint: ChartDataPoint = {
-        name: dataPoint.name ?? '[name]',
-    }
-    for (const [key, value] of Object.entries(dataPoint)) {
-        if (key === 'name') continue
-        else if (key === 'yours') newDataPoint[key] = value
-        else {
-            if (Number(dataPoint.name) <= CURRENT_YEAR) newDataPoint[key] = value
-            else newDataPoint[key] = (value as number)
-                * (1 + discount)
-        }
-    }
-    return newDataPoint
+const calculate = async (dataPoint: MimiFundRecord): Promise<ChartDataPoint> => {
+    const name = dataPoint.year
+    const scc = await calculateInflation({
+        amount: dataPoint.scc,
+        fromYear: 1995,
+        toYear: Number(Math.min(dataPoint.year, 2022))
+    })
+    return { name, scc }
 }
 
 const handler = asyncHandler(async (req, res) => {
-    const { discount, year } = req.query;
-    const filteredDataPoints = CALCULATOR_PLOT.filter(point => Number(point.name) <= Number(year))
-    const dataPoints = filteredDataPoints.map((point) => calculate(point, Number(discount)))
+    const { discount } = req.query;
+    const { records } = await tablesService.query<MimiFundRecord>('mimifund', {
+        filters: `prtp=${discount}`,
+    })
+    records.sort((a, b) => Number(a.year) - Number(b.year))
+    const dataPoints = await Promise.all(records.map(calculate))
     res.status(200).json(dataPoints);
 })
 
