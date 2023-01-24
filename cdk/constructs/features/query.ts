@@ -7,9 +7,9 @@ import { Construct } from 'constructs';
 
 
 export class QueryFeature extends Construct {
-    public _lambda: lambda.Function;
-    public role: iam.Role;
-    public endpoint: apigtw.Resource;
+    readonly _lambda: lambda.Function;
+    readonly role: iam.Role;
+    readonly endpoint: apigtw.Resource;
 
     constructor(scope: Construct, id: string, resource: apigtw.Resource) {
         super(scope, id);

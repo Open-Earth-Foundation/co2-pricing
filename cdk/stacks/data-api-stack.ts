@@ -11,26 +11,34 @@ interface DataApiProps extends cdk.StackProps {
 }
 
 export class DataApiStack extends cdk.Stack {
-  public api: apigtw.RestApi
+  readonly pipelineMap: Record<string, BasePipeline>
+  readonly api: apigtw.RestApi
+
   constructor(scope: Construct, id: string, { pipelineMap, ...props }: DataApiProps) {
     super(scope, id, props);
+    this.pipelineMap = pipelineMap
     this.api = new apigtw.RestApi(this, "Co2DataAPI", {
       defaultCorsPreflightOptions: {
         allowOrigins: apigtw.Cors.ALL_ORIGINS,
       }
     })
 
-    const v1 = this.api.root.addResource("v1")
-
-    const query = new QueryFeature(this, "query", v1)
-    for (const [name, pipe] of Object.entries(pipelineMap)) {
-      const table = dynamodb.Table.fromTableName(this, `${name}-table`, pipe.table.tableName)
-      query.addQueryPermissions(table)
-    }
+    this.createV1(this.api.root)
 
     new cdk.CfnOutput(this, 'DataQueryApiUrl', {
       value: this.api.url,
     })
+  }
+
+  createV1(root: apigtw.IResource) {
+    const v1 = root.addResource("v1")
+
+    const query = new QueryFeature(this, "query", v1)
+    for (const [name, pipe] of Object.entries(this.pipelineMap)) {
+      const table = dynamodb.Table.fromTableName(this, `${name}-table`, pipe.table.tableName)
+      query.addQueryPermissions(table)
+    }
+
   }
 
 }

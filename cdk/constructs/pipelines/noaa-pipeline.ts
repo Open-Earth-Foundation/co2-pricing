@@ -7,8 +7,8 @@ import { BasePipeline, Props } from './base-pipeline';
 
 
 export class NOAAPipeline extends BasePipeline {
-    public sourceUrl = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
-    public table: dynamodb.Table;
+    sourceUrl = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
+    table: dynamodb.Table;
 
     constructor(scope: Construct, id: string, props: Props) {
         super(scope, id, {

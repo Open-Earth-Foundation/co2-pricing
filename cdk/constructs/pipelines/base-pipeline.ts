@@ -13,11 +13,11 @@ export interface Props {
     rawBucket: SafeBucket
 }
 export abstract class BasePipeline extends Construct {
-    public table: dynamodb.Table;
+    readonly table: dynamodb.Table;
     protected _lambda: lambda.Function;
     protected layer: lambda.ILayerVersion;
     protected rawBucket: SafeBucket;
-    public rule: events.Rule;
+    readonly rule: events.Rule;
 
     filePath = '../__FILES__/static/MimiFUND.csv'
     csvS3Path = 'static/MimiFUND.csv'
