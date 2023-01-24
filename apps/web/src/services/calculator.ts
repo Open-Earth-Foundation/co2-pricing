@@ -19,14 +19,14 @@ export default {
         return _fetchJson<CalculatorStage>(`/api/calculator/stage/${id}`)
     },
     async getPlotData(_discount: number, _year: number) {
-        const discount = _discount.toFixed(2)
+        const discount = _discount.toFixed(3)
         const year = _year.toFixed(0)
         const queryString = new URLSearchParams({ discount, year });
         validateParams()
         return await _fetchJson<ChartDataPoint[]>(`/api/calculator/plot?${queryString}`)
     },
     async getCarbonSocialCost(_discount: number, _year: number) {
-        const discount = _discount.toFixed(2)
+        const discount = _discount.toFixed(3)
         const year = _year.toFixed(0)
         const queryString = new URLSearchParams({ discount, year });
         validateParams()

@@ -13,6 +13,7 @@ export class MimiGIVEPipeline extends BasePipeline {
         super(scope, id, {
             ...props,
             partitionKey: { name: 'year', type: dynamodb.AttributeType.NUMBER },
+            sortKey: { name: 'prtp', type: dynamodb.AttributeType.NUMBER },
             tableName: 'mimigive'
         });
         const loadCsvData = new lambda.Function(scope, 'Load' + id, {

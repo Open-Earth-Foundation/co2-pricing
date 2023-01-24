@@ -8,9 +8,10 @@ const validateParams = () => {
 }
 
 export default {
-    query<T = Record<string, unknown>>(table: string, explain = false) {
+    query<T = Record<string, unknown>>(table: string, params?: Record<string, string>) {
         validateParams()
-        const url = `${process.env.NEXT_PUBLIC_DATA_API_URL}/query?table=${table}&explain=${explain}`
+        const searchParams = new URLSearchParams(params)
+        const url = `${process.env.NEXT_PUBLIC_DATA_API_URL}/query?table=${table}&${searchParams.toString()}`
         return _fetchJson<QueryDataOutput<T>>(url)
     }
 } as const

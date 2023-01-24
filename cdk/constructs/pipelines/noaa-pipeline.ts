@@ -7,14 +7,14 @@ import { BasePipeline, Props } from './base-pipeline';
 
 
 export class NOAAPipeline extends BasePipeline {
-    public sourceUrl = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
-    public table: dynamodb.Table;
+    sourceUrl = 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv'
+    table: dynamodb.Table;
 
     constructor(scope: Construct, id: string, props: Props) {
         super(scope, id, {
             rawBucket: props.rawBucket,
-            partitionKey: { name: 'snapshot_time', type: dynamodb.AttributeType.NUMBER },
-            sortKey: { name: 'full_date', type: dynamodb.AttributeType.NUMBER },
+            partitionKey: { name: 'full_date', type: dynamodb.AttributeType.NUMBER },
+            sortKey: { name: 'snapshot_time', type: dynamodb.AttributeType.NUMBER },
             tableName: 'noaa'
         });
         const noaaFetch = new lambda.Function(

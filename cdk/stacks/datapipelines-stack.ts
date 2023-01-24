@@ -3,17 +3,17 @@ import { Construct } from 'constructs';
 
 import { SafeBucket } from '../constructs/safe-bucket';
 
+import { BasePipeline } from '../constructs/pipelines/base-pipeline';
 import { MimiGIVEPipeline } from '../constructs/pipelines/give-pipeline';
 import { NOAAPipeline } from '../constructs/pipelines/noaa-pipeline';
 import { MimiFUNDPipeline } from '../constructs/pipelines/fund-pipeline';
-import { BasePipeline } from '../constructs/pipelines/base-pipeline';
 import { DamagesCountryPipeline } from '../constructs/pipelines/damages-country-pipeline';
 
 const STATIC = '../__FILES__/static'
 
 export class DatapipelinesStack extends cdk.Stack {
-  public rawBucket: SafeBucket
-  public pipelineMap: Record<string, BasePipeline>
+  readonly rawBucket: SafeBucket
+  readonly pipelineMap: Record<string, BasePipeline>
 
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);

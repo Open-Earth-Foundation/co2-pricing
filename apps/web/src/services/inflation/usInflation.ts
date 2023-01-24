@@ -12,7 +12,11 @@ let CSV_DATA: string
 const getCpi = async (year: number) => {
     const csvTableData = await csvtojson().fromString(CSV_DATA)
     const cpiData = listToObjectFromKey(csvTableData, 'YEAR')
-    const januaryPercent = Number(cpiData[year]['1']) / 100
+    const yearCpi = cpiData[year]
+    if (!yearCpi) {
+        throw new Error(`CPI data not found for year ${year}`)
+    }
+    const januaryPercent = Number(yearCpi['1']) / 100
     return januaryPercent
 }
 

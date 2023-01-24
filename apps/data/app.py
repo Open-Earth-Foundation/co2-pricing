@@ -1,6 +1,6 @@
 import json
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from query_table.query import handler
@@ -10,7 +10,9 @@ cors = CORS(app)
 
 @app.route('/v1/query/<table_name>')
 def query_table_handler(table_name):
-    api_event = dict(queryStringParameters=dict(table=table_name))
+    search_params = request.args.to_dict()
+    api_event = dict(
+        queryStringParameters=dict(table=table_name,**search_params))
     response = handler(api_event, None)
     return jsonify(json.loads(response['body']))
 

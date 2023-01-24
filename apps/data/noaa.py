@@ -24,7 +24,7 @@ def fetch(event: Dict, __):
 
     rows = [
         dict(
-            full_date=int(f"{year}{month}{day}"),
+            full_date=int(f"{year}{month.zfill(2)}{day.zfill(2)}"),
             year=int(year),
             month=int(month), 
             day=int(day), 

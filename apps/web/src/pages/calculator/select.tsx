@@ -5,10 +5,10 @@ import Link from "next/link";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "components/ui/DescriptionBlock";
-import Loading from "components/ui/Loading";
+import DescriptionBlock from "@/components/ui/DescriptionBlock";
+import Loading from "@/components/ui/Loading";
 import BaseLayout from "layouts/BaseLayout";
-import Chart from "components/ui/chart";
+import Chart from "@/components/ui/chart";
 
 import iamService from 'services/iam';
 import calculatorService from 'services/calculator';
@@ -19,7 +19,7 @@ import type { IAMModel } from "types/iam/model";
 
 const SelectMethod: NextPageWithLayout = () => {
     const [selectedModelId, setSelectedModelId] = useState<string>()
-    const [discount, setDiscount] = useState(0.015)
+    const [discount, setDiscount] = useState(0.035)
     const [year, setYear] = useState(2020)
     const [canPlot, setCanPlot] = useState(true)
 
@@ -101,7 +101,7 @@ const SelectMethod: NextPageWithLayout = () => {
                             key={selectedModelId}
                             dataPoints={dataPoints.data ?? []}
                             axisProp='name'
-                            dataProps={['current', 'yours', 'ideal']}
+                            dataProps={['scc']}
                             xLabelProp='name'
                         />
                         <Stack direction='row' spacing={2} mt={2}>
@@ -112,7 +112,7 @@ const SelectMethod: NextPageWithLayout = () => {
                                 value={discount}
                                 onChange={(_, discount) => setDiscount(discount as number)}
                                 onChangeCommitted={reactivatePlot}
-                                min={0.000} max={0.05} step={0.005}
+                                min={0.000} max={0.050} step={0.005}
                             />
                             <Slider
                                 defaultValue={50}
@@ -122,8 +122,8 @@ const SelectMethod: NextPageWithLayout = () => {
                                 onChange={(_, year) => setYear(year as number)}
                                 onChangeCommitted={reactivatePlot}
                                 min={1950}
-                                max={2300}
-                                step={5}
+                                max={2060}
+                                step={1}
                             />
                         </Stack>
                     </DescriptionBlock>

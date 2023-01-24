@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 import { DatapipelinesStack } from './stacks/datapipelines-stack';
 import { DataApiStack } from './stacks/data-api-stack';
@@ -30,6 +32,7 @@ const apiStack = new DataApiStack(
 new WebAppStack(
   app, `Co2PricingWebApp-${environment}`, {
   url: apiStack.api.url + 'v1',
+  certificateArn: process.env.WEBAPP_CERTIFICATE_ARN,
   env: defaultEnv,
 })
 

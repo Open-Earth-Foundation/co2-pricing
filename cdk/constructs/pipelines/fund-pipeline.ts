@@ -13,6 +13,7 @@ export class MimiFUNDPipeline extends BasePipeline {
         super(scope, id, {
             ...props,
             partitionKey: { name: 'year', type: dynamodb.AttributeType.NUMBER },
+            sortKey: { name: 'prtp', type: dynamodb.AttributeType.NUMBER },
             tableName: 'mimifund'
         });
         this._lambda = new lambda.Function(scope, 'Load' + id, {
