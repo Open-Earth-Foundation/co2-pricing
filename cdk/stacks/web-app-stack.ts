@@ -3,7 +3,6 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecs_patterns from 'aws-cdk-lib/aws-ecs-patterns';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
-import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import { DockerImageAsset, Platform } from 'aws-cdk-lib/aws-ecr-assets';
 import { Construct } from 'constructs';
 
@@ -41,7 +40,6 @@ export class WebAppStack extends cdk.Stack {
     });
     taskDefinition.addContainer("MyContainer", {
       logging: ecs.LogDriver.awsLogs({ streamPrefix: "Co2WebApp" }),
-      image: ecs.ContainerImage.fromDockerImageAsset(asset),
       image: ecs.ContainerImage.fromDockerImageAsset(asset),
       environment: {
         NEXT_PUBLIC_DATA_API_URL: url
