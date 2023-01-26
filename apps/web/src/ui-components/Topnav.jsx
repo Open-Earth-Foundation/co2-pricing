@@ -13,6 +13,10 @@ import {
 import { Flex, Icon, Text } from "@aws-amplify/ui-react";
 export default function Topnav(props) {
   const { overrides, ...rest } = props;
+  const frameSixNineFiveThreeOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
   const homeOnClick = useNavigateAction({ type: "url", url: "/" });
   const calculatorOnClick = useNavigateAction({
     type: "url",
@@ -46,6 +50,9 @@ export default function Topnav(props) {
         shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
+        onClick={() => {
+          frameSixNineFiveThreeOnClick();
+        }}
         {...getOverrideProps(overrides, "Frame 6953")}
       >
         <Flex

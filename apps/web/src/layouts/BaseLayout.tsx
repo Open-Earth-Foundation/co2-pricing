@@ -11,7 +11,7 @@ const buttonOverrides = {
 
 const BaseLayout = (page: ReactElement) => {
     const overrides = useMemo(() => {
-        return ['Home', 'FAQ', 'About', 'Calculator'].reduce((acc, curr) => {
+        return ['Frame 6953', 'Home', 'FAQ', 'About', 'Calculator'].reduce((acc, curr) => {
             return {
                 ...acc, [curr]: {
                     style: buttonOverrides
