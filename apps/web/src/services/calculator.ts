@@ -18,10 +18,9 @@ export default {
         validateParams()
         return _fetchJson<CalculatorStage>(`/api/calculator/stage/${id}`)
     },
-    async getPlotData(_discount: number, _year: number) {
+    async getPlotData(model: 'mimifund' | 'mimigive', _discount: number) {
         const discount = _discount.toFixed(3)
-        const year = _year.toFixed(0)
-        const queryString = new URLSearchParams({ discount, year });
+        const queryString = new URLSearchParams({ model, discount });
         validateParams()
         return await _fetchJson<ChartDataPoint[]>(`/api/calculator/plot?${queryString}`)
     },
