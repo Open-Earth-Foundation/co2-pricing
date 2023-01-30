@@ -15,8 +15,9 @@ import { BigDescriptionBlock, CalculatorHeader, CarbonPrice, DiscountRateInfo, M
 
 const SelectMethod: NextPageWithLayout = () => {
     const [selectedModelId, setSelectedModelId] = useState<string>()
-    const [discount, setDiscount] = useState(0.035)
+    const [discount, setDiscount] = useState(0.010)
     const [canPlot, setCanPlot] = useState(true)
+    const currentYear = new Date().getFullYear()
 
     const reactivatePlot = () => setCanPlot(true)
 
@@ -27,6 +28,8 @@ const SelectMethod: NextPageWithLayout = () => {
         initialData: [],
         enabled: canPlot,
     })
+
+    const currentYearDataPoint = dataPoints.data?.find((dataPoint) => dataPoint.name === currentYear)
 
     return (
         <Stack spacing={2} maxWidth='lg' m='auto'>
@@ -45,7 +48,11 @@ const SelectMethod: NextPageWithLayout = () => {
                     alignItems='center'
                     flexGrow={1}
                     justifyContent='space-around'>
-                    <CarbonPrice />
+                    <CarbonPrice overrides={{
+                        '$10000': {
+                            children: `$${currentYearDataPoint?.scc ?? 0}`,
+                        }
+                    }} />
                     <Slider
                         aria-label="Discount rate"
                         valueLabelDisplay="auto"
@@ -95,9 +102,11 @@ const SelectMethod: NextPageWithLayout = () => {
 
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width='100%'>
                 <MethodDescription
+                    width='100%'
                     title='What does "damage value" means?'
                     body='Incididunt fugiat Lorem fugiat magna dolore Lorem mollit id.' />
                 <MethodDescription
+                    width='100%'
                     title='What does "discount rate" means?'
                     body='Minim occaecat labore commodo ipsum non. Nostrud sit exercitation culpa deserunt ut commodo.' />
             </Stack>
