@@ -1,145 +1,116 @@
-import { Box, Button, Grid, LinearProgress, Slider, Stack, Typography } from "@mui/material";
+import { FormControl, InputLabel, Slider, Stack } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import Link from "next/link";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import DescriptionBlock from "@/components/ui/DescriptionBlock";
-import Loading from "@/components/ui/Loading";
 import BaseLayout from "layouts/BaseLayout";
 import Chart from "@/components/ui/chart";
 
-import iamService from 'services/iam';
 import calculatorService from 'services/calculator';
 
 import type { NextPageWithLayout } from "types/ui";
-import type { IAMModel } from "types/iam/model";
+import { BigDescriptionBlock, CalculatorHeader, CarbonPrice, DiscountRateInfo, MethodDescription } from "ui-components";
 
 
 const SelectMethod: NextPageWithLayout = () => {
     const [selectedModelId, setSelectedModelId] = useState<string>()
-    const [discount, setDiscount] = useState(0.035)
-    const [year, setYear] = useState(2020)
+    const [discount, setDiscount] = useState(0.010)
     const [canPlot, setCanPlot] = useState(true)
+    const currentYear = new Date().getFullYear()
 
     const reactivatePlot = () => setCanPlot(true)
 
     const dataPoints = useQuery(
-        ['calculator-data-points'], () => calculatorService.getPlotData(discount, year), {
+        ['mimifund', discount], () => calculatorService.getPlotData('mimifund', discount), {
         onSuccess: () => setCanPlot(false),
         onError: () => setCanPlot(false),
         initialData: [],
         enabled: canPlot,
     })
 
-    const iamModels = useQuery(
-        ['iam-models'], () => iamService.getModels(), {
-        onSuccess([first]) {
-            const canSelectFirst = !selectedModelId && !!first
-            canSelectFirst && setSelectedModelId(first.id)
-        },
-        initialData: []
-    })
-
-    const selectedIamModel = useQuery<IAMModel>(
-        ['iam-model', selectedModelId], () => iamService.getModelById(selectedModelId as string), {
-        onSuccess: (model) => {
-            setSelectedModelId(model.id)
-            setCanPlot(false)
-        },
-        enabled: !!selectedModelId,
-        onError: () => setCanPlot(false),
-    })
-
-    if (iamModels.isLoading) return <Loading />
+    const currentYearDataPoint = dataPoints.data?.find((dataPoint) => dataPoint.name === currentYear)
 
     return (
-        <Grid container rowGap={5} columnGap={1} height={1}>
-            <Grid item sm={12} md={3}>
-                <Typography variant="h3" component='h2' sx={{ fontWeight: 'bold' }} justifySelf='center'>
-                    CO2 Pricing Oracle
-                </Typography>
-            </Grid>
-            <Grid item sm={12} md={8}>
-                <DescriptionBlock
-                    title={'Select IAM Model'}
-                    description={'Select the IAM model you want to use'}
-                    orientation='horizontal'
-                >
-                </DescriptionBlock>
-            </Grid>
-            <Grid item md={4} container gap={2} flexDirection='column' sx={{ height: 1 }}>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={selectedModelId ?? ''}
-                    placeholder="Select a calculation"
-                    onChange={({ target }) => setSelectedModelId(target.value)}
-                >
-                    {iamModels.data.map(({ id, name }) => (
-                        <MenuItem key={id} value={id}>{name}</MenuItem>
-                    ))}
-                </Select>
-                <Box flexGrow={1}>
-                    {selectedIamModel.isLoading
-                        ? <Loading />
-                        : selectedIamModel.data && <DescriptionBlock
-                            title={selectedIamModel.data.name}
-                            description={selectedIamModel.data.description}
-                            ctas={<Link href={`/learn/iam-model/${selectedIamModel.data.id}`} passHref>
-                                <Button variant="text">Learn more</Button>
-                            </Link>}
-                        >
-                        </DescriptionBlock>}
-                </Box>
-            </Grid>
-            <Grid item md={7} gap={2} flexDirection='column' height={1}>
-                <Stack spacing={2} direction="column" height={1}>
-                    <DescriptionBlock title='IAM Panel' orientation='vertical' >
-                        <Chart
-                            key={selectedModelId}
-                            dataPoints={dataPoints.data ?? []}
-                            axisProp='name'
-                            dataProps={['scc']}
-                            xLabelProp='name'
-                        />
-                        <Stack direction='row' spacing={2} mt={2}>
-                            <Slider
-                                aria-label="Discount rate"
-                                valueLabelDisplay="auto"
-                                defaultValue={50}
-                                value={discount}
-                                onChange={(_, discount) => setDiscount(discount as number)}
-                                onChangeCommitted={reactivatePlot}
-                                min={0.000} max={0.050} step={0.005}
-                            />
-                            <Slider
-                                defaultValue={50}
-                                aria-label="Year"
-                                valueLabelDisplay="auto"
-                                value={year}
-                                onChange={(_, year) => setYear(year as number)}
-                                onChangeCommitted={reactivatePlot}
-                                min={1950}
-                                max={2060}
-                                step={1}
-                            />
-                        </Stack>
-                    </DescriptionBlock>
-                    <Stack height={60} direction='row'>
-                        <Box flexGrow={1} />
-                        <Box flexShrink={0} minWidth='40%' display='flex' px='.4rem'>
-                            <LinearProgress variant="determinate" value={33} style={{ margin: 'auto 1rem', flex: 1 }} />
-                        </Box>
-                        <Button variant="contained" color="primary" size="large" sx={{ flexGrow: 0, flexShrink: 0 }}>
-                            Next
-                        </Button>
-                    </Stack>
-                </Stack>
-            </Grid>
-        </Grid >
+        <Stack spacing={2} maxWidth='lg' m='auto'>
+            <BigDescriptionBlock width='100%' />
 
+            <CalculatorHeader width='100%' />
+            <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={2}
+                minHeight={450}
+                justifyContent='space-around'
+                p={3}
+                width='100%'>
+                <Stack
+                    spacing={4}
+                    alignItems='center'
+                    flexGrow={1}
+                    justifyContent='space-around'>
+                    <CarbonPrice overrides={{
+                        '$10000': {
+                            children: `$${currentYearDataPoint?.scc ?? 0}`,
+                        }
+                    }} />
+                    <Slider
+                        aria-label="Discount rate"
+                        valueLabelDisplay="auto"
+                        defaultValue={50}
+                        value={discount}
+                        onChange={(_, discount) => setDiscount(discount as number)}
+                        onChangeCommitted={reactivatePlot}
+                        min={0.000} max={0.050} step={0.005}
+                    />
+                    <DiscountRateInfo
+                        maxWidth={350} />
+                </Stack>
+                <Stack direction='column' spacing={2} width='100%' height='100%'>
+                    <Stack direction={{ xs: 'column', sm: 'row-reverse' }} spacing={2} width='100%'>
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 150 }}>
+                            <InputLabel id="demo-simple-select-filled-label">
+                                Benchmarks
+                            </InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={selectedModelId ?? ''}
+                                placeholder="Select a calculation"
+                                onChange={({ target }) => setSelectedModelId(target.value)}
+                            >
+                                <MenuItem value='bench1'>bench 1</MenuItem>
+                                <MenuItem value='bench2'>bench 2</MenuItem>
+                                <MenuItem value='bench3'>bench 3</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Stack>
+                    <Chart
+                        dataPoints={dataPoints.data ?? []}
+                        axisProp='name'
+                        dataProps={['scc']}
+                        xLabelProp='name'
+                    />
+                </Stack>
+
+            </Stack>
+
+            <MethodDescription
+                width='100%'
+                title='Method Description'
+                body='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+            />
+
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width='100%'>
+                <MethodDescription
+                    width='100%'
+                    title='What does "damage value" means?'
+                    body='Incididunt fugiat Lorem fugiat magna dolore Lorem mollit id.' />
+                <MethodDescription
+                    width='100%'
+                    title='What does "discount rate" means?'
+                    body='Minim occaecat labore commodo ipsum non. Nostrud sit exercitation culpa deserunt ut commodo.' />
+            </Stack>
+        </Stack>
     );
 };
 
