@@ -8,9 +8,11 @@ import BaseLayout from "layouts/BaseLayout";
 import Chart from "@/components/ui/chart";
 
 import calculatorService from 'services/calculator';
+import iamService from 'services/iam';
 
 import type { NextPageWithLayout } from "types/ui";
 import { BigDescriptionBlock, CalculatorHeader, CarbonPrice, DiscountRateInfo, MethodDescription } from "ui-components";
+import { formatDiscount } from "utils/format";
 
 
 const SelectMethod: NextPageWithLayout = () => {
@@ -27,6 +29,23 @@ const SelectMethod: NextPageWithLayout = () => {
         onError: () => setCanPlot(false),
         initialData: [],
         enabled: canPlot,
+    })
+
+    // gets iam model
+    const iamModels = useQuery(
+        ['iam-models'], () => iamService.getModels(), {
+        initialData: [],
+        onSettled: (data) => {
+            if (data && data[0]) {
+                setSelectedModelId(data[0].id)
+            }
+        }
+    })
+
+    // gets iam model
+    const iamModel = useQuery(
+        ['iam', selectedModelId], () => iamService.getModelById(selectedModelId!), {
+        enabled: !!selectedModelId,
     })
 
     const currentYearDataPoint = dataPoints.data?.find((dataPoint) => dataPoint.name === currentYear)
@@ -53,15 +72,19 @@ const SelectMethod: NextPageWithLayout = () => {
                             children: `$${currentYearDataPoint?.scc ?? 0}`,
                         }
                     }} />
-                    <Slider
-                        aria-label="Discount rate"
-                        valueLabelDisplay="auto"
-                        defaultValue={50}
-                        value={discount}
-                        onChange={(_, discount) => setDiscount(discount as number)}
-                        onChangeCommitted={reactivatePlot}
-                        min={0.000} max={0.050} step={0.005}
-                    />
+                    {iamModel.data &&
+                        <Slider
+                            aria-label="Discount rate"
+                            marks
+                            valueLabelDisplay="on"
+                            onChange={(_, discount) => setDiscount(discount as number)}
+                            onChangeCommitted={reactivatePlot}
+                            value={discount}
+                            getAriaValueText={formatDiscount}
+                            valueLabelFormat={formatDiscount}
+                            {...iamModel.data.slider}
+                        />
+                    }
                     <DiscountRateInfo
                         maxWidth={350} />
                 </Stack>
@@ -78,9 +101,11 @@ const SelectMethod: NextPageWithLayout = () => {
                                 placeholder="Select a calculation"
                                 onChange={({ target }) => setSelectedModelId(target.value)}
                             >
-                                <MenuItem value='bench1'>bench 1</MenuItem>
-                                <MenuItem value='bench2'>bench 2</MenuItem>
-                                <MenuItem value='bench3'>bench 3</MenuItem>
+                                {iamModels.data?.map((model) => (
+                                    <MenuItem key={model.id} value={model.id}>
+                                        {model.name}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
                     </Stack>
