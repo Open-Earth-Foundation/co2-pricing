@@ -17,16 +17,16 @@ spec:
         app.kubernetes.io/name: co2-pricing-app
     spec:
       containers:
-      - name: co2-pricing-julia
-        image: public.ecr.aws/w5a3n9a0/co2-pricing-julia
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8000
-          name: http-julia-port
-        imagePullPolicy: "Always"
+        - name: co2-pricing-julia
+          image: public.ecr.aws/openearthfoundation/co2-pricing-julia
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8000
+              name: http-julia-port
+          imagePullPolicy: "Always"
