@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, Slider, Stack } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
@@ -48,7 +48,9 @@ const SelectMethod: NextPageWithLayout = () => {
         enabled: !!selectedModelId,
     })
 
-    const currentYearDataPoint = dataPoints.data?.find((dataPoint) => dataPoint.name === currentYear)
+    const currentYearDataPoint = useMemo(() => {
+        return dataPoints.data?.find((dataPoint) => dataPoint.name === currentYear)
+    }, [dataPoints.data, currentYear])
 
     return (
         <Stack spacing={2} maxWidth='lg' m='auto'>
@@ -92,7 +94,7 @@ const SelectMethod: NextPageWithLayout = () => {
                     <Stack direction={{ xs: 'column', sm: 'row-reverse' }} spacing={2} width='100%'>
                         <FormControl variant="filled" sx={{ m: 1, minWidth: 150 }}>
                             <InputLabel id="demo-simple-select-filled-label">
-                                Benchmarks
+                                IAM Model
                             </InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -110,7 +112,7 @@ const SelectMethod: NextPageWithLayout = () => {
                         </FormControl>
                     </Stack>
                     <Chart
-                        dataPoints={dataPoints.data ?? []}
+                        dataPoints={dataPoints.data}
                         axisProp='name'
                         dataProps={['scc']}
                         xLabelProp='name'

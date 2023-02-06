@@ -9,6 +9,8 @@ const validateParams = () => {
     return true
 }
 
+const DECIMALS = 4
+
 export default {
     getStages() {
         validateParams()
@@ -19,13 +21,13 @@ export default {
         return _fetchJson<CalculatorStage>(`/api/calculator/stage/${id}`)
     },
     async getPlotData(model: 'mimifund' | 'mimigive', _discount: number) {
-        const discount = _discount.toFixed(3)
+        const discount = _discount.toFixed(DECIMALS)
         const queryString = new URLSearchParams({ model, discount });
         validateParams()
         return await _fetchJson<ChartDataPoint[]>(`/api/calculator/plot?${queryString}`)
     },
     async getCarbonSocialCost(_discount: number, _year: number) {
-        const discount = _discount.toFixed(3)
+        const discount = _discount.toFixed(DECIMALS)
         const year = _year.toFixed(0)
         const queryString = new URLSearchParams({ discount, year });
         validateParams()
