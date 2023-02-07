@@ -10,7 +10,7 @@ import iamService from 'services/iam';
 
 import type { NextPageWithLayout } from "types/ui";
 import { SelectDiscountRate } from "ui-components";
-import { formatDiscount } from "utils/format";
+import { formatDiscount, formatPrice } from "utils/format";
 
 
 const CURRENT_YEAR = new Date().getFullYear()
@@ -39,11 +39,17 @@ const SelectMethod: NextPageWithLayout = () => {
         return dataPoints.data?.find((dataPoint) => dataPoint.name === CURRENT_YEAR)
     }, [dataPoints.data])
 
+    const [integer, decimal] = useMemo(() => {
+        if (!currentYearDataPoint) return ['0', '00']
+        return formatPrice(currentYearDataPoint.scc as number)
+    }, [currentYearDataPoint])
+
     return (
         <>
             <SelectDiscountRate
                 width='100%'
-                priceText={`$${currentYearDataPoint?.scc ?? 0}`}
+                integer={integer}
+                decimal={decimal}
                 discountPercent={formatDiscount(discount)}
                 slider={
                     iamModel.data && <Slider

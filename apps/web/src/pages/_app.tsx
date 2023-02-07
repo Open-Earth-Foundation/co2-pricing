@@ -1,9 +1,11 @@
 
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ThemeProvider } from "@aws-amplify/ui-react";
 import { Amplify } from 'aws-amplify';
 import "@aws-amplify/ui-react/styles.css"
 
+import studioTheme from '../ui-components/studioTheme';
 import type { NextPageWithLayout } from 'types/ui';
 import "styles/globals.sass";
 
@@ -33,7 +35,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <ThemeProvider theme={studioTheme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
       </QueryClientProvider>
     </>
   );

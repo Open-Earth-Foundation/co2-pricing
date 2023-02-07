@@ -6,17 +6,22 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, TextProps } from "@aws-amplify/ui-react";
+import { FlexProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CounterOverridesProps = {
     Counter?: PrimitiveOverrideProps<FlexProps>;
+    Top?: PrimitiveOverrideProps<ViewProps>;
     "Your carbon price should be"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 6916"?: PrimitiveOverrideProps<FlexProps>;
-    $12645?: PrimitiveOverrideProps<TextProps>;
+    Main?: PrimitiveOverrideProps<FlexProps>;
+    Symbol?: PrimitiveOverrideProps<TextProps>;
+    Integer?: PrimitiveOverrideProps<TextProps>;
+    Decimal?: PrimitiveOverrideProps<TextProps>;
+    Bottom?: PrimitiveOverrideProps<ViewProps>;
     "in USD per Ton of CO2"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type CounterProps = React.PropsWithChildren<Partial<FlexProps> & {
-    priceText?: String;
+    integer?: Number;
+    decimal?: String;
 } & {
     overrides?: CounterOverridesProps | undefined | null;
 }>;

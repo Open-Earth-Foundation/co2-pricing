@@ -33,7 +33,7 @@ export declare type SelectDiscountRateOverridesProps = {
     "Know more5428451"?: PrimitiveOverrideProps<TextProps>;
     arrow_forward5428454?: PrimitiveOverrideProps<IconProps>;
     Calculator?: PrimitiveOverrideProps<FlexProps>;
-    Left?: PrimitiveOverrideProps<ViewProps>;
+    Left?: PrimitiveOverrideProps<FlexProps>;
     Counter?: CounterProps;
     "Frame 6950"?: PrimitiveOverrideProps<FlexProps>;
     Slider5428458?: PrimitiveOverrideProps<FlexProps>;
@@ -58,10 +58,11 @@ export declare type SelectDiscountRateOverridesProps = {
     "Description Block CTA5458149"?: DescriptionBlockCTAProps;
 } & EscapeHatchProps;
 export declare type SelectDiscountRateProps = React.PropsWithChildren<Partial<FlexProps> & {
-    priceText?: String;
     slider?: React.ReactNode;
     discountPercent?: String;
     chart?: React.ReactNode;
+    integer?: String;
+    decimal?: String;
 } & {
     overrides?: SelectDiscountRateOverridesProps | undefined | null;
 }>;

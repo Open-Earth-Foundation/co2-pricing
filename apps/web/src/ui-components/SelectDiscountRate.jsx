@@ -12,8 +12,15 @@ import Counter from "./Counter";
 import Frame6934 from "./Frame6934";
 import DescriptionBlockCTA from "./DescriptionBlockCTA";
 export default function SelectDiscountRate(props) {
-  const { priceText, slider, discountPercent, chart, overrides, ...rest } =
-    props;
+  const {
+    slider,
+    discountPercent,
+    chart,
+    integer,
+    decimal,
+    overrides,
+    ...rest
+  } = props;
   return (
     <Flex
       gap="40px"
@@ -382,7 +389,7 @@ export default function SelectDiscountRate(props) {
           direction="row"
           width="unset"
           height="unset"
-          justifyContent="center"
+          justifyContent="flex-start"
           alignItems="center"
           shrink="0"
           alignSelf="stretch"
@@ -390,16 +397,17 @@ export default function SelectDiscountRate(props) {
           padding="0px 10px 0px 10px"
           {...getOverrideProps(overrides, "Calculator")}
         >
-          <View
-            width="436px"
-            height="504px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
+          <Flex
+            gap="53px"
+            direction="column"
+            width="unset"
+            height="unset"
+            justifyContent="flex-start"
+            alignItems="center"
             shrink="0"
             position="relative"
-            padding="0px 0px 0px 0px"
+            padding="0px 25px 0px 25px"
+            minWidth="510px"
             {...getOverrideProps(overrides, "Left")}
           >
             <Counter
@@ -410,12 +418,13 @@ export default function SelectDiscountRate(props) {
               height="unset"
               justifyContent="flex-start"
               alignItems="center"
-              position="absolute"
-              top="0px"
-              left="58px"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
               borderRadius="12px"
               padding="0px 0px 0px 0px"
-              priceText={priceText}
+              integer={integer}
+              decimal={decimal}
               {...getOverrideProps(overrides, "Counter")}
             ></Counter>
             <Flex
@@ -425,9 +434,8 @@ export default function SelectDiscountRate(props) {
               height="unset"
               justifyContent="center"
               alignItems="center"
-              position="absolute"
-              top="259px"
-              left="0px"
+              shrink="0"
+              position="relative"
               padding="0px 0px 0px 0px"
               {...getOverrideProps(overrides, "Frame 6950")}
             >
@@ -602,7 +610,7 @@ export default function SelectDiscountRate(props) {
                 ></Text>
               </Flex>
             </Flex>
-          </View>
+          </Flex>
           <View
             width="unset"
             height="unset"
