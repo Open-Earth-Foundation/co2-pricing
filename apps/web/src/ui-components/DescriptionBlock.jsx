@@ -14,7 +14,7 @@ export default function DescriptionBlock(props) {
     <Flex
       gap="11px"
       direction="column"
-      width="1320px"
+      width="476px"
       height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
@@ -34,7 +34,6 @@ export default function DescriptionBlock(props) {
         justifyContent="flex-start"
         alignItems="center"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 6910")}
@@ -49,7 +48,7 @@ export default function DescriptionBlock(props) {
           justifyContent="unset"
           shrink="0"
           position="relative"
-          {...getOverrideProps(overrides, "help501724")}
+          {...getOverrideProps(overrides, "help4728533")}
         >
           <View
             width="30px"
@@ -63,7 +62,7 @@ export default function DescriptionBlock(props) {
             left="0px"
             padding="0px 0px 0px 0px"
             backgroundColor="rgba(217,217,217,1)"
-            {...getOverrideProps(overrides, "Bounding box501725")}
+            {...getOverrideProps(overrides, "Bounding box4728534")}
           ></View>
           <Icon
             width="25px"
@@ -72,7 +71,7 @@ export default function DescriptionBlock(props) {
               minX: 0,
               minY: 0,
               width: 25,
-              height: 24.999984741210938,
+              height: 24.999996185302734,
             }}
             paths={[
               {
@@ -90,7 +89,7 @@ export default function DescriptionBlock(props) {
             bottom="8.33%"
             left="8.33%"
             right="8.33%"
-            {...getOverrideProps(overrides, "help501726")}
+            {...getOverrideProps(overrides, "help4728535")}
           ></Icon>
         </Flex>
         <Text
@@ -107,9 +106,7 @@ export default function DescriptionBlock(props) {
           height="unset"
           gap="unset"
           alignItems="unset"
-          grow="1"
-          shrink="1"
-          basis="0"
+          shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
@@ -133,31 +130,45 @@ export default function DescriptionBlock(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 6911")}
       >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="500"
-          color="rgba(255,255,255,1)"
-          lineHeight="19.363636016845703px"
-          textAlign="justify"
-          display="block"
-          direction="column"
-          justifyContent="unset"
+        <Flex
+          padding="0px 0px 0px 0px"
           width="unset"
-          height="unset"
+          height="114px"
+          display="block"
           gap="unset"
           alignItems="unset"
+          justifyContent="unset"
           shrink="0"
           alignSelf="stretch"
           position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
-          {...getOverrideProps(
-            overrides,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
-          )}
-        ></Text>
+          {...getOverrideProps(overrides, "Group 6")}
+        >
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="500"
+            color="rgba(255,255,255,1)"
+            lineHeight="19.363636016845703px"
+            textAlign="justify"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="100%"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            position="absolute"
+            top="0px"
+            left="0px"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+            {...getOverrideProps(
+              overrides,
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+            )}
+          ></Text>
+        </Flex>
         <Flex
           gap="11px"
           direction="row"
@@ -202,7 +213,7 @@ export default function DescriptionBlock(props) {
             justifyContent="unset"
             shrink="0"
             position="relative"
-            {...getOverrideProps(overrides, "arrow_forward501733")}
+            {...getOverrideProps(overrides, "arrow_forward4728542")}
           >
             <View
               width="24px"
@@ -216,7 +227,7 @@ export default function DescriptionBlock(props) {
               left="0px"
               padding="0px 0px 0px 0px"
               backgroundColor="rgba(217,217,217,1)"
-              {...getOverrideProps(overrides, "Bounding box501734")}
+              {...getOverrideProps(overrides, "Bounding box4728543")}
             ></View>
             <Icon
               width="16px"
@@ -238,7 +249,7 @@ export default function DescriptionBlock(props) {
               bottom="16.67%"
               left="16.67%"
               right="16.67%"
-              {...getOverrideProps(overrides, "arrow_forward501735")}
+              {...getOverrideProps(overrides, "arrow_forward4728544")}
             ></Icon>
           </Flex>
         </Flex>

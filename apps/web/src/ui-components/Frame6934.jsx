@@ -19,8 +19,8 @@ export default function Frame6934(props) {
       overrides: {
         Next: {},
         "Bounding box": {},
-        arrow_forward502201: {},
-        arrow_forward502199: {},
+        arrow_forward3644863: {},
+        arrow_forward3644861: {},
         Frame6934: {},
       },
       variantValues: { property1: "Default" },
@@ -29,13 +29,12 @@ export default function Frame6934(props) {
       overrides: {
         Next: {},
         "Bounding box": {},
-        arrow_forward502201: {
-          viewBox: { minX: 0, minY: 0, width: 16, height: 16 },
+        arrow_forward3644863: {
           top: "16.67%",
           bottom: "16.67%",
           left: "16.67%",
         },
-        arrow_forward502199: {},
+        arrow_forward3644861: {},
         Frame6934: { backgroundColor: "rgba(35,38,64,1)" },
       },
       variantValues: { property1: "variant2" },
@@ -92,7 +91,7 @@ export default function Frame6934(props) {
         justifyContent="unset"
         shrink="0"
         position="relative"
-        {...getOverrideProps(overrides, "arrow_forward502199")}
+        {...getOverrideProps(overrides, "arrow_forward3644861")}
       >
         <View
           width="24px"
@@ -105,13 +104,13 @@ export default function Frame6934(props) {
           top="0px"
           left="0px"
           padding="0px 0px 0px 0px"
-          backgroundColor="rgba(217,217,217,1)"
+          backgroundColor="transparent"
           {...getOverrideProps(overrides, "Bounding box")}
         ></View>
         <Icon
           width="16px"
           height="16px"
-          viewBox={{ minX: 0, minY: 0, width: 16, height: 16.00000762939453 }}
+          viewBox={{ minX: 0, minY: 0, width: 16, height: 16 }}
           paths={[
             {
               d: "M8 16L6.575 14.6L12.175 9L0 9L0 7L12.175 7L6.575 1.4L8 0L16 8L8 16Z",
@@ -128,7 +127,8 @@ export default function Frame6934(props) {
           bottom="16.68%"
           left="16.66%"
           right="16.67%"
-          {...getOverrideProps(overrides, "arrow_forward502201")}
+          backgroundColor="transparent"
+          {...getOverrideProps(overrides, "arrow_forward3644863")}
         ></Icon>
       </Flex>
     </Flex>

@@ -6,18 +6,16 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { IconProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type Frame3OverridesProps = {
-    Frame3?: PrimitiveOverrideProps<FlexProps>;
-    "Start calculating"?: PrimitiveOverrideProps<TextProps>;
-    arrow_forward3546512?: PrimitiveOverrideProps<FlexProps>;
+export declare type Component6OverridesProps = {
+    Component6?: PrimitiveOverrideProps<ViewProps>;
     "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
-    arrow_forward3546514?: PrimitiveOverrideProps<IconProps>;
+    hourglass_top?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type Frame3Props = React.PropsWithChildren<Partial<FlexProps> & {
-    property1?: "Default" | "variant2";
+export declare type Component6Props = React.PropsWithChildren<Partial<ViewProps> & {
+    property1?: "Variant2" | "hourglass_top";
 } & {
-    overrides?: Frame3OverridesProps | undefined | null;
+    overrides?: Component6OverridesProps | undefined | null;
 }>;
-export default function Frame3(props: Frame3Props): React.ReactElement;
+export default function Component6(props: Component6Props): React.ReactElement;

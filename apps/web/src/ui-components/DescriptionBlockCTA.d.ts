@@ -6,25 +6,21 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { FlexProps, IconProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type DescriptionBlockOverridesProps = {
-    DescriptionBlock?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 6910"?: PrimitiveOverrideProps<FlexProps>;
-    help4728533?: PrimitiveOverrideProps<FlexProps>;
-    "Bounding box4728534"?: PrimitiveOverrideProps<ViewProps>;
-    help4728535?: PrimitiveOverrideProps<IconProps>;
+export declare type DescriptionBlockCTAOverridesProps = {
+    DescriptionBlockCTA?: PrimitiveOverrideProps<FlexProps>;
+    Title?: PrimitiveOverrideProps<FlexProps>;
+    help?: PrimitiveOverrideProps<IconProps>;
+    TitleText?: PrimitiveOverrideProps<FlexProps>;
     "What does \u201Cdiscount rate\u201D means?"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 6911"?: PrimitiveOverrideProps<FlexProps>;
-    "Group 6"?: PrimitiveOverrideProps<FlexProps>;
+    Main?: PrimitiveOverrideProps<FlexProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."?: PrimitiveOverrideProps<TextProps>;
-    "Frame 16"?: PrimitiveOverrideProps<FlexProps>;
+    Footer?: PrimitiveOverrideProps<FlexProps>;
     "Know more"?: PrimitiveOverrideProps<TextProps>;
-    arrow_forward4728542?: PrimitiveOverrideProps<FlexProps>;
-    "Bounding box4728543"?: PrimitiveOverrideProps<ViewProps>;
-    arrow_forward4728544?: PrimitiveOverrideProps<IconProps>;
+    arrow_forward?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type DescriptionBlockProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: DescriptionBlockOverridesProps | undefined | null;
+export declare type DescriptionBlockCTAProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: DescriptionBlockCTAOverridesProps | undefined | null;
 }>;
-export default function DescriptionBlock(props: DescriptionBlockProps): React.ReactElement;
+export default function DescriptionBlockCTA(props: DescriptionBlockCTAProps): React.ReactElement;
