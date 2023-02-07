@@ -17,21 +17,21 @@ spec:
         app.kubernetes.io/name: co2-pricing-app
     spec:
       containers:
-      - name: co2-pricing-app
-        image: public.ecr.aws/w5a3n9a0/co2-pricing-app
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
-        ports:
-        - containerPort: 3000
-          name: http-app-port
-        env:
-          - name: DATA_QUERY_API
-            value: "http://co2-pricing-data-query-api:3000"
-          - name: PORT
-            value: "3000"
-        imagePullPolicy: "Always"
+        - name: co2-pricing-app
+          image: public.ecr.aws/openearthfoundation/co2-pricing-app
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+              name: http-app-port
+          env:
+            - name: DATA_QUERY_API
+              value: "http://co2-pricing-data-query-api:3000"
+            - name: PORT
+              value: "3000"
+          imagePullPolicy: "Always"

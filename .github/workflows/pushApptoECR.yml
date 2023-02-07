@@ -1,12 +1,12 @@
-name: Push Julia Model to ECR
+name: Push App to ECR
 
 on:
   push:
     paths:
-      - apps/mimi/**
+      - apps/web/**
   pull_request:
     paths:
-      - apps/mimi/**
+      - apps/web/**
 
 jobs:
   pushToECR:
@@ -20,13 +20,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/openearthfoundation
 
-      - name: Pushing Julia Model to ECR
+      - name: Pushing App to ECR
         env:
           VERSION: ${{ github.sha }}
-          IMAGE: public.ecr.aws/openearthfoundation/co2-pricing-julia
+          IMAGE: public.ecr.aws/openearthfoundation/co2-pricing-app
 
         run: |
-          docker build -t $IMAGE:$VERSION apps/mimi
+          docker build -t $IMAGE:$VERSION apps/web
           docker tag $IMAGE:$VERSION $IMAGE:latest
           docker push $IMAGE:$VERSION
           docker push $IMAGE:latest
