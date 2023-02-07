@@ -11,7 +11,7 @@ interface ChartProps {
 const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
     const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'organge', 'magenta']
     return (
-        <ResponsiveContainer width="100%" height={300} >
+        <ResponsiveContainer width="100%" height='100%' >
             <AreaChart data={dataPoints}>
                 <defs>
                     {dataProps.map((dataProp, idx) => (

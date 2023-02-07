@@ -8,6 +8,7 @@ import type { NextPageWithLayout } from 'types/ui';
 import "styles/globals.sass";
 
 import awsExports from '../aws-exports';
+import Head from 'next/head';
 
 
 Amplify.configure(awsExports);
@@ -27,9 +28,14 @@ type AppPropsWithLayout = AppProps & {
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page)
   return getLayout(
-    <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-    </QueryClientProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      </Head>
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
+    </>
   );
 };
 

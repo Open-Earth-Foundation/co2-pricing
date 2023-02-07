@@ -11,9 +11,9 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type Frame6934OverridesProps = {
     Frame6934?: PrimitiveOverrideProps<FlexProps>;
     Next?: PrimitiveOverrideProps<TextProps>;
-    arrow_forward502199?: PrimitiveOverrideProps<FlexProps>;
+    arrow_forward3644861?: PrimitiveOverrideProps<FlexProps>;
     "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
-    arrow_forward502201?: PrimitiveOverrideProps<IconProps>;
+    arrow_forward3644863?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type Frame6934Props = React.PropsWithChildren<Partial<FlexProps> & {
     property1?: "Default" | "variant2";

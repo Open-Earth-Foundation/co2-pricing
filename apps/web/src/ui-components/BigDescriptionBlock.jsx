@@ -15,7 +15,7 @@ export default function BigDescriptionBlock(props) {
       gap="11px"
       direction="row"
       width="1320px"
-      height="unset"
+      height="216px"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
@@ -160,7 +160,7 @@ export default function BigDescriptionBlock(props) {
             justifyContent="unset"
             shrink="0"
             position="relative"
-            {...getOverrideProps(overrides, "arrow_forward501689")}
+            {...getOverrideProps(overrides, "arrow_forward4728775")}
           >
             <View
               width="24px"
@@ -196,7 +196,7 @@ export default function BigDescriptionBlock(props) {
               bottom="16.67%"
               left="16.67%"
               right="16.67%"
-              {...getOverrideProps(overrides, "arrow_forward501691")}
+              {...getOverrideProps(overrides, "arrow_forward4728777")}
             ></Icon>
           </Flex>
         </Flex>

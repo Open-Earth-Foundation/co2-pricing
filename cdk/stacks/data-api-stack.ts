@@ -34,8 +34,8 @@ export class DataApiStack extends cdk.Stack {
     const v1 = root.addResource("v1")
 
     const query = new QueryFeature(this, "query", v1)
-    for (const [name, pipe] of Object.entries(this.pipelineMap)) {
-      const table = dynamodb.Table.fromTableName(this, `${name}-table`, pipe.table.tableName)
+    for (const name of Object.keys(this.pipelineMap)) {
+      const table = dynamodb.Table.fromTableName(this, `${name}-table`, name)
       query.addQueryPermissions(table)
     }
 

@@ -17,9 +17,9 @@ export declare type BigDescriptionBlockOverridesProps = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."?: PrimitiveOverrideProps<TextProps>;
     "Frame 16"?: PrimitiveOverrideProps<FlexProps>;
     "Know more"?: PrimitiveOverrideProps<TextProps>;
-    arrow_forward501689?: PrimitiveOverrideProps<FlexProps>;
+    arrow_forward4728775?: PrimitiveOverrideProps<FlexProps>;
     "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
-    arrow_forward501691?: PrimitiveOverrideProps<IconProps>;
+    arrow_forward4728777?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type BigDescriptionBlockProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: BigDescriptionBlockOverridesProps | undefined | null;

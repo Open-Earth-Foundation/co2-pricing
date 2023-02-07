@@ -19,8 +19,8 @@ export default function Frame3(props) {
       overrides: {
         "Start calculating": {},
         "Bounding box": {},
-        arrow_forward502190: {},
-        arrow_forward502188: {},
+        arrow_forward3546514: {},
+        arrow_forward3546512: {},
         Frame3: {},
       },
       variantValues: { property1: "Default" },
@@ -29,8 +29,8 @@ export default function Frame3(props) {
       overrides: {
         "Start calculating": {},
         "Bounding box": {},
-        arrow_forward502190: {},
-        arrow_forward502188: {},
+        arrow_forward3546514: {},
+        arrow_forward3546512: {},
         Frame3: {
           width: "unset",
           height: "unset",
@@ -91,7 +91,7 @@ export default function Frame3(props) {
         justifyContent="unset"
         shrink="0"
         position="relative"
-        {...getOverrideProps(overrides, "arrow_forward502188")}
+        {...getOverrideProps(overrides, "arrow_forward3546512")}
       >
         <View
           width="36px"
@@ -127,7 +127,7 @@ export default function Frame3(props) {
           bottom="16.67%"
           left="16.67%"
           right="16.67%"
-          {...getOverrideProps(overrides, "arrow_forward502190")}
+          {...getOverrideProps(overrides, "arrow_forward3546514")}
         ></Icon>
       </Flex>
     </Flex>

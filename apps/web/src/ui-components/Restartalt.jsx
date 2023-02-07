@@ -81,8 +81,8 @@ export default function Restartalt(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 12.79998779296875,
-            height: 14.760009765625,
+            width: 12.80078125,
+            height: 14.759765625,
           }}
           paths={[
             {
