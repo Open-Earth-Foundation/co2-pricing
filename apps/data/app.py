@@ -1,20 +1,28 @@
-import json
 import os
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from query_table.query import handler
+import pandas as pd
 
 app = Flask(__name__)
-cors = CORS(app)
+CORS(app)
 
-@app.route('/v1/query/<table_name>')
-def query_table_handler(table_name):
-    search_params = request.args.to_dict()
-    api_event = dict(
-        queryStringParameters=dict(table=table_name,**search_params))
-    response = handler(api_event, None)
-    return jsonify(json.loads(response['body']))
+
+@app.route('/query/csv')
+def query_csv():
+    file_path = '__FILES__/MimiFUND.csv'
+    df = pd.read_csv(file_path)
+    
+    params = request.args.to_dict()
+    wheres = params.get('where', '')
+    wheres = wheres.replace('=', '==')
+    for where in wheres.split(','):
+        if where:
+            df = df.query(where)
+
+    records = df.to_dict(orient='records')
+    return jsonify(dict(records=records))
 
 
 if __name__ == '__main__':

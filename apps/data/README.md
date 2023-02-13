@@ -8,6 +8,16 @@
 - Poetry or Pipenv
 - Python 3.9
 
+#### Environment Varibles
+
+The following environment variables are required to run the API:
+
+|Variable|Description|
+|---|---|
+|AWS_ACCESS_KEY_ID|AWS access key (For DynamoDB)|
+|AWS_SECRET_ACCESS_KEY|AWS secret key (For DynamoDB)|
+|AWS_REGION|AWS region (For DynamoDB)|
+
 ### Docker
 
 Simply run the following commands to build and run the Docker image:

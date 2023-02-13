@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import TableChartView from "views/TableChartView";
 import BaseLayout from "layouts/BaseLayout";
 
-import tablesService from "@/services/tables";
+import tablesService from "@/services/csv";
 
 import type { NextPageWithLayout } from "types/ui";
 
@@ -12,7 +12,7 @@ import type { NextPageWithLayout } from "types/ui";
 const SampleTable: NextPageWithLayout = () => {
     const { query: { table } } = useRouter()
     const sample = useQuery(
-        ['table', table], () => tablesService.query(table as string), {
+        ['table', table], () => tablesService.query(), {
         enabled: !!table
     })
 
