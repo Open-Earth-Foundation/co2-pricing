@@ -28,7 +28,7 @@ const SelectMethod: NextPageWithLayout = () => {
     })
 
     const dataPoints = useQuery(
-        ['mimifund', discount], () => calculatorService.getPlotData('mimifund', discount), {
+        ['mimifund', discount], () => calculatorService.getPlotData(discount), {
         onSuccess: () => setCanPlot(false),
         onError: () => setCanPlot(false),
         initialData: [],

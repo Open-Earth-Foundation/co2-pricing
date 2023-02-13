@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 
 import TableChartView from "views/TableChartView";
 import BaseLayout from "layouts/BaseLayout";
-import tablesService from "@/services/tables";
+import tablesService from "@/services/csv";
 
 import type { QueryDataOutput } from "types/data/query";
 import type { NextPageWithLayout } from "types/ui";
@@ -16,7 +16,7 @@ const Samples: NextPageWithLayout = () => {
     const results = useQueries({
         queries: TABLES.map((config) => ({
             queryKey: ['table', config.table],
-            queryFn: () => tablesService.query(config.table),
+            queryFn: () => tablesService.query(),
             select: ({ records }: QueryDataOutput) => ({ ...config, records }),
         })),
     })

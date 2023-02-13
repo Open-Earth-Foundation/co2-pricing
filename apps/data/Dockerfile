@@ -1,27 +1,17 @@
-# syntax=docker/dockerfile:1.4
-FROM python:3.9-alpine AS builder
+FROM python:3.9-slim-buster
 
+# Set the working directory
 WORKDIR /app
 
-COPY requirements.txt /app
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip3 install -r requirements.txt
+# Copy the requirements file into the container and install the dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+# Copy the rest of the application code into the container
+COPY . .
 
-ENTRYPOINT ["python3"]
-CMD ["app.py"]
+# Expose the port on which the app will run
+EXPOSE 4000
 
-FROM builder as dev-envs
-
-RUN <<EOF
-apk update
-apk add git
-EOF
-
-RUN <<EOF
-addgroup -S docker
-adduser -S --shell /bin/bash --ingroup docker vscode
-EOF
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
+# Set the command to start the app
+CMD ["python", "app.py"]

@@ -2,18 +2,11 @@
 import { _fetchJson } from "utils/fetch";
 import type { IAMModel } from "types/iam/model";
 
-
-const validateParams = () => {
-    return true
-}
-
 const getModels = async () => {
-    validateParams()
     return await _fetchJson<IAMModel[]>(`/api/iam/model`)
 }
 
 const getModelById = async (id: string) => {
-    validateParams()
     return await _fetchJson<IAMModel>(`/api/iam/model/${id}`)
 }
 
