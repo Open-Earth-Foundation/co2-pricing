@@ -8,7 +8,6 @@ export default {
         const filters = _filters || []
         const whereParams = filters.join(",")
         const url = `${process.env.NEXT_PUBLIC_DATA_API_URL}/query/csv?where=${whereParams}`
-        console.log({ url })
         return _fetchJson<QueryDataOutput<T>>(url)
     }
 } as const
