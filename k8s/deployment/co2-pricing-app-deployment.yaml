@@ -30,8 +30,8 @@ spec:
             - containerPort: 3000
               name: http-app-port
           env:
-            - name: DATA_QUERY_API
-              value: "http://co2-pricing-data-query-api:3000"
+            - name: NEXT_PUBLIC_DATA_API_URL
+              value: "https://zdb479ipli.execute-api.us-east-1.amazonaws.com/"
             - name: PORT
               value: "3000"
           imagePullPolicy: "Always"
