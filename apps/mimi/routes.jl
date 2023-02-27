@@ -26,6 +26,18 @@ route("/") do
     scc = MimiFUND.compute_scco2(m, year = input_year, eta = input_eta, prtp = input_prtp, last_year = input_last_year, pulse_size = pulse_size)
   end
 
+  route("/default") do
+    # Get the Social Cost of CO2 in year 2020 from the default MimiFUND model:
+    m = MimiFUND.get_model()
+
+    #Input Year
+    current_year = string(Dates.year(today()))
+    input_prtp = parse(Float64, params(:prtp, "0.015"))
+
+    scc = MimiFUND.compute_scco2(m, year = current_year, prtp = input_prtp)
+  end
+
+
   route("/co2") do
     # Get the Social Cost of CO2 in year 2020 from the default MimiFUND model:
     m = MimiFUND.get_model()

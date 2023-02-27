@@ -31,15 +31,15 @@ RUN julia -e "using Pkg; Pkg.Registry.add(RegistrySpec(url = \"https://github.co
 RUN julia -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate(); Pkg.precompile(); "
 
 # ports
-EXPOSE 8000
+EXPOSE 6543
 EXPOSE 80
 
 # set up app environment
 ENV JULIA_DEPOT_PATH "/home/genie/.julia"
 ENV GENIE_ENV "dev"
 ENV GENIE_HOST "0.0.0.0"
-ENV PORT "8000"
-ENV WSPORT "8000"
+ENV PORT "6543"
+ENV WSPORT "6543"
 ENV EARLYBIND "true"
 
 # run app

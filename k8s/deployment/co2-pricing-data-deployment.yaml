@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: co2-pricing-julia-deployment
+  name: co2-pricing-data-deployment
   labels:
     app: co2-pricing
-    app.kubernetes.io/name: co2-pricing-julia
+    app.kubernetes.io/name: co2-pricing-data
 spec:
   replicas: 1
   selector:
@@ -14,11 +14,11 @@ spec:
     metadata:
       labels:
         app: co2-pricing
-        app.kubernetes.io/name: co2-pricing-julia
+        app.kubernetes.io/name: co2-pricing-data
     spec:
       containers:
-        - name: co2-pricing-julia
-          image: public.ecr.aws/openearthfoundation/co2-pricing-julia
+        - name: co2-pricing-data
+          image: public.ecr.aws/openearthfoundation/co2-pricing-data
           resources:
             requests:
               memory: "512Mi"
@@ -27,6 +27,11 @@ spec:
               memory: "1Gi"
               cpu: "500m"
           ports:
-            - containerPort: 6543
-              name: http-julia-port
+            - containerPort: 4000
+              name: http-data-port
+          env:
+            - name: AWS_DEFAULT_REGION
+              value: "us-east-1"
+            - name: PORT
+              value: "4000"
           imagePullPolicy: "Always"

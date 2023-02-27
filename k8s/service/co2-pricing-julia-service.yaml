@@ -7,7 +7,7 @@ spec:
     app: co2-pricing
     app.kubernetes.io/name: co2-pricing-julia
   ports:
-  - name: co2-pricing-julia-service-port
-    protocol: TCP
-    port: 80
-    targetPort: http-julia-port
+    - name: co2-pricing-julia-service-port
+      protocol: TCP
+      port: 6543
+      targetPort: http-julia-port
