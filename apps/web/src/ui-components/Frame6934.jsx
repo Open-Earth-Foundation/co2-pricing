@@ -78,8 +78,8 @@ export default function Frame6934(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Next"
-        {...getOverrideProps(overrides, "Next")}
+        children="Go to Output"
+        {...getOverrideProps(overrides, "Go to Output")}
       ></Text>
       <Flex
         padding="0px 0px 0px 0px"

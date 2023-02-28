@@ -693,7 +693,7 @@ export default function SelectDiscountRate(props) {
           backgroundImage="linear-gradient(-41deg, rgba(115,136,232,1), rgba(157,170,238,1))"
           {...getOverrideProps(overrides, "Description Block CTA5458177")}
         ></DescriptionBlockCTA>
-        <DescriptionBlockCTA
+        {/* <DescriptionBlockCTA
           display="flex"
           gap="11px"
           direction="column"
@@ -710,7 +710,7 @@ export default function SelectDiscountRate(props) {
           padding="24px 24px 24px 24px"
           backgroundImage="linear-gradient(-41deg, rgba(115,136,232,1), rgba(157,170,238,1))"
           {...getOverrideProps(overrides, "Description Block CTA5458149")}
-        ></DescriptionBlockCTA>
+        ></DescriptionBlockCTA> */}
       </Flex>
     </Flex>
   );

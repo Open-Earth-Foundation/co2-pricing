@@ -92,8 +92,8 @@ export default function DescriptionBlockCTA(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="What is the carbon budget?"
-            {...getOverrideProps(overrides, "What is the carbon budget?")}
+            children="Why is this a dynamic price?"
+            {...getOverrideProps(overrides, "Why is this a dynamic price?")}
           ></Text>
         </Flex>
       </Flex>
