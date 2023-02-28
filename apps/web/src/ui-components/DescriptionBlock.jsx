@@ -110,11 +110,8 @@ export default function DescriptionBlock(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="What does “discount rate” means?"
-          {...getOverrideProps(
-            overrides,
-            "What does \u201Cdiscount rate\u201D means?"
-          )}
+          children="Why is this a dynamic price?"
+          {...getOverrideProps(overrides, "Why is this a dynamic price?")}
         ></Text>
       </Flex>
       <Flex
@@ -162,10 +159,10 @@ export default function DescriptionBlock(props) {
             left="0px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+            children="5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
             {...getOverrideProps(
               overrides,
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+              "6 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
             )}
           ></Text>
         </Flex>

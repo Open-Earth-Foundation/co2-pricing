@@ -701,7 +701,7 @@ export default function Body(props) {
           backgroundImage="linear-gradient(-41deg, rgba(115,136,232,1), rgba(157,170,238,1))"
           {...getOverrideProps(overrides, "Description Block4728693")}
         ></DescriptionBlock>
-        <DescriptionBlock
+        {/* <DescriptionBlock
           display="flex"
           gap="11px"
           direction="column"
@@ -718,7 +718,7 @@ export default function Body(props) {
           padding="24px 24px 24px 24px"
           backgroundImage="linear-gradient(-41deg, rgba(115,136,232,1), rgba(157,170,238,1))"
           {...getOverrideProps(overrides, "Description Block4728735")}
-        ></DescriptionBlock>
+        ></DescriptionBlock> */}
       </Flex>
     </Flex>
   );

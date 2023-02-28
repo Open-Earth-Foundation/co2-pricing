@@ -6,22 +6,32 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
-export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+import {
+  FlexProps,
+  IconProps,
+  TextProps,
+  ViewProps,
+} from "@aws-amplify/ui-react";
+export declare type PrimitiveOverrideProps<T> = Partial<T> &
+  React.DOMAttributes<HTMLDivElement>;
 export declare type BigDescriptionBlockOverridesProps = {
-    BigDescriptionBlock?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 6910"?: PrimitiveOverrideProps<FlexProps>;
-    "How to start calculating your own price?"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 6911"?: PrimitiveOverrideProps<FlexProps>;
-    "Group 6"?: PrimitiveOverrideProps<FlexProps>;
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."?: PrimitiveOverrideProps<TextProps>;
-    "Frame 16"?: PrimitiveOverrideProps<FlexProps>;
-    "Know more"?: PrimitiveOverrideProps<TextProps>;
-    arrow_forward4728775?: PrimitiveOverrideProps<FlexProps>;
-    "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
-    arrow_forward4728777?: PrimitiveOverrideProps<IconProps>;
+  BigDescriptionBlock?: PrimitiveOverrideProps<FlexProps>;
+  "Frame 6910"?: PrimitiveOverrideProps<FlexProps>;
+  "How to start calculating your own price?"?: PrimitiveOverrideProps<TextProps>;
+  "Frame 6911"?: PrimitiveOverrideProps<FlexProps>;
+  "Group 6"?: PrimitiveOverrideProps<FlexProps>;
+  "1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."?: PrimitiveOverrideProps<TextProps>;
+  "Frame 16"?: PrimitiveOverrideProps<FlexProps>;
+  "Know more"?: PrimitiveOverrideProps<TextProps>;
+  arrow_forward4728775?: PrimitiveOverrideProps<FlexProps>;
+  "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
+  arrow_forward4728777?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type BigDescriptionBlockProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type BigDescriptionBlockProps = React.PropsWithChildren<
+  Partial<FlexProps> & {
     overrides?: BigDescriptionBlockOverridesProps | undefined | null;
-}>;
-export default function BigDescriptionBlock(props: BigDescriptionBlockProps): React.ReactElement;
+  }
+>;
+export default function BigDescriptionBlock(
+  props: BigDescriptionBlockProps
+): React.ReactElement;

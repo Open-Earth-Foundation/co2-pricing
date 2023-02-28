@@ -34,9 +34,9 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
             <linearGradient
               key={dataProp}
               id={dataProp}
-              x1="0"
+              x1="1"
               y1="0"
-              x2="1"
+              x2="0"
               y2="0"
             >
               <stop offset="5%" stopColor={colors[idx]} stopOpacity={0.8} />

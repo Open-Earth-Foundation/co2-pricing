@@ -92,11 +92,8 @@ export default function DescriptionBlockCTA(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="What does “discount rate” means?"
-            {...getOverrideProps(
-              overrides,
-              "What does \u201Cdiscount rate\u201D means?"
-            )}
+            children="What is the carbon budget?"
+            {...getOverrideProps(overrides, "What is the carbon budget?")}
           ></Text>
         </Flex>
       </Flex>
@@ -132,10 +129,10 @@ export default function DescriptionBlockCTA(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+          children="The carbon price should not be a static figure, it changes over time based on the remaining carbon budget available. The chart of the carbon price over time shows how the price evolves as the carbon budget decreases. By considering the future trajectory of the carbon price, companies can make informed decisions about their emissions reduction strategies and set realistic carbon reduction targets."
           {...getOverrideProps(
             overrides,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+            "9 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
           )}
         ></Text>
       </Flex>

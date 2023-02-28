@@ -135,10 +135,12 @@ export default function SelectDiscountRate(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+              children="Use our tool to calculate a suggested carbon price for your organization, based on the Social Cost of Carbon (SCC). To do so, define a discount rate, a financial term for the time value of money. A higher discount rate results in a lower carbon price, as future costs are considered less valuable. To set a discount rate, it's important to consider factors such as your company's risk tolerance and the cost of capital.
+
+              For these calculations we are using the FUND model, a scientific model used to perform cost-benefit analyses of greenhouse gas emission reduction policies and to study equity of climate change and climate policy."
               {...getOverrideProps(
                 overrides,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
+                "17 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna elit enim fames fames sem at blandit. Pellentesque varius volutpat lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus sed sed imperdiet varius."
               )}
             ></Text>
           </Flex>
