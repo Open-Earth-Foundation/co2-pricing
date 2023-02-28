@@ -16,6 +16,7 @@ interface ChartProps {
   dataProps: string[];
   dataPoints: ChartDataPoint[];
 }
+
 const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
   const colors = [
     "red",
@@ -46,7 +47,9 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
         </defs>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={xLabelProp} fontFamily="Roboto" />
-        <YAxis />
+        <YAxis
+          label={{ value: "$/ton of CO2", angle: -90, position: "insideLeft" }}
+        />
         <Tooltip />
         <Legend />
         {dataProps.map((dataProp, idx) => (
