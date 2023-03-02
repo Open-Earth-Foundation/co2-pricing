@@ -31,9 +31,9 @@ const SelectMethod: NextPageWithLayout = () => {
 
   const dataPoints = calculatorService.getPlotData(discount);
 
-  const currentYearDataPoint = useMemo(() => {
-    return dataPoints!.find((dataPoint) => dataPoint.name === CURRENT_YEAR);
-  }, [dataPoints]);
+  const currentYearDataPoint = dataPoints!.find(
+    (dataPoint) => dataPoint.name === CURRENT_YEAR.toFixed(0)
+  );
 
   const [integer, decimal] = useMemo(() => {
     if (!currentYearDataPoint) return ["0", "00"];

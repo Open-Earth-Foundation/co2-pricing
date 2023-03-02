@@ -17,6 +17,8 @@ interface ChartProps {
   dataPoints: ChartDataPoint[];
 }
 
+const formatter = (value: string) => `$${value}`;
+
 const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
   const colors = [
     "red",
@@ -49,6 +51,7 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
         <XAxis dataKey={xLabelProp} fontFamily="Roboto" />
         <YAxis
           label={{ value: "$/ton of CO2", angle: -90, position: "insideLeft" }}
+          tickFormatter={formatter}
         />
         <Tooltip />
         <Legend />
