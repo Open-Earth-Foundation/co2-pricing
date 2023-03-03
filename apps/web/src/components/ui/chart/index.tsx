@@ -7,6 +7,8 @@ import {
   Legend,
   AreaChart,
   Area,
+  ReferenceLine,
+  Line,
 } from "recharts";
 import type { ChartDataPoint } from "types/calculator/plot";
 
@@ -21,7 +23,7 @@ const formatter = (value: string) => `$${value}`;
 
 const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
   const colors = [
-    "red",
+    "#2351DC",
     "blue",
     "green",
     "yellow",
@@ -31,7 +33,10 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
   ];
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <AreaChart data={dataPoints}>
+      <AreaChart
+        data={dataPoints}
+        margin={{ top: 30, right: 0, left: 10, bottom: 0 }}
+      >
         <defs>
           {dataProps.map((dataProp, idx) => (
             <linearGradient
@@ -43,28 +48,68 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
               y2="0"
             >
               <stop offset="5%" stopColor={colors[idx]} stopOpacity={0.8} />
-              <stop offset="95%" stopColor={colors[idx]} stopOpacity={0} />
+              <stop offset="80%" stopColor={colors[idx]} stopOpacity={0.0} />
             </linearGradient>
           ))}
         </defs>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={xLabelProp} fontFamily="Roboto" />
+        <XAxis
+          dataKey={xLabelProp}
+          fontFamily="Roboto"
+          height={50}
+          label={{
+            value: "Year of Emission",
+            position: "insideBottom",
+          }}
+        />
         <YAxis
-          label={{ value: "$/ton of CO2", angle: -90, position: "insideLeft" }}
+          label={{ value: "$/Ton of CO2", angle: -90, position: "insideLeft" }}
+          width={80}
           tickFormatter={formatter}
         />
-        <Tooltip />
-        <Legend />
+        <Tooltip
+          labelFormatter={(value) => {
+            return `Year of Emission: ${value}`;
+          }}
+          formatter={(value, name, props) => [`$${value}`, "Carbon Price"]}
+          separator=" = "
+        />
+        {/* <Legend verticalAlign="top" /> */}
         {dataProps.map((dataProp, idx) => (
           <Area
             key={dataProp}
             type="monotone"
             dataKey={dataProp}
             stroke={colors[idx]}
+            strokeWidth={8}
             fillOpacity={1}
             fill={`url(#${dataProp})`}
           />
         ))}
+        <ReferenceLine
+          x={2031}
+          stroke="#FA9100"
+          strokeWidth={5}
+          label={{ value: "1.5°C Limit Exceeded", position: "top" }}
+          isFront={true}
+        />
+        <Line
+          name="Remaining Carbon Budget for 1.5°C"
+          dataKey="name"
+          stroke="#FA9100"
+        />
+        <ReferenceLine
+          x={2047}
+          stroke="#D1282C"
+          strokeWidth={5}
+          label={{ value: "2.0°C Limit Exceeded", position: "top" }}
+          isFront={true}
+        />
+        <Line
+          name="Remaining Carbon Budget for 2.0°C"
+          dataKey="name"
+          stroke="#D1282C"
+        />
       </AreaChart>
     </ResponsiveContainer>
   );
