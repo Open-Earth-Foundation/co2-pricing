@@ -6,16 +6,26 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
-export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+import {
+  FlexProps,
+  IconProps,
+  TextProps,
+  ViewProps,
+} from "@aws-amplify/ui-react";
+export declare type PrimitiveOverrideProps<T> = Partial<T> &
+  React.DOMAttributes<HTMLDivElement>;
 export declare type DiscountRateInfoOverridesProps = {
-    DiscountRateInfo?: PrimitiveOverrideProps<FlexProps>;
-    help71587?: PrimitiveOverrideProps<FlexProps>;
-    "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
-    help71589?: PrimitiveOverrideProps<IconProps>;
-    "A higher discount rate implies a greater value for present generations. A lower discount rate implies a greater value for future generations"?: PrimitiveOverrideProps<TextProps>;
+  DiscountRateInfo?: PrimitiveOverrideProps<FlexProps>;
+  help71587?: PrimitiveOverrideProps<FlexProps>;
+  "Bounding box"?: PrimitiveOverrideProps<ViewProps>;
+  help71589?: PrimitiveOverrideProps<IconProps>;
+  "A higher discount rate implies that future generations are valued less than today's generation. However, since inflation has historically been positive over time, it's natural to assume that this carbon price will be cheaper for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type DiscountRateInfoProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type DiscountRateInfoProps = React.PropsWithChildren<
+  Partial<FlexProps> & {
     overrides?: DiscountRateInfoOverridesProps | undefined | null;
-}>;
-export default function DiscountRateInfo(props: DiscountRateInfoProps): React.ReactElement;
+  }
+>;
+export default function DiscountRateInfo(
+  props: DiscountRateInfoProps
+): React.ReactElement;

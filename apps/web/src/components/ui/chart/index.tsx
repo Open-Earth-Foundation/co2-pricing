@@ -48,7 +48,8 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
               y2="0"
             >
               <stop offset="5%" stopColor={colors[idx]} stopOpacity={0.8} />
-              <stop offset="80%" stopColor={colors[idx]} stopOpacity={0.0} />
+              <stop offset="50%" stopColor={"#D1282C"} stopOpacity={0.5} />
+              <stop offset="80%" stopColor={"#D1282C"} stopOpacity={0.0} />
             </linearGradient>
           ))}
         </defs>
@@ -81,15 +82,15 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
             type="monotone"
             dataKey={dataProp}
             stroke={colors[idx]}
-            strokeWidth={8}
+            strokeWidth={4}
             fillOpacity={1}
             fill={`url(#${dataProp})`}
           />
         ))}
         <ReferenceLine
-          x={2031}
+          x={2029}
           stroke="#FA9100"
-          strokeWidth={5}
+          strokeWidth={4}
           label={{ value: "1.5°C Limit Exceeded", position: "top" }}
           isFront={true}
         />
@@ -101,7 +102,7 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
         <ReferenceLine
           x={2047}
           stroke="#D1282C"
-          strokeWidth={5}
+          strokeWidth={4}
           label={{ value: "2.0°C Limit Exceeded", position: "top" }}
           isFront={true}
         />
