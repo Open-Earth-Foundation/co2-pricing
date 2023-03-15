@@ -15,15 +15,24 @@ export default function Topnav(props) {
   const { overrides, ...rest } = props;
   const frameSixNineFiveThreeOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: "http://cpt-stage.webflow.io",
   });
-  const homeOnClick = useNavigateAction({ type: "url", url: "/" });
+  const homeOnClick = useNavigateAction({
+    type: "url",
+    url: "http://cpt-stage.webflow.io",
+  });
   const calculatorOnClick = useNavigateAction({
     type: "url",
     url: "/calculator/select",
   });
-  const fAQOnClick = useNavigateAction({ type: "url", url: "/faq" });
-  const aboutCPTOnClick = useNavigateAction({ type: "url", url: "/about" });
+  const fAQOnClick = useNavigateAction({
+    type: "url",
+    url: "http://cpt-stage.webflow.io",
+  });
+  const aboutCPTOnClick = useNavigateAction({
+    type: "url",
+    url: "http://cpt-stage.webflow.io",
+  });
   return (
     <Flex
       gap="35px"

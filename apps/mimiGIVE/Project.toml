@@ -1,0 +1,15 @@
+name = "MimiFUNDAPI"
+uuid = "ec3d52c4-52ba-406a-8f69-a451be39d540"
+authors = ["adit313 <app2116@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+GenieDeployDocker = "a082159f-dd50-4f6d-a3c5-00c38fd36577"
+Inflector = "6d011eab-0732-4556-8808-e463c76bf3b6"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Mimi = "e4e893b0-ee5e-52ea-8111-44b3bdec128c"
+MimiFUND = "b3ba11de-429f-11e9-29f7-cb478ab96e7c"
+MimiGIVE = "08b927d4-7a58-4cf8-85d0-bad32a16dfbc"
+PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
