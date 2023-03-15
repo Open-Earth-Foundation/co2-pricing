@@ -7,8 +7,9 @@ export const formatPrice = (value: number): [string, string] => {
   const integer = Math.floor(price);
   const decimal = Math.round((price - integer) * 100);
   let decimal_string = decimal.toFixed(0);
-  if (decimal_string.length === 1) {
+  if (decimal < 10) {
     decimal_string = "0" + decimal_string;
   }
-  return [integer.toFixed(0), decimal.toFixed(0)];
+
+  return [integer.toFixed(0), decimal_string];
 };
