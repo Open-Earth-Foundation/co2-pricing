@@ -88,10 +88,13 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
           />
         ))}
         <ReferenceLine
-          x={2029}
+          y={25}
           stroke="#FA9100"
           strokeWidth={4}
-          label={{ value: "1.5°C Limit Exceeded", position: "top" }}
+          label={{
+            value: "IMF (low-income countries)",
+            position: "insideTopLeft",
+          }}
           isFront={true}
         />
         <Line
@@ -100,10 +103,13 @@ const Chart = ({ dataPoints, dataProps, xLabelProp }: ChartProps) => {
           stroke="#FA9100"
         />
         <ReferenceLine
-          x={2047}
+          y={75}
           stroke="#D1282C"
           strokeWidth={4}
-          label={{ value: "2.0°C Limit Exceeded", position: "top" }}
+          label={{
+            value: "IMF (high-income countries)",
+            position: "insideTopLeft",
+          }}
           isFront={true}
         />
         <Line

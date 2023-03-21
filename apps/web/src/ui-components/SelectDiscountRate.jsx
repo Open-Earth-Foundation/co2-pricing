@@ -15,6 +15,7 @@ export default function SelectDiscountRate(props) {
   const {
     slider,
     discountPercent,
+    displayColor,
     chart,
     integer,
     decimal,
@@ -521,9 +522,9 @@ export default function SelectDiscountRate(props) {
                     ></View>
                     <Text
                       fontFamily="Inter"
-                      fontSize="36px"
+                      fontSize="32px"
                       fontWeight="700"
-                      color="rgba(35,81,220,1)"
+                      color={displayColor}
                       lineHeight="43.568180084228516px"
                       textAlign="center"
                       display="block"
@@ -538,8 +539,29 @@ export default function SelectDiscountRate(props) {
                       position="relative"
                       padding="0px 0px 0px 0px"
                       whiteSpace="pre-wrap"
-                      children={discountPercent}
+                      children={discountPercent[0]}
                       {...getOverrideProps(overrides, "1.0%")}
+                    ></Text>
+                    <Text
+                      fontFamily="Inter"
+                      fontSize="20px"
+                      fontWeight="600"
+                      color={displayColor}
+                      lineHeight="24.204544067382812px"
+                      textAlign="left"
+                      display="block"
+                      direction="column"
+                      justifyContent="unset"
+                      width="unset"
+                      height="unset"
+                      gap="unset"
+                      alignItems="unset"
+                      shrink="0"
+                      position="relative"
+                      padding="0px 0px 0px 0px"
+                      whiteSpace="pre-wrap"
+                      children={discountPercent[1]}
+                      {...getOverrideProps(overrides, "Discount Rate5428461")}
                     ></Text>
                   </Flex>
                 </Flex>

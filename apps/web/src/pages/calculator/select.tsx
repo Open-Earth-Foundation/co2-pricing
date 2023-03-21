@@ -12,6 +12,35 @@ import type { NextPageWithLayout } from "types/ui";
 import { SelectDiscountRate } from "ui-components";
 import { formatDiscount, formatPrice } from "utils/format";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    tertiary: Palette["primary"];
+  }
+  interface PaletteOptions {
+    tertiary?: PaletteOptions["primary"];
+  }
+}
+
+const primary = "#FA9100";
+const secondary = "#D1282C";
+const tertiary = "#03AC13";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: primary,
+    },
+    secondary: {
+      main: secondary,
+    },
+    tertiary: {
+      main: tertiary,
+    },
+  },
+});
+
 const CURRENT_YEAR = new Date().getFullYear();
 
 const SelectMethod: NextPageWithLayout = () => {
@@ -47,20 +76,33 @@ const SelectMethod: NextPageWithLayout = () => {
         integer={integer}
         decimal={decimal}
         discountPercent={formatDiscount(discount)}
+        displayColor={
+          discount >= 0.04 ? secondary : discount >= 0.02 ? primary : tertiary
+        }
         slider={
           iamModel.data && (
-            <Slider
-              aria-label="Discount rate"
-              marks
-              valueLabelDisplay="auto"
-              onChange={(_, discount) => setDiscount(discount as number)}
-              onChangeCommitted={reactivatePlot}
-              value={discount}
-              getAriaLabel={(index) => `${index} discount rate`}
-              getAriaValueText={formatDiscount}
-              valueLabelFormat={formatDiscount}
-              {...iamModel.data.slider}
-            />
+            <ThemeProvider theme={theme}>
+              <Slider
+                aria-label="Discount rate"
+                marks
+                valueLabelDisplay="auto"
+                onChange={(_, discount) => setDiscount(discount as number)}
+                onChangeCommitted={reactivatePlot}
+                value={discount}
+                color={
+                  discount >= 0.04
+                    ? "secondary"
+                    : discount >= 0.02
+                    ? "primary"
+                    : "tertiary"
+                }
+                getAriaLabel={(index) => `${index} discount rate`}
+                valueLabelFormat={`${formatDiscount(discount)[0]} ${
+                  formatDiscount(discount)[1]
+                }`}
+                {...iamModel.data.slider}
+              />
+            </ThemeProvider>
           )
         }
         chart={

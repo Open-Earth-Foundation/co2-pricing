@@ -1,5 +1,14 @@
 export const formatDiscount = (value: number) => {
-  return `${Number((value * 100).toFixed(3))}%`;
+  return [
+    `${Number((value * 100).toFixed(3))}%`,
+    `${
+      value >= 0.04
+        ? "High Climate Damage"
+        : value >= 0.02
+        ? "Moderate Climate Damage"
+        : "Reduced Climate Damage"
+    }`,
+  ];
 };
 
 export const formatPrice = (value: number): [string, string] => {

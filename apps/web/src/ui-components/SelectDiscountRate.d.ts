@@ -66,7 +66,8 @@ export declare type SelectDiscountRateOverridesProps = {
 export declare type SelectDiscountRateProps = React.PropsWithChildren<
   Partial<FlexProps> & {
     slider?: React.ReactNode;
-    discountPercent?: String;
+    discountPercent?: String[];
+    displayColor?: String;
     chart?: React.ReactNode;
     integer?: String;
     decimal?: String;
