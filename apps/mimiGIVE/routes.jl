@@ -24,7 +24,8 @@ route("/") do
     pulse_size = parse(Float64, params(:pulse_size, "10000000"))
 
     scc = MimiGIVE.compute_scc(m, year = input_year, eta = input_eta, prtp = input_prtp, last_year = input_last_year, pulse_size = pulse_size)
-    result = "{\"RAW\": $scc}"
+    adjusted = scc * 1.57
+    result = "{\"raw\": $scc, \"adjusted\": $adjusted}"
   end
 
   route("/default") do
@@ -62,6 +63,11 @@ route("/") do
     pulse_size = parse(Float64, params(:pulse_size, "10000000"))
 
     scc = MimiGIVE.compute_scc(m, year = input_year, eta = input_eta, prtp = input_prtp, last_year = input_last_year, pulse_size = pulse_size)
+  end
+
+  route("/test") do
+    # Get the Social Cost of CO2 in year 2020 from the default MimiGIVE model:
+    test = "working"
   end
 
   route("/n2o") do

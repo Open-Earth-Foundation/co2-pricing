@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: co2-pricing-mimigive-julia-deployment
+  labels:
+    app: co2-pricing
+    app.kubernetes.io/name: co2-pricing-mimigive-julia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: co2-pricing
+  template:
+    metadata:
+      labels:
+        app: co2-pricing
+        app.kubernetes.io/name: co2-pricing-mimigive-julia
+    spec:
+      containers:
+        - name: co2-pricing-mimigive-julia
+          image: public.ecr.aws/openearthfoundation/co2-pricing-mimigive-julia
+          resources:
+            requests:
+              memory: "8Gi"
+              cpu: "2000m"
+            limits:
+              memory: "16Gi"
+              cpu: "4000m"
+          ports:
+            - containerPort: 6541
+              name: mimigive-port
+          imagePullPolicy: "Always"
