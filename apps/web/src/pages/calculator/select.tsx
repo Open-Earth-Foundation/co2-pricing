@@ -23,6 +23,12 @@ declare module "@mui/material/styles" {
   }
 }
 
+declare module "@mui/material/styles/createPalette" {
+  interface SimplePaletteColorOptions {
+    main: string;
+  }
+}
+
 const primary = "#FA9100";
 const secondary = "#D1282C";
 const tertiary = "#03AC13";
@@ -90,11 +96,10 @@ const SelectMethod: NextPageWithLayout = () => {
                 onChangeCommitted={reactivatePlot}
                 value={discount}
                 color={
-                  discount >= 0.04
-                    ? "secondary"
-                    : discount >= 0.02
-                    ? "primary"
-                    : "tertiary"
+                  discount >= 0.04 ? "secondary" : "primary"
+                  // : discount >= 0.02
+                  // ? "primary"
+                  // : "tertiary"
                 }
                 getAriaLabel={(index) => `${index} discount rate`}
                 valueLabelFormat={`${formatDiscount(discount)[0]} ${
