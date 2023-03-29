@@ -6,7 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import {
+  getOverrideProps,
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
 import { Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 import Counter from "./Counter";
 import Frame6934 from "./Frame6934";
@@ -22,6 +25,19 @@ export default function SelectDiscountRate(props) {
     overrides,
     ...rest
   } = props;
+  const learnMoreAboutModel = useNavigateAction({
+    type: "url",
+    url: "https://www.rff.org/publications/data-tools/scc-explorer/",
+  });
+  const learnMoreViaCarbonBrief = useNavigateAction({
+    type: "url",
+    url: "https://www.carbonbrief.org/",
+  });
+  const goToOutput = useNavigateAction({
+    type: "url",
+    url: `/calculator/output?discount=${discountPercent[0]}`,
+  });
+
   return (
     <Flex
       gap="40px"
@@ -153,6 +169,9 @@ export default function SelectDiscountRate(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
+            onClick={() => {
+              learnMoreAboutModel();
+            }}
             {...getOverrideProps(overrides, "Frame 165428529")}
           >
             <Text
@@ -174,7 +193,7 @@ export default function SelectDiscountRate(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Know more"
+              children="Learn more about the model (via RFF)"
               {...getOverrideProps(overrides, "Know more5428530")}
             ></Text>
             <Icon
@@ -436,6 +455,9 @@ export default function SelectDiscountRate(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
+            onClick={() => {
+              learnMoreViaCarbonBrief();
+            }}
             {...getOverrideProps(overrides, "Frame 165428450")}
           >
             <Text
@@ -457,7 +479,7 @@ export default function SelectDiscountRate(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Know more"
+              children="Learn more (via Carbon Brief)"
               {...getOverrideProps(overrides, "Know more5428451")}
             ></Text>
             <Icon
@@ -774,6 +796,9 @@ export default function SelectDiscountRate(props) {
           borderRadius="8px"
           padding="16px 36px 16px 36px"
           backgroundColor="rgba(35,81,220,1)"
+          onClick={() => {
+            goToOutput();
+          }}
           property1="Default"
           {...getOverrideProps(overrides, "Frame 6934")}
         ></Frame6934>
