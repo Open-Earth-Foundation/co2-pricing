@@ -95,10 +95,10 @@ export default function DiscountRateInfo(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="A higher discount rate implies that future generations are valued less than today's generation. However, since inflation has historically been positive over time, it's natural to assume that this carbon price will be cheaper for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."
+        children="A higher discount rate implies that future generations are valued less than today's generation. A lower discount rate implies a greater value for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."
         {...getOverrideProps(
           overrides,
-          "A higher discount rate implies that future generations are valued less than today's generation. However, since inflation has historically been positive over time, it's natural to assume that this carbon price will be cheaper for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."
+          "A higher discount rate implies that future generations are valued less than today's generation. A lower discount rate implies a greater value for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."
         )}
       ></Text>
     </Flex>

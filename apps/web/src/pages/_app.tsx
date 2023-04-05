@@ -1,15 +1,14 @@
-
-import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css"
+import "@aws-amplify/ui-react/styles.css";
 
-import studioTheme from '../ui-components/studioTheme';
-import type { NextPageWithLayout } from 'types/ui';
+import studioTheme from "../ui-components/studioTheme";
+import type { NextPageWithLayout } from "types/ui";
 import "styles/globals.sass";
+import "styles/styling.css";
 
-import Head from 'next/head';
-
+import Head from "next/head";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,17 +17,20 @@ const queryClient = new QueryClient({
       retryDelay: 30 * 1000,
     },
   },
-})
+});
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
+  Component: NextPageWithLayout;
+};
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? ((page) => page);
   return getLayout(
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
       </Head>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={studioTheme}>

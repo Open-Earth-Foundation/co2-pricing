@@ -55,7 +55,7 @@ export declare type BodyOverridesProps = {
   help4728446?: PrimitiveOverrideProps<FlexProps>;
   "Bounding box4728447"?: PrimitiveOverrideProps<ViewProps>;
   help4728448?: PrimitiveOverrideProps<IconProps>;
-  "A higher discount rate implies that future generations are valued less than today's generation. However, since inflation has historically been positive over time, it's natural to assume that this carbon price will be cheaper for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."?: PrimitiveOverrideProps<TextProps>;
+  "A higher discount rate implies that future generations are valued less than today's generation. A lower discount rate implies a greater value for future generations. It is recommended to keep discount rates to less than 2% to meet this balance."?: PrimitiveOverrideProps<TextProps>;
   CTA?: PrimitiveOverrideProps<FlexProps>;
   "Frame 6934"?: Frame6934Props;
   Footer?: PrimitiveOverrideProps<FlexProps>;

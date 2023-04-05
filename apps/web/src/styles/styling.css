@@ -1,0 +1,676 @@
+:root {
+  --content-primary: #00001f;
+  --content-link: #2351dc;
+  --content-tertiary: #7a7b9a;
+  --content-alternative: #001ea7;
+  --content-secondary: #232640;
+  --interactive-accent: #5fe500;
+  --interactive-secondary: #2351dc;
+  --interactive-control: #7a7b9a;
+  --interactive-tertiary: #24be00;
+  --background-default: #fff;
+  --interactive-primary: #008600;
+  --background-neutral: #e8eafb;
+  --background-alternative: #effde5;
+  --background-overlay: #c5cbf5;
+  --border-overlay: #e6e7ff;
+  --sentiment-negative-default: #f23d33;
+  --border-neutral: #d7d8fa;
+  --sentiment-negative-overlay: #ffeaee;
+  --sentiment-positive-default: #24be00;
+  --sentiment-positive-overlay: #effde5;
+  --sentiment-warning-overlay: #fef8e1;
+  --sentiment-warning-default: #f9a200;
+  --base-light: #fff;
+  --base-dark: #00001f;
+  --neutral-neutral-25-white: #fff;
+}
+
+@font-face {
+  font-family: Inter;
+  src: local(Inter-Regular), url(/path/to/Inter-Regular.woff2) format("woff2"),
+    url(/path/to/Inter-Regular.woff) format("woff"),
+    url(/path/to/Inter-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Inter;
+  src: local(Inter-Medium), url(/path/to/Inter-Medium.woff2) format("woff2"),
+    url(/path/to/Inter-Medium.woff) format("woff"),
+    url(/path/to/Inter-Medium.ttf) format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Inter;
+  src: local(Inter-SemiBold), url(/path/to/Inter-SemiBold.woff2) format("woff2"),
+    url(/path/to/Inter-SemiBold.woff) format("woff"),
+    url(/path/to/Inter-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Inter;
+  src: local(Inter-Bold), url(/path/to/Inter-Bold.woff2) format("woff2"),
+    url(/path/to/Inter-Bold.woff) format("woff"),
+    url(/path/to/Inter-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+.Displaylarge {
+  font-family: Inter;
+  font-size: 57px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.12;
+  letter-spacing: normal;
+}
+.Displaymedium {
+  font-family: Inter;
+  font-size: 45px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.16;
+  letter-spacing: normal;
+}
+.Displaysmall {
+  font-family: Inter;
+  font-size: 36px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  letter-spacing: normal;
+}
+.Headlinelarge {
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+}
+.Headlinemedium {
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+}
+.Headlinesmall {
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+.Titlelarge {
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.27;
+  letter-spacing: normal;
+}
+.Bodyextra-large {
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: 0.5px;
+}
+.Buttonlarge {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 1.25px;
+}
+.Titlemedium {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.Bodylarge {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+.Titlesmall {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+}
+.Buttonmedium {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: 1.25px;
+}
+.Labelunderline-large {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+}
+.Labellarge {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+}
+.Bodymedium {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+}
+.Buttonsmall {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1.25px;
+}
+.Labelunderline-medium {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.5px;
+}
+.Labelmedium {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.5px;
+}
+caption {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.5px;
+}
+.Bodysmall {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.5px;
+}
+.Labelunderline-small {
+  font-family: Inter;
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: 0.5px;
+}
+.Labelsmall {
+  font-family: Inter;
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: 0.5px;
+}
+.Overline {
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 1.5px;
+}
+
+body {
+  width: 1320px;
+  height: 1887px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 52px;
+  margin: 44.6px 60px 0;
+  padding: 0;
+}
+
+.Background {
+  width: 1440px;
+  height: 1788.5px;
+  margin: 21.6px 0 121.5px;
+  opacity: 0.2;
+  border-style: solid;
+  border-width: 1px;
+  border-image-source: linear-gradient(
+    231deg,
+    var(--interactive-accent) 42%,
+    #1c49d1 18%
+  );
+  border-image-slice: 1;
+}
+
+.Description-block_large {
+  width: 1320px;
+  height: 357px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 36px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  background-image: radial-gradient(
+      circle at 73% -33%,
+      var(--content-primary),
+      var(--content-primary) 83%,
+      #506ce3 83%
+    ),
+    linear-gradient(104deg, #7388e8 -4%, var(--content-link) 102%);
+}
+
+.How-to-start-calculating-your-own-price {
+  width: 336px;
+  height: 144px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--neutral-neutral-25-white);
+}
+.How-to-start-calculating-your-own-price .text-style-1 {
+  font-weight: normal;
+}
+
+.Use-this-tool-to-calculate-a-suggested-carbon-price-for-your-organization-based-on-the-Social-Cost {
+  height: 250px;
+  align-self: stretch;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: justify;
+  color: var(--neutral-neutral-25-white);
+}
+
+.Learn-more-via-FUND-Model {
+  width: 283px;
+  height: 24px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--neutral-neutral-25-white);
+}
+.Learn-more-via-FUND-Model .text-style-1 {
+  font-weight: bold;
+}
+
+.Price-Container {
+  height: 880px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  padding: 0;
+}
+
+.Success {
+  width: 341px;
+  height: 122px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+}
+
+.check_circle {
+  width: 60px;
+  height: 60px;
+  flex-grow: 0;
+  background-color: #24be00;
+}
+
+.Here-is-your-carbon-price {
+  width: 341px;
+  height: 34px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2351dc;
+}
+.Here-is-your-carbon-price .text-style-1 {
+  font-weight: bold;
+}
+
+.Container {
+  height: 206px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 53px;
+  padding: 0;
+}
+
+.Price {
+  height: 718px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 53px;
+  padding: 0;
+}
+
+.Your-carbon-price-should-be {
+  width: 266px;
+  height: 24px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #7a7b9a;
+}
+
+.Text {
+  width: 267px;
+  height: 132px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0;
+  border: solid 2px #bec5ff;
+}
+
+.Price-Span {
+  width: 267px;
+  height: 116px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 96px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2351dc;
+}
+
+.in-USD-per-Ton-of-CO2 {
+  width: 214px;
+  height: 24px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #7a7b9a;
+}
+
+.Start-sharing {
+  width: 178px;
+  height: 34px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2351dc;
+}
+.Start-sharing .text-style-1 {
+  font-weight: 500;
+}
+
+.google_plus_reshare {
+  width: 27px;
+  height: 21px;
+  flex-grow: 0;
+  background-color: #2351dc;
+}
+
+.CTAs {
+  height: 102px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  padding: 0;
+}
+
+.Open_in_remix_button {
+  height: 102px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 40px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  background-color: #fbfbff;
+}
+
+.in-Remix {
+  width: 91px;
+  height: 27px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2351dc;
+}
+
+.Connect_to_api_button {
+  height: 102px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 40px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  background-color: #fbfbff;
+}
+
+.account_tree_icon {
+  width: 40px;
+  height: 40px;
+  flex-grow: 0;
+  padding: 5px 3.3px 5px 3.3px;
+}
+
+.Connect {
+  width: 88px;
+  height: 27px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2351dc;
+}
+
+.to-our-API {
+  width: 106px;
+  height: 27px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2351dc;
+}
+
+.Restart-button {
+  width: 165.8px;
+  height: 64px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 24px;
+  border-radius: 100px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
+  background-color: var(--neutral-neutral-25-white);
+}
+
+.Frame-6867 {
+  width: 12.8px;
+  height: 16px;
+  flex-grow: 0;
+}
+
+.restart_alt {
+  width: 12.8px;
+  height: 14.8px;
+  margin: 0 6px 1.4px 0;
+  background-color: #f23d33;
+}
+
+.Start-over {
+  width: 99px;
+  height: 16px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.8;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #f23d33;
+}
+
+.Line-and-bar-chart {
+  width: 751px;
+  height: 350.5px;
+  flex-grow: 0;
+  padding: 0 0 0.5px;
+}
