@@ -279,7 +279,7 @@ caption {
   letter-spacing: 1.5px;
 }
 
-body {
+/* body {
   width: 1320px;
   height: 1887px;
   display: flex;
@@ -289,7 +289,7 @@ body {
   gap: 52px;
   margin: 44.6px 60px 0;
   padding: 0;
-}
+} */
 
 .Background {
   width: 1440px;

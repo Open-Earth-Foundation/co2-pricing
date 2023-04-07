@@ -1,4 +1,11 @@
+import { useNavigateAction } from "@aws-amplify/ui-react/internal";
+
 export default function SharingContainer() {
+  const goToSmartContract = useNavigateAction({
+    type: "url",
+    url: "https://remix.ethereum.org/Open-Earth-Foundation/co2-pricing/blob/main/apps/smartcontracts/demo.sol",
+  });
+
   return (
     <div>
       <span className="Start-sharing">
@@ -8,7 +15,12 @@ export default function SharingContainer() {
       </span>
       <div className="Container">
         <div className="CTAs">
-          <div className="Open_in_remix_button">
+          <div
+            className="Open_in_remix_button"
+            onClick={() => {
+              goToSmartContract();
+            }}
+          >
             <div className="Vector"></div>
             <div className="Text">
               <span className="Open">Open</span>
