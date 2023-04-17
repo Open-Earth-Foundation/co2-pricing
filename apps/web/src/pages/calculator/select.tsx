@@ -1,6 +1,6 @@
 import { Slider } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 import BaseLayout from "layouts/BaseLayout";
 import Chart from "@/components/ui/chart";
@@ -13,6 +13,11 @@ import { SelectDiscountRate } from "ui-components";
 import { formatDiscount, formatPrice } from "utils/format";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import { init } from "@socialgouv/matomo-next";
+
+const MATOMO_URL = "https://matomo.openearth.foundation/";
+const MATOMO_SITE_ID = "2";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -80,6 +85,10 @@ const SelectMethod: NextPageWithLayout = () => {
     if (!currentYearDataPoint) return ["0", "00"];
     return formatPrice(currentYearDataPoint.scc as number);
   }, [currentYearDataPoint]);
+
+  useEffect(() => {
+    init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID });
+  }, []);
 
   return (
     <>

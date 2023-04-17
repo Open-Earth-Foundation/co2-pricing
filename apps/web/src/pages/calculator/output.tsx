@@ -12,11 +12,16 @@ import Chart from "@/components/ui/chart";
 import PriceContent from "@/components/outputComponents/PriceContent";
 import SharingContainer from "@/components/outputComponents/SharingContainer";
 import RestartButton from "@/components/outputComponents/RestartButton";
-import { formatDiscount, formatPrice } from "utils/format";
+import BottomBlocks from "@/components/outputComponents/BottomBlocks";
+import { useEffect } from "react";
+
+import { init } from "@socialgouv/matomo-next";
+
+const MATOMO_URL = "https://matomo.openearth.foundation/";
+const MATOMO_SITE_ID = "2";
 
 const OutputPage: NextPageWithLayout = () => {
   const router = useRouter();
-  console.log(router.query);
   let discount_string = "1%";
   if (Array.isArray(router.query["discount"])) {
     discount_string = router.query["discount"][0] ?? "1%";
@@ -24,10 +29,8 @@ const OutputPage: NextPageWithLayout = () => {
     discount_string = router.query["discount"] ?? "1%";
   }
   const discount = parseFloat(discount_string) / 100;
-  console.log(discount);
 
   const dataPoints = calculatorService.getPlotData(discount);
-  console.log(dataPoints);
 
   const CURRENT_YEAR = new Date().getFullYear();
 
@@ -37,9 +40,12 @@ const OutputPage: NextPageWithLayout = () => {
 
   const price: string | number | undefined = currentYearDataPoint?.scc;
 
+  useEffect(() => {
+    init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID });
+  }, []);
+
   return (
     <div>
-      {/* <h1>{router.query["discount"]}</h1> */}
       <body>
         <DescriptionBlock />
         <PriceContainer />
@@ -52,6 +58,7 @@ const OutputPage: NextPageWithLayout = () => {
         />
         <SharingContainer />
         <RestartButton />
+        <BottomBlocks />
       </body>
     </div>
   );

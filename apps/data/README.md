@@ -12,18 +12,18 @@
 
 The following environment variables are required to run the API:
 
-|Variable|Description|
-|---|---|
-|AWS_ACCESS_KEY_ID|AWS access key (For DynamoDB)|
-|AWS_SECRET_ACCESS_KEY|AWS secret key (For DynamoDB)|
-|AWS_REGION|AWS region (For DynamoDB)|
+| Variable              | Description                   |
+| --------------------- | ----------------------------- |
+| AWS_ACCESS_KEY_ID     | AWS access key (For DynamoDB) |
+| AWS_SECRET_ACCESS_KEY | AWS secret key (For DynamoDB) |
+| AWS_REGION            | AWS region (For DynamoDB)     |
 
 ### Docker
 
 Simply run the following commands to build and run the Docker image:
 
 ```bash
-docker build -t co2pricing-data-api . 
+docker build -t co2pricing-data-api .
 docker run -p 3000:3000 co2pricing-data-api
 ```
 
@@ -33,51 +33,52 @@ You can use either Poetry or Pipenv to install the dependencies and run the API 
 
 - Using Poetry
 
-    ```bash
-    poetry install
-    poetry run flask run
-    ```
+  ```bash
+  poetry install
+  poetry run flask run
+  ```
 
 - Using Pipenv
 
-    ```bash
-    pipenv install
-    pipenv run flask run
-    ```
+  ```bash
+  pipenv install
+  pipenv run flask run
+  ```
 
 ## API Reference
 
-*Endpoint*: /query
+_Endpoint_: /query
 
-*Method*: GET
+_Method_: GET
 
-*Search Parameters*:
+_Search Parameters_:
 
-|Property|Type|Required|Default|Description|
-|---|---|---|---|---|
-|table|string|Yes| |name of the table to query: [`mimifund`](#mimifund), [`mimigive`](#mimigive), [`noaa`](#noaa), [`damagescountry`](#damagescountry)|
-|filters|array\<string\>|No| |an array of filters to apply to the query results (e.g. `prpt>=0.010`)|
-|order|string|No| |the column name to order the records on (e.g. `year,prtp`)|
-|limit|number|No|100|the maximum number of results to return *(max = 1000)*|
-|offset|number|No|0|pagination offset to skip * limit|
+| Property | Type            | Required | Default | Description                                                                                                                        |
+| -------- | --------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| table    | string          | Yes      |         | name of the table to query: [`mimifund`](#mimifund), [`mimigive`](#mimigive), [`noaa`](#noaa), [`damagescountry`](#damagescountry) |
+| filters  | array\<string\> | No       |         | an array of filters to apply to the query results (e.g. `prpt>=0.010`)                                                             |
+| order    | string          | No       |         | the column name to order the records on (e.g. `year,prtp`)                                                                         |
+| limit    | number          | No       | 100     | the maximum number of results to return _(max = 1000)_                                                                             |
+| offset   | number          | No       | 0       | pagination offset to skip \* limit                                                                                                 |
 
-*Example Request:*
+_Example Request:_
 
 ```json
 {
-    "records": [
-        {
-            "id": 1,
-            "name": "John",
-            "age": 30,
-            "email": "john@example.com"
-        }, {
-            "id": 2,
-            "name": "John",
-            "age": 30,
-            "email": "john2@example.com"
-        }
-    ]
+  "records": [
+    {
+      "id": 1,
+      "name": "John",
+      "age": 30,
+      "email": "john@example.com"
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "age": 30,
+      "email": "john2@example.com"
+    }
+  ]
 }
 ```
 
@@ -86,21 +87,21 @@ You can use either Poetry or Pipenv to install the dependencies and run the API 
 ### JavaScript Example
 
 ```javascript
-const axios = require('axios');
+const axios = require("axios");
 
 const params = {
-  table: 'mimifund',
-  filters: ['prtp>0.005,prpt<0.035'],
-  order: 'year',
+  table: "mimifund",
+  filters: ["prtp>0.005,prpt<0.035"],
+  order: "year",
   limit: 10,
-//   offset: 2, 
+  //   offset: 2,
 };
 
 try {
-  const { records } = await axios.get('/query', { params });
-    console.log(records);
+  const { records } = await axios.get("/query", { params });
+  console.log(records);
 } catch (error) {
-    console.error(error);
+  console.error(error);
 }
 ```
 
@@ -112,51 +113,51 @@ Each table has a set of properties that can be queried. The following tables lis
 
 ### `mimifund`
 
-|Property|Type|Description|
-|---|---|---|
-|scc number|number| |
-|year|number| |
-|snapshot_time|string| |
-|prtp|number| |
+| Property      | Type   | Description |
+| ------------- | ------ | ----------- |
+| scc number    | number |             |
+| year          | number |             |
+| snapshot_time | string |             |
+| prtp          | number |             |
 
 ### `mimigive`
 
-|Property|Type|Description|
-|---|---|---|
-|scc number|number| |
-|year|number| |
-|snapshot_time|string| |
-|prtp|number| |
+| Property      | Type   | Description |
+| ------------- | ------ | ----------- |
+| scc number    | number |             |
+| year          | number |             |
+| snapshot_time | string |             |
+| prtp          | number |             |
 
 ### `noaa`
 
-|Property|Type|Description|
-|---|---|---|
-|year|number| |
-|month|number| |
-|day|number| |
-|snapshot_time|string| |
-|trend|number| |
-|smoothed|number| |
+| Property      | Type   | Description |
+| ------------- | ------ | ----------- |
+| year          | number |             |
+| month         | number |             |
+| day           | number |             |
+| snapshot_time | string |             |
+| trend         | number |             |
+| smoothed      | number |             |
 
 ### `damagescountry`
 
-|Property|Type|Description|
-|---|---|---|
-|snapshot_time|string| |
-|83.3%|number| |
-|run|number| |
-|50%|number| |
-|N|number| |
-|SSP|number| |
-|dr|number| |
-|eta|number| |
-|dmgfuncpar|number| |
-|climate|string| |
-|16.7%|number| |
-|prtp|number| |
-|ISO3|string| |
-|RCP|string| |
+| Property      | Type   | Description |
+| ------------- | ------ | ----------- |
+| snapshot_time | string |             |
+| 83.3%         | number |             |
+| run           | number |             |
+| 50%           | number |             |
+| N             | number |             |
+| SSP           | number |             |
+| dr            | number |             |
+| eta           | number |             |
+| dmgfuncpar    | number |             |
+| climate       | string |             |
+| 16.7%         | number |             |
+| prtp          | number |             |
+| ISO3          | string |             |
+| RCP           | string |             |
 
 ---
 

@@ -292,8 +292,8 @@ caption {
 } */
 
 .Background {
-  width: 1440px;
-  height: 1788.5px;
+  /* width: 1440px;
+  height: 1788.5px; */
   margin: 21.6px 0 121.5px;
   opacity: 0.2;
   border-style: solid;
@@ -307,24 +307,14 @@ caption {
 }
 
 .Description-block_large {
-  width: 1320px;
-  height: 357px;
+  /* width: 1320px;
+  height: 357px; */
   flex-grow: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
   gap: 11px;
   padding: 36px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  background-image: radial-gradient(
-      circle at 73% -33%,
-      var(--content-primary),
-      var(--content-primary) 83%,
-      #506ce3 83%
-    ),
-    linear-gradient(104deg, #7388e8 -4%, var(--content-link) 102%);
+  background-color: #2351dc;
 }
 
 .How-to-start-calculating-your-own-price {
@@ -341,8 +331,15 @@ caption {
   text-align: left;
   color: var(--neutral-neutral-25-white);
 }
+
 .How-to-start-calculating-your-own-price .text-style-1 {
   font-weight: normal;
+  font-family: Inter;
+}
+
+.text-style-2 {
+  font-weight: normal;
+  font-family: Inter;
 }
 
 .Use-this-tool-to-calculate-a-suggested-carbon-price-for-your-organization-based-on-the-Social-Cost {
@@ -358,11 +355,15 @@ caption {
   letter-spacing: normal;
   text-align: justify;
   color: var(--neutral-neutral-25-white);
+  padding-left: 16px;
 }
 
 .Learn-more-via-FUND-Model {
-  width: 283px;
-  height: 24px;
+  /* width: 283px;
+  height: 24px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   flex-grow: 0;
   font-family: Inter;
   font-size: 20px;
@@ -372,10 +373,18 @@ caption {
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
   color: var(--neutral-neutral-25-white);
 }
+
 .Learn-more-via-FUND-Model .text-style-1 {
   font-weight: bold;
+}
+
+.Description-block-text {
+  display: flex;
+  flex-direction: row;
 }
 
 .Price-Container {
@@ -391,8 +400,6 @@ caption {
 }
 
 .Success {
-  width: 341px;
-  height: 122px;
   flex-grow: 0;
   display: flex;
   flex-direction: column;
@@ -400,13 +407,11 @@ caption {
   align-items: center;
   gap: 16px;
   padding: 0;
+  padding-top: 52px;
 }
 
 .check_circle {
-  width: 60px;
-  height: 60px;
-  flex-grow: 0;
-  background-color: #24be00;
+  transform: scale(2.5);
 }
 
 .Here-is-your-carbon-price {
@@ -428,7 +433,19 @@ caption {
 }
 
 .Container {
-  height: 206px;
+  height: 400px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 53px;
+  padding: 0;
+}
+
+.Sharing-container {
+  height: 200px;
   align-self: stretch;
   flex-grow: 0;
   display: flex;
@@ -542,6 +559,18 @@ caption {
   justify-content: center;
   align-items: center;
   gap: 36px;
+  padding: 0;
+}
+
+.Row-Container {
+  height: 400px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 53px;
   padding: 0;
 }
 
@@ -673,4 +702,64 @@ caption {
   height: 350.5px;
   flex-grow: 0;
   padding: 0 0 0.5px;
+}
+
+.How-to-integrate-our-API {
+  width: 300px;
+  height: 29px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--neutral-neutral-25-white);
+}
+
+.Description-block {
+  width: 648px;
+  height: 204px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  background-color: var(--interactive-secondary);
+}
+
+.Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Risus-vel-nibh-nunc-est-sollicitudin-pelle {
+  height: 80px;
+  align-self: stretch;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: justify;
+  color: var(--neutral-neutral-25-white);
+}
+
+.Know-more {
+  width: 110px;
+  height: 24px;
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--neutral-neutral-25-white);
 }

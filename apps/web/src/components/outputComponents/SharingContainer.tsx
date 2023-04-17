@@ -6,6 +6,11 @@ export default function SharingContainer() {
     url: "https://remix.ethereum.org/Open-Earth-Foundation/co2-pricing/blob/main/apps/smartcontracts/demo.sol",
   });
 
+  const goToAPI = useNavigateAction({
+    type: "url",
+    url: "https://app.swaggerhub.com/apis-docs/ADIT_2/CO2_pricing_oracle/1.0.0#/Carbon%20Pricing/co2Data",
+  });
+
   return (
     <div>
       <span className="Start-sharing">
@@ -13,7 +18,7 @@ export default function SharingContainer() {
         <span className="text-style-1">Start</span>
         sharing
       </span>
-      <div className="Container">
+      <div className="Sharing-container">
         <div className="CTAs">
           <div
             className="Open_in_remix_button"
@@ -27,7 +32,12 @@ export default function SharingContainer() {
               <span className="in-Remix">in Remix</span>
             </div>
           </div>
-          <div className="Connect_to_api_button">
+          <div
+            className="Connect_to_api_button"
+            onClick={() => {
+              goToAPI();
+            }}
+          >
             <div className="account_tree_icon"></div>
             <div className="Text">
               <span className="Connect">Connect</span>
