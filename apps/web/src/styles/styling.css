@@ -337,12 +337,12 @@ body {
 }
 
 .How-to-start-calculating-your-own-price .text-style-1 {
-  font-weight: normal;
+  font-weight: 400;
   font-family: Inter;
 }
 
 .text-style-2 {
-  font-weight: normal;
+  font-weight: 700;
   font-family: Inter;
 }
 
@@ -654,7 +654,7 @@ body {
 }
 
 .Restart-button {
-  width: 165.8px;
+  width: 180px;
   height: 64px;
   flex-grow: 0;
   display: flex;
