@@ -46,7 +46,7 @@ const OutputPage: NextPageWithLayout = () => {
 
   return (
     <div>
-      <body>
+      <div className="centered-items-div">
         <DescriptionBlock />
         <PriceContainer />
         <PriceContent price={price} />
@@ -58,10 +58,10 @@ const OutputPage: NextPageWithLayout = () => {
             xLabelProp="name"
           />
         </div>
-        <SharingContainer />
-        <RestartButton />
-        <BottomBlocks />
-      </body>
+      </div>
+      <SharingContainer />
+      <RestartButton />
+      <BottomBlocks />
     </div>
   );
 };
