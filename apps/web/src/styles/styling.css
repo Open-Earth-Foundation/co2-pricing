@@ -279,17 +279,15 @@ caption {
   letter-spacing: 1.5px;
 }
 
-/* body {
+body {
   width: 1320px;
-  height: 1887px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 52px;
-  margin: 44.6px 60px 0;
   padding: 0;
-} */
+}
 
 .Background {
   /* width: 1440px;
@@ -445,7 +443,7 @@ caption {
 }
 
 .Sharing-container {
-  height: 200px;
+  height: 174px;
   align-self: stretch;
   flex-grow: 0;
   display: flex;
@@ -492,7 +490,6 @@ caption {
   justify-content: flex-start;
   align-items: center;
   padding: 8px 0;
-  border: solid 2px #bec5ff;
 }
 
 .Price-Span {
@@ -563,7 +560,7 @@ caption {
 }
 
 .Row-Container {
-  height: 400px;
+  height: 204px;
   align-self: stretch;
   flex-grow: 0;
   display: flex;
@@ -571,7 +568,7 @@ caption {
   justify-content: center;
   align-items: center;
   gap: 53px;
-  padding: 0;
+  padding-top: 52px;
 }
 
 .Open_in_remix_button {
@@ -697,7 +694,7 @@ caption {
   color: #f23d33;
 }
 
-.Line-and-bar-chart {
+.Chart-div {
   width: 751px;
   height: 350.5px;
   flex-grow: 0;

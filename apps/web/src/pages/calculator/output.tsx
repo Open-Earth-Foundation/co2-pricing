@@ -50,12 +50,14 @@ const OutputPage: NextPageWithLayout = () => {
         <DescriptionBlock />
         <PriceContainer />
         <PriceContent price={price} />
-        <Chart
-          dataPoints={dataPoints!}
-          axisProp="name"
-          dataProps={["scc"]}
-          xLabelProp="name"
-        />
+        <div className="Chart-div">
+          <Chart
+            dataPoints={dataPoints!}
+            axisProp="name"
+            dataProps={["scc"]}
+            xLabelProp="name"
+          />
+        </div>
         <SharingContainer />
         <RestartButton />
         <BottomBlocks />

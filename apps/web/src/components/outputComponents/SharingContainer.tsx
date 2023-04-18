@@ -1,4 +1,6 @@
 import { useNavigateAction } from "@aws-amplify/ui-react/internal";
+import { Share } from "@mui/icons-material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export default function SharingContainer() {
   const goToSmartContract = useNavigateAction({
@@ -11,12 +13,24 @@ export default function SharingContainer() {
     url: "https://app.swaggerhub.com/apis-docs/ADIT_2/CO2_pricing_oracle/1.0.0#/Carbon%20Pricing/co2Data",
   });
 
+  const primary = "#2351dc";
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: primary,
+      },
+    },
+  });
+
   return (
     <div>
       <span className="Start-sharing">
-        <span className="google_plus_reshare"></span>
-        <span className="text-style-1">Start</span>
-        sharing
+        <ThemeProvider theme={theme}>
+          <Share className="Share-icon" fontSize="medium" color="primary" />
+        </ThemeProvider>
+        <span className="text-style-1">Start </span>
+        <span className="text-style-2">Sharing</span>
       </span>
       <div className="Sharing-container">
         <div className="CTAs">
