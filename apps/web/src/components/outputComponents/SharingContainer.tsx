@@ -1,5 +1,10 @@
 import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 
+import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
+
+import Image from 'next/image';
+import RemixIcon from '../../../public/remix_icon.svg';
+
 export default function SharingContainer() {
   const goToSmartContract = useNavigateAction({
     type: "url",
@@ -21,27 +26,30 @@ export default function SharingContainer() {
       <div className="Sharing-container">
         <div className="CTAs">
           <div
-            className="Open_in_remix_button"
+            className="share-button"
             onClick={() => {
               goToSmartContract();
             }}
           >
-            <div className="Vector"></div>
-            <div className="Text">
-              <span className="Open">Open</span>
-              <span className="in-Remix">in Remix</span>
+            <Image
+              src={RemixIcon}
+              alt="Remix Icon"
+            />
+            <div className="share-text">
+              Open
+              <div className="second-text">in Remix</div>
             </div>
           </div>
           <div
-            className="Connect_to_api_button"
+            className="share-button"
             onClick={() => {
               goToAPI();
             }}
           >
-            <div className="account_tree_icon"></div>
-            <div className="Text">
-              <span className="Connect">Connect</span>
-              <span className="to-our-API">to our API</span>
+            <div className="share-icon"><AccountTreeOutlinedIcon fontSize="inherit" /></div>
+            <div className="share-text">
+              Connect
+              <div className="second-text">to our API</div>
             </div>
           </div>
         </div>
