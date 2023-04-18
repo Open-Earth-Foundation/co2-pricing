@@ -42,6 +42,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
+        <style>
+          @import
+          url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap);
+        </style>
+        CSS rules to specify families
       </Head>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={studioTheme}>

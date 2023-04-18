@@ -46,20 +46,22 @@ const OutputPage: NextPageWithLayout = () => {
 
   return (
     <div>
-      <body>
+      <div className="centered-items-div">
         <DescriptionBlock />
         <PriceContainer />
         <PriceContent price={price} />
-        <Chart
-          dataPoints={dataPoints!}
-          axisProp="name"
-          dataProps={["scc"]}
-          xLabelProp="name"
-        />
-        <SharingContainer />
-        <RestartButton />
-        <BottomBlocks />
-      </body>
+        <div className="Chart-div">
+          <Chart
+            dataPoints={dataPoints!}
+            axisProp="name"
+            dataProps={["scc"]}
+            xLabelProp="name"
+          />
+        </div>
+      </div>
+      <SharingContainer />
+      <RestartButton />
+      <BottomBlocks />
     </div>
   );
 };

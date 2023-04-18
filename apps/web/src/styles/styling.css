@@ -58,7 +58,7 @@
   src: local(Inter-Bold), url(/path/to/Inter-Bold.woff2) format("woff2"),
     url(/path/to/Inter-Bold.woff) format("woff"),
     url(/path/to/Inter-Bold.ttf) format("truetype");
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
   font-stretch: normal;
 }
@@ -279,17 +279,21 @@ caption {
   letter-spacing: 1.5px;
 }
 
-/* body {
+body {
   width: 1320px;
-  height: 1887px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+  align-items: center;
+  /* padding: 0; */
+}
+
+.centered-items-div {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  gap: 52px;
-  margin: 44.6px 60px 0;
-  padding: 0;
-} */
+}
 
 .Background {
   /* width: 1440px;
@@ -333,12 +337,12 @@ caption {
 }
 
 .How-to-start-calculating-your-own-price .text-style-1 {
-  font-weight: normal;
+  font-weight: 400;
   font-family: Inter;
 }
 
 .text-style-2 {
-  font-weight: normal;
+  font-weight: 700;
   font-family: Inter;
 }
 
@@ -391,23 +395,16 @@ caption {
   height: 880px;
   align-self: stretch;
   flex-grow: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 40px;
   padding: 0;
 }
 
 .Success {
   flex-grow: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
   padding: 0;
   padding-top: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .check_circle {
@@ -415,7 +412,6 @@ caption {
 }
 
 .Here-is-your-carbon-price {
-  width: 341px;
   height: 34px;
   flex-grow: 0;
   font-family: Inter;
@@ -427,6 +423,7 @@ caption {
   letter-spacing: normal;
   text-align: left;
   color: #2351dc;
+  padding-top: 22px;
 }
 .Here-is-your-carbon-price .text-style-1 {
   font-weight: bold;
@@ -436,24 +433,11 @@ caption {
   height: 400px;
   align-self: stretch;
   flex-grow: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 53px;
   padding: 0;
 }
 
 .Sharing-container {
-  height: 200px;
-  align-self: stretch;
-  flex-grow: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 53px;
-  padding: 0;
+  height: 174px;
 }
 
 .Price {
@@ -470,7 +454,7 @@ caption {
 
 .Your-carbon-price-should-be {
   width: 266px;
-  height: 24px;
+  height: 65px;
   flex-grow: 0;
   font-family: Inter;
   font-size: 20px;
@@ -481,10 +465,10 @@ caption {
   letter-spacing: normal;
   text-align: center;
   color: #7a7b9a;
+  padding-top: 40px;
 }
 
 .Text {
-  width: 267px;
   height: 132px;
   flex-grow: 0;
   display: flex;
@@ -492,7 +476,6 @@ caption {
   justify-content: flex-start;
   align-items: center;
   padding: 8px 0;
-  border: solid 2px #bec5ff;
 }
 
 .Price-Span {
@@ -508,8 +491,17 @@ caption {
   letter-spacing: normal;
   text-align: center;
   color: #2351dc;
+  padding-top: 8px;
 }
 
+.price-border-div {
+  height: 140px;
+  border-bottom: solid 2px #bec5ff;
+}
+
+.price-superscript {
+  font-size: 40pt;
+}
 .in-USD-per-Ton-of-CO2 {
   width: 214px;
   height: 24px;
@@ -523,12 +515,17 @@ caption {
   letter-spacing: normal;
   text-align: center;
   color: #7a7b9a;
+  padding-top: 22px;
 }
 
-
+.Restart-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .Restart-button {
-  width: 165.8px;
+  width: 180px;
   height: 64px;
   flex-grow: 0;
   display: flex;
@@ -543,9 +540,7 @@ caption {
 }
 
 .Frame-6867 {
-  width: 12.8px;
-  height: 16px;
-  flex-grow: 0;
+  height: 24px;
 }
 
 .restart_alt {
@@ -570,11 +565,12 @@ caption {
   color: #f23d33;
 }
 
-.Line-and-bar-chart {
-  width: 751px;
-  height: 350.5px;
+.Chart-div {
+  width: 90%;
+  height: 500px;
   flex-grow: 0;
   padding: 0 0 0.5px;
+  padding-top: 48px;
 }
 
 .How-to-integrate-our-API {
