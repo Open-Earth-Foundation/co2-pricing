@@ -1,17 +1,20 @@
 .Start-sharing {
     width: 178px;
     height: 34px;
-    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-family: Inter;
     font-size: 28px;
-    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     text-align: left;
     color: #2351dc;
+    margin: 52px 0 38px 0;
   }
+
   .Start-sharing .text-style-1 {
     font-weight: 500;
   }
@@ -23,16 +26,13 @@
     background-color: #2351dc;
   }
   
-  .CTAs {
-    height: 102px;
-    align-self: stretch;
-    flex-grow: 0;
+  .button-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding-bottom: 52px;
     gap: 36px;
-    padding: 0;
   }
   
   .Row-Container {
@@ -44,7 +44,6 @@
     justify-content: center;
     align-items: center;
     gap: 53px;
-    padding: 0;
   }
   
   .share-button {
@@ -57,6 +56,7 @@
     border-radius: 8px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+    background-color: #fbfbff;
   }
   
   .share-text {
@@ -69,8 +69,14 @@
   .second-text {
     font-weight: bold;
   }
-  
+
   .share-icon {
+    font-size: 36px;
+    display: flex;
+    padding-right: 6px;
+  }
+  
+  .connect-icon {
     color: #24be00;
     font-size: 33px;
   }

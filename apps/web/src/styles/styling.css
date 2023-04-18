@@ -280,11 +280,9 @@ caption {
 }
 
 body {
-  width: 1320px;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start; */
-  align-items: center;
+  background-image: url('../../public/Background.svg')
   /* padding: 0; */
 }
 
@@ -522,6 +520,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .Restart-button {
