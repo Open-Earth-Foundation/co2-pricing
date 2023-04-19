@@ -1,9 +1,9 @@
 import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 
 export default function BottomBlocks() {
-  const goToSmartContract = useNavigateAction({
+  const goToSmartContractBlog = useNavigateAction({
     type: "url",
-    url: "https://remix.ethereum.org/Open-Earth-Foundation/co2-pricing/blob/main/apps/smartcontracts/demo.sol",
+    url: "https://open-earth-foundation.github.io/2023/04/12/How-to-use-the-CO2-Oracle.html",
   });
 
   const goToAPI = useNavigateAction({
@@ -21,20 +21,19 @@ export default function BottomBlocks() {
           </span>
         </div>
         <div className="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Risus-vel-nibh-nunc-est-sollicitudin-pelle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel
-          nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna
-          elit enim fames fames sem at blandit. Pellentesque varius volutpat
-          lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus
-          sed sed imperdiet varius.
+          A smart contract is a self-executing computer program that
+          automatically executes the terms of a contract when certain
+          pre-defined conditions are met. Click below to learn more about how to
+          set one up.
         </div>
         <div>
           <div
             className="Content"
             onClick={() => {
-              goToSmartContract();
+              goToSmartContractBlog();
             }}
           >
-            <div className="Know-more">Know more</div>
+            <div className="Know-more">Learn more about Smart Contracts</div>
             <link></link>
             <div className="arrow_forward"></div>
           </div>
@@ -48,11 +47,10 @@ export default function BottomBlocks() {
           </span>
         </div>
         <div className="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Risus-vel-nibh-nunc-est-sollicitudin-pelle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus vel
-          nibh nunc, est sollicitudin pellentesque tincidunt ultrices. Magna
-          elit enim fames fames sem at blandit. Pellentesque varius volutpat
-          lobortis consequat ornare ut aliquam ornare rhoncus. Molestie cursus
-          sed sed imperdiet varius.
+          An API, or application programming interface, is a set of defined
+          rules that enable different applications to communicate with each
+          other. Click the link below to find out how to access the pricing data
+          programatically and build it into your application.
         </div>
         <div>
           <div
@@ -61,7 +59,9 @@ export default function BottomBlocks() {
               goToAPI();
             }}
           >
-            <div className="Know-more">Know more</div>
+            <div className="Know-more">
+              See the CO2 Pricing Oracle API Guide
+            </div>
             <link></link>
             <div className="arrow_forward"></div>
           </div>

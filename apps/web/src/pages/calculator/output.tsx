@@ -50,13 +50,19 @@ const OutputPage: NextPageWithLayout = () => {
         <DescriptionBlock />
         <PriceContainer />
         <PriceContent price={price} />
-        <div className="Chart-div">
-          <Chart
-            dataPoints={dataPoints!}
-            axisProp="name"
-            dataProps={["scc"]}
-            xLabelProp="name"
-          />
+        <div className="Chart-card">
+          <div className="Chart-div">
+            <div className="Chart-title">
+              <div className="second-text">Year on year </div>
+              <div>&nbsp; overview</div>
+            </div>
+            <Chart
+              dataPoints={dataPoints!}
+              axisProp="name"
+              dataProps={["scc"]}
+              xLabelProp="name"
+            />
+          </div>
         </div>
       </div>
       <SharingContainer />

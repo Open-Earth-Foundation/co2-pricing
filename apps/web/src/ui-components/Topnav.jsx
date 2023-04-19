@@ -304,6 +304,7 @@ export default function Topnav(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="About CPT"
+          className="clickable"
           onClick={() => {
             aboutCPTOnClick();
           }}

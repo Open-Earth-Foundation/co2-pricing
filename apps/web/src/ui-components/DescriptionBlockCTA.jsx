@@ -191,6 +191,7 @@ The model does not take into account specific inputs or characteristics of an or
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="Know more"
+            className="clickable"
             {...getOverrideProps(overrides, "Know more")}
           ></Text>
           <Icon
@@ -210,6 +211,7 @@ The model does not take into account specific inputs or characteristics of an or
             justifyContent="unset"
             shrink="0"
             position="relative"
+            className="clickable"
             {...getOverrideProps(overrides, "arrow_forward")}
           ></Icon>
         </Flex>

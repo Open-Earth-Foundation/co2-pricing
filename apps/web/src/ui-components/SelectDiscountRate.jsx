@@ -190,6 +190,7 @@ export default function SelectDiscountRate(props) {
               gap="unset"
               alignItems="unset"
               shrink="0"
+              className="clickable"
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
@@ -479,6 +480,7 @@ export default function SelectDiscountRate(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
+              className="clickable"
               children="Learn more (via Carbon Brief)"
               {...getOverrideProps(overrides, "Know more5428451")}
             ></Text>

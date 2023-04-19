@@ -57,6 +57,7 @@ export default function Frame6934(props) {
       padding="16px 36px 16px 36px"
       backgroundColor="rgba(35,81,220,1)"
       display="flex"
+      className="clickable"
       {...getOverrideProps(overrides, "Frame6934")}
       {...rest}
     >
