@@ -282,7 +282,7 @@ caption {
 body {
   display: flex;
   flex-direction: column;
-  background-image: url('../../public/Background.svg')
+  background-image: url("../../public/Background.svg");
   /* padding: 0; */
 }
 
@@ -536,6 +536,7 @@ body {
   border-radius: 100px;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
   background-color: var(--neutral-neutral-25-white);
+  cursor: pointer;
 }
 
 .Frame-6867 {
@@ -630,4 +631,5 @@ body {
   letter-spacing: normal;
   text-align: left;
   color: var(--neutral-neutral-25-white);
+  cursor: pointer;
 }
