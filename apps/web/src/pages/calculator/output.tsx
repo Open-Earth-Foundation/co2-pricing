@@ -54,7 +54,7 @@ const OutputPage: NextPageWithLayout = () => {
           <div className="Chart-div">
             <div className="Chart-title">
               <div className="second-text">Year on year </div>
-              <div>&nbsp; overview</div>
+              <div>&nbsp;overview</div>
             </div>
             <Chart
               dataPoints={dataPoints!}
