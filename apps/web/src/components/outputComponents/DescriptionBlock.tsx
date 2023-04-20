@@ -1,3 +1,5 @@
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 export default function DescriptionBlock() {
   return (
     <div className="Description-block_large">
@@ -31,6 +33,7 @@ export default function DescriptionBlock() {
       >
         <span className="text-style-1">Learn more</span>
         (via FUND Model)
+        <div className="arrow-forward-icon"><ArrowForwardIcon fontSize="inherit"/></div>
       </div>
     </div>
   );

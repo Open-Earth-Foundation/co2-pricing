@@ -4,6 +4,7 @@ import { useMemo } from "react"
 import type { ReactElement } from "react"
 
 import { Topnav } from '../ui-components'
+import TopNav from "@/components/outputComponents/TopNav";
 
 const buttonOverrides = {
     cursor: "pointer",
@@ -32,7 +33,7 @@ const BaseLayout = (page: ReactElement) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <header>
-                <Topnav width="100vw" overrides={overrides} />
+                <TopNav/>
             </header>
             <main>
                 <Container maxWidth="xl"

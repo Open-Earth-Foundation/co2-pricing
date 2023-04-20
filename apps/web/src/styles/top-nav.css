@@ -1,0 +1,45 @@
+.nav-container {
+    background-color: #232640;
+    height: 112px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.left-nav {
+    font-family: Inter;
+    padding: 36px 60px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    gap: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.right-nav {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    gap: 18px;
+    display: flex;
+    flex-direction: row;
+    padding-right: 60px;
+}
+
+.link-text {
+    padding: 36px 5px;
+    cursor: pointer;
+}
+
+.link-text:hover {
+    background-color: #2351dc;
+}
+
+.open-earth-image {
+    cursor: pointer;
+}

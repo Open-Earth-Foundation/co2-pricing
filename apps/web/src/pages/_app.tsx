@@ -9,6 +9,7 @@ import type { NextPageWithLayout } from "types/ui";
 import "styles/globals.sass";
 import "styles/styling.css";
 import "styles/sharing-container.css";
+import "styles/top-nav.css";
 
 import Head from "next/head";
 

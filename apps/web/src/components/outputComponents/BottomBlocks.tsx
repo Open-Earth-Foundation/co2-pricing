@@ -1,15 +1,9 @@
 import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 
 export default function BottomBlocks() {
-  const goToSmartContractBlog = useNavigateAction({
-    type: "url",
-    url: "https://open-earth-foundation.github.io/2023/04/12/How-to-use-the-CO2-Oracle.html",
-  });
+  const goToSmartContractBlog = () => window.open("https://open-earth-foundation.github.io/2023/04/12/How-to-use-the-CO2-Oracle.html");
 
-  const goToAPI = useNavigateAction({
-    type: "url",
-    url: "https://app.swaggerhub.com/apis-docs/ADIT_2/CO2_pricing_oracle/1.0.0#/Carbon%20Pricing/co2Data",
-  });
+  const goToAPI = () => window.open("https://app.swaggerhub.com/apis-docs/ADIT_2/CO2_pricing_oracle/1.0.0#/Carbon%20Pricing/co2Data");
 
   return (
     <div className="Row-Container">
