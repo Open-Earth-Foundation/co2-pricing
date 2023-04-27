@@ -1,7 +1,0 @@
-{
-    "eslint.workingDirectories": [
-        "apps/web",
-        "cdk",
-    ],
-    "python.defaultInterpreterPath": "./apps/data/.venv"
-}
