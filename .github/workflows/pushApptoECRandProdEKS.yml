@@ -1,0 +1,54 @@
+name: Push App to ECR
+
+on:
+  push:
+    paths:
+      - apps/web/**
+    branches: ["production"]
+  pull_request:
+    paths:
+      - apps/web/**
+    branches: ["production"]
+
+jobs:
+  pushToECR:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - name: Logging in to ECR
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_PUSH_TO_ECR_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_PUSH_TO_ECR_SECRET }}
+        run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/openearthfoundation
+
+      - name: Pushing App to ECR
+        env:
+          VERSION: ${{ github.sha }}
+          IMAGE: public.ecr.aws/openearthfoundation/co2-pricing-app
+
+        run: |
+          docker build -t $IMAGE:$VERSION apps/web
+          docker tag $IMAGE:$VERSION $IMAGE:prod
+          docker push $IMAGE:$VERSION
+          docker push $IMAGE:prod
+
+  deployToEKS:
+    needs: pushToECR
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_PUSH_TO_EKS_PROD_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_PUSH_TO_EKS_PROD_SECRET }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Creating kubeconfig file
+        run: aws eks update-kubeconfig --name ${{ secrets.EKS_PROD_NAME }} --region us-east-1
+
+      - name: Testing connection to EKS
+        run: kubectl get pods -n default
+
+      - name: Deploying service
+        run: |
+          kubectl delete -f k8s/deployment/co2-pricing-app-deployment.yaml
+          kubectl apply -f k8s/deployment/co2-pricing-app-deployment.yaml
