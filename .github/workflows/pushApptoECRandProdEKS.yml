@@ -1,4 +1,4 @@
-name: Push App to ECR
+name: Push App to ECR and Deploy to EKS Production
 
 on:
   workflow_dispatch:
