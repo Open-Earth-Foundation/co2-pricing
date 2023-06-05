@@ -1,12 +1,12 @@
 name: Push App to ECR
 
 on:
+  workflow_dispatch:
+
   push:
     paths:
       - apps/web/**
-  pull_request:
-    paths:
-      - apps/web/**
+    branches: ["main"]
 
 jobs:
   pushToECR:
