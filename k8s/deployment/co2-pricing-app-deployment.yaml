@@ -30,7 +30,7 @@ spec:
             - containerPort: 3000
               name: http-app-port
           env:
-            - name: NEXT_PUBLIC_WEBFLOW_BASE_URL
+            - name: NEXT_PUBLIC_WEBFLOW_URL_BASE
               value: "http://cpt-stage.webflow.io"
             - name: PORT
               value: "3000"
