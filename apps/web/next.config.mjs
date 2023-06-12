@@ -23,5 +23,8 @@ const config = {
       },
     ]
   },
+  publicRuntimeConfig: {
+    NEXT_PUBLIC_WEBFLOW_URL_BASE: process.env.NEXT_PUBLIC_WEBFLOW_URL_BASE,
+  }
 };
 export default config;
