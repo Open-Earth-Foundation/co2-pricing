@@ -2,7 +2,7 @@ import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 import OEFLogo from '../../../public/oef_icon.svg';
 import Image from 'next/image';
 
-const urlbase = process.env.'NEXT_PUBLIC_WEBFLOW_URL_BASE';
+const urlbase = process.env.NEXT_PUBLIC_WEBFLOW_URL_BASE;
 
 export default function TopNav() {
     const calculatorOnClick = useNavigateAction({
