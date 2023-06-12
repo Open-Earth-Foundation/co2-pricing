@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: co2-pricing-app-deployment
+  labels:
+    app: co2-pricing
+    app.kubernetes.io/name: co2-pricing-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: co2-pricing
+  template:
+    metadata:
+      labels:
+        app: co2-pricing
+        app.kubernetes.io/name: co2-pricing-app
+    spec:
+      containers:
+        - name: co2-pricing-app
+          image: public.ecr.aws/openearthfoundation/co2-pricing-app
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+              name: http-app-port
+          env:
+            - name: NEXT_PUBLIC_WEBFLOW_URL_BASE
+              value: "http://carbonpricing.openearth.org"
+            - name: PORT
+              value: "3000"
+          imagePullPolicy: "Always"

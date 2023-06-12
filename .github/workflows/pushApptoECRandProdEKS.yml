@@ -48,4 +48,4 @@ jobs:
 
       - name: Deploying service
         run: |
-          kubectl apply -f k8s/deployment/co2-pricing-app-deployment.yaml
+          kubectl apply -f k8s/deployment/co2-pricing-app-deployment.prod.yaml
