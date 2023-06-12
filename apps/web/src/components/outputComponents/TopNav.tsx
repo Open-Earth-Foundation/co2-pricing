@@ -1,8 +1,11 @@
 import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 import OEFLogo from '../../../public/oef_icon.svg';
 import Image from 'next/image';
+import getConfig from 'next/config'
 
-const urlbase = process.env.NEXT_PUBLIC_WEBFLOW_URL_BASE || "https://carbonpricing.openearth.org";
+const { publicRuntimeConfig } = getConfig()
+
+const urlbase = publicRuntimeConfig.NEXT_PUBLIC_WEBFLOW_URL_BASE || "https://carbonpricing.openearth.org";
 
 export default function TopNav() {
     const calculatorOnClick = useNavigateAction({

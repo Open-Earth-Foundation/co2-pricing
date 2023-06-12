@@ -11,8 +11,11 @@ import {
   useNavigateAction,
 } from "@aws-amplify/ui-react/internal";
 import { Flex, Icon, Text } from "@aws-amplify/ui-react";
+import getConfig from 'next/config'
 
-const urlbase = process.env.NEXT_PUBLIC_WEBFLOW_URL_BASE || "https://carbonpricing.openearth.org";
+const { publicRuntimeConfig } = getConfig()
+
+const urlbase = publicRuntimeConfig.NEXT_PUBLIC_WEBFLOW_URL_BASE || "https://carbonpricing.openearth.org";
 
 export default function Topnav(props) {
   const { overrides, ...rest } = props;
