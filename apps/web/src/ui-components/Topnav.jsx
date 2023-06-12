@@ -11,15 +11,18 @@ import {
   useNavigateAction,
 } from "@aws-amplify/ui-react/internal";
 import { Flex, Icon, Text } from "@aws-amplify/ui-react";
+
+const urlbase = process.env.'NEXT_PUBLIC_WEBFLOW_URL_BASE';
+
 export default function Topnav(props) {
   const { overrides, ...rest } = props;
   const frameSixNineFiveThreeOnClick = useNavigateAction({
     type: "url",
-    url: "http://cpt-stage.webflow.io",
+    url: urlbase,
   });
   const homeOnClick = useNavigateAction({
     type: "url",
-    url: "http://cpt-stage.webflow.io",
+    url: urlbase,
   });
   const calculatorOnClick = useNavigateAction({
     type: "url",
@@ -27,11 +30,11 @@ export default function Topnav(props) {
   });
   const fAQOnClick = useNavigateAction({
     type: "url",
-    url: "http://cpt-stage.webflow.io",
+    url: urlbase,
   });
   const aboutCPTOnClick = useNavigateAction({
     type: "url",
-    url: "http://cpt-stage.webflow.io",
+    url: urlbase,
   });
   return (
     <Flex

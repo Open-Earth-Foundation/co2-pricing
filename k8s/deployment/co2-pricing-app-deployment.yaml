@@ -30,8 +30,8 @@ spec:
             - containerPort: 3000
               name: http-app-port
           env:
-            - name: NEXT_PUBLIC_DATA_API_URL
-              value: "https://zdb479ipli.execute-api.us-east-1.amazonaws.com/"
+            - name: NEXT_PUBLIC_WEBFLOW_BASE_URL
+              value: "http://cpt-stage.webflow.io"
             - name: PORT
               value: "3000"
           imagePullPolicy: "Always"
