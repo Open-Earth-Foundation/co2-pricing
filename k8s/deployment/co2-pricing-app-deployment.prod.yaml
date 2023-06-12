@@ -31,7 +31,7 @@ spec:
               name: http-app-port
           env:
             - name: NEXT_PUBLIC_WEBFLOW_URL_BASE
-              value: "http://cpt-stage.webflow.io"
+              value: "http://carbonpricing.openearth.org"
             - name: PORT
               value: "3000"
           imagePullPolicy: "Always"

@@ -13,6 +13,15 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
-  output: 'standalone'
+  output: 'standalone',
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/calculator/select',
+        permanent: true,
+      },
+    ]
+  },
 };
 export default config;

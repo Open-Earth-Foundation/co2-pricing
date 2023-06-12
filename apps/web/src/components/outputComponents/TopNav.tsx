@@ -2,21 +2,22 @@ import { useNavigateAction } from "@aws-amplify/ui-react/internal";
 import OEFLogo from '../../../public/oef_icon.svg';
 import Image from 'next/image';
 
+const urlbase = process.env.NEXT_PUBLIC_WEBFLOW_URL_BASE || "https://carbonpricing.openearth.org";
 
 export default function TopNav() {
     const calculatorOnClick = useNavigateAction({
         type: "url",
         url: "/calculator/select",
       });
-    
+
       const aboutCPTOnClick = useNavigateAction({
         type: "url",
-        url: "http://cpt-stage.webflow.io",
+        url: urlbase + "/about"
       });
 
       const homeOnClick = useNavigateAction({
         type: "url",
-        url: "http://cpt-stage.webflow.io",
+        url: urlbase + "/"
       });
 
       const OEFOnClick = () => window.open("https://www.openearth.org/");
